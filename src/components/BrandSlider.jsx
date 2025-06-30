@@ -41,42 +41,42 @@ const BrandSlider = () => {
       <SwiperSlide>
         <div className="">
           <img
-            src="/src/assets/images/brand-01.png"
+            src="/assets/images/brand-01.png"
             alt="Brand Slider" />
         </div>
       </SwiperSlide>
       <SwiperSlide>
         <div className="">
           <img
-            src="/src/assets/images/brand-02.png"
+            src="/assets/images/brand-02.png"
             alt="Brand Slider" />
         </div>
       </SwiperSlide>
       <SwiperSlide>
         <div className="">
           <img
-            src="/src/assets/images/brand-03.png"
+            src="/assets/images/brand-03.png"
             alt="Brand Slider" />
         </div>
       </SwiperSlide>
       <SwiperSlide>
         <div className="">
           <img
-            src="/src/assets/images/brand-04.png"
+            src="/assets/images/brand-04.png"
             alt="Brand Slider" />
         </div>
       </SwiperSlide>
       <SwiperSlide>
         <div className="">
           <img
-            src="/src/assets/images/brand-05.png"
+            src="/assets/images/brand-05.png"
             alt="Brand Slider" />
         </div>
       </SwiperSlide>
       <SwiperSlide>
         <div className="">
           <img
-            src="/src/assets/images/brand-02.png"
+            src="/assets/images/brand-02.png"
             alt="Brand Slider" />
         </div>
       </SwiperSlide>
