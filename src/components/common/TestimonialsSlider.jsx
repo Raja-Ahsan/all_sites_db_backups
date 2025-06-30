@@ -42,7 +42,7 @@ const TestimonialsSlider = () => {
       <SwiperSlide>
         <div className="testimonials-card">
           <div className="video-wrapper">
-            <video src="/src/assets/videos/test-01.mp4" controls playsInline />
+            <video src="/assets/videos/test-01.mp4" controls playsInline />
           </div>
           <div className='test-card-content'>
             <h4 className='text-white  text-[24px] leading-[1.1] mb-[20px] font-bold'>
@@ -57,7 +57,7 @@ const TestimonialsSlider = () => {
       <SwiperSlide>
         <div className="testimonials-card">
           <div className="video-wrapper">
-            <video src="/src/assets/videos/test-02.mp4" controls playsInline />
+            <video src="/assets/videos/test-02.mp4" controls playsInline />
           </div>
           <div className='test-card-content'>
 
@@ -74,7 +74,7 @@ const TestimonialsSlider = () => {
       <SwiperSlide>
         <div className="testimonials-card">
           <div className="video-wrapper">
-            <video src="/src/assets/videos/test-03.mp4" controls playsInline />
+            <video src="/assets/videos/test-03.mp4" controls playsInline />
           </div>
           <div className='test-card-content'>
 
@@ -90,7 +90,7 @@ const TestimonialsSlider = () => {
       <SwiperSlide>
         <div className="testimonials-card">
           <div className="video-wrapper">
-            <video src="/src/assets/videos/test-04.mp4" controls playsInline />
+            <video src="/assets/videos/test-04.mp4" controls playsInline />
           </div>
           <div className='test-card-content'>
 
@@ -106,7 +106,7 @@ const TestimonialsSlider = () => {
       <SwiperSlide>
         <div className="testimonials-card">
           <div className="video-wrapper">
-            <video src="/src/assets/videos/test-05.mp4" controls playsInline />
+            <video src="/assets/videos/test-05.mp4" controls playsInline />
           </div>
           <div className='test-card-content'>
 
@@ -125,7 +125,7 @@ const TestimonialsSlider = () => {
       <SwiperSlide>
         <div className="testimonials-card">
           <div className="video-wrapper">
-            <video src="/src/assets/videos/test-06.mp4" controls playsInline />
+            <video src="/assets/videos/test-06.mp4" controls playsInline />
           </div>
           <div className='test-card-content'>
 
@@ -144,7 +144,7 @@ const TestimonialsSlider = () => {
       <SwiperSlide>
         <div className="testimonials-card">
           <div className="video-wrapper">
-            <video src="/src/assets/videos/test-07.mp4" controls playsInline />
+            <video src="/assets/videos/test-07.mp4" controls playsInline />
           </div>
           <div className='test-card-content'>
 
