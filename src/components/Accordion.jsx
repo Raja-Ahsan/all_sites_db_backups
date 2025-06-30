@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 
 const AccordionItem = ({ title, content, isOpen, onClick }) => (
   <div
-    className="accordion-item border border-[#565656] rounded-[17px] py-[18px] px-[43px] mb-4 transition-all ease-in-out duration-300"
+    className="accordion-item border border-[#565656] rounded-[17px] py-[18px] px-[18px] md:px-[43px] mb-4 transition-all ease-in-out duration-300"
     onClick={onClick}
   >
     <div className="flex justify-between items-center cursor-pointer">
-      <h3 className="text-[25px] text-white font-semibold mb-[10px]">{title}</h3>
+      <h3 className="text-[20px] md:text-[25px] text-white font-semibold mb-[10px]">{title}</h3>
       <i
-        className={`text-white text-[25px] ${isOpen ? 'fas fa-minus' : 'fas fa-plus'}`} // Toggle plus/minus icon
+        className={`text-white text-[20px] md:text-[25px] ${isOpen ? 'fas fa-minus' : 'fas fa-plus'}`} // Toggle plus/minus icon
       />
     </div>
     <div
