@@ -198,12 +198,6 @@ const Show = ({ publishPackage: pkg, flash }) => {
                         )}
                       </p>
                     </div>
-                    <div className="mb-3">
-                      <strong>Stripe Price ID:</strong>
-                      <p className="mb-0">
-                        <code>{pkg.stripe_price_id || 'N/A'}</code>
-                      </p>
-                    </div>
                   </div>
                 </div>
 

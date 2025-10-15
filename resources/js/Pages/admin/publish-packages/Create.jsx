@@ -102,10 +102,6 @@ const Create = ({ flash }) => {
             newErrors.features = "At least one feature is required";
         }
 
-        if (!data.stripe_price_id || data.stripe_price_id.trim() === "") {
-            newErrors.stripe_price_id = "Stripe Price ID is required";
-        }
-
         return Object.keys(newErrors).length === 0;
     };
 
@@ -290,7 +286,7 @@ const Create = ({ flash }) => {
                                 </CRow>
 
                                 <CRow className="mb-3">
-                                    <CCol md={6}>
+                                    <CCol md={12}>
                                         <CFormLabel htmlFor="is_active">
                                             Status
                                         </CFormLabel>
@@ -312,33 +308,6 @@ const Create = ({ flash }) => {
                                         {errors.is_active && (
                                             <div className="text-danger">
                                                 {errors.is_active}
-                                            </div>
-                                        )}
-                                    </CCol>
-
-                                    <CCol md={6}>
-                                        <CFormLabel htmlFor="stripe_price_id">
-                                            Stripe Price ID
-                                        </CFormLabel>
-                                        <CFormInput
-                                            id="stripe_price_id"
-                                            value={data.stripe_price_id}
-                                            onChange={(e) =>
-                                                setData(
-                                                    "stripe_price_id",
-                                                    e.target.value,
-                                                )
-                                            }
-                                            invalid={!!errors.stripe_price_id}
-                                            placeholder="Enter Stripe price ID"
-                                        />
-                                        <small className="text-muted">
-                                            Enter the Stripe price ID if you
-                                            have one, otherwise leave empty
-                                        </small>
-                                        {errors.stripe_price_id && (
-                                            <div className="text-danger">
-                                                {errors.stripe_price_id}
                                             </div>
                                         )}
                                     </CCol>

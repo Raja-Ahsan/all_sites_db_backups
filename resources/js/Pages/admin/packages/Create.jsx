@@ -34,7 +34,6 @@ const Create = ({ flash }) => {
         price_cents: "",
         interval: "",
         features: [""],
-        stripe_price_id: "",
         is_active: "1",
         words_limit: "",
         stories_limit: "",
@@ -62,7 +61,7 @@ const Create = ({ flash }) => {
     // Warn user about unsaved changes
     useEffect(() => {
         const handleBeforeUnload = (e) => {
-            if (data.name || data.price_cents || data.interval || data.stripe_price_id) {
+            if (data.name || data.price_cents || data.interval) {
                 e.preventDefault();
                 e.returnValue = '';
             }
@@ -108,10 +107,6 @@ const Create = ({ flash }) => {
             data.features.filter((f) => f && f.trim()).length === 0
         ) {
             newErrors.features = "At least one feature is required";
-        }
-
-        if (!data.stripe_price_id || data.stripe_price_id.trim() === "") {
-            newErrors.stripe_price_id = "Stripe Price ID is required";
         }
 
         if (!data.words_limit || isNaN(data.words_limit) || data.words_limit <= 0) {
@@ -183,7 +178,6 @@ const Create = ({ flash }) => {
                 if (errors.name) errorMessage = errors.name;
                 else if (errors.price_cents) errorMessage = errors.price_cents;
                 else if (errors.interval) errorMessage = errors.interval;
-                else if (errors.stripe_price_id) errorMessage = errors.stripe_price_id;
                 else if (errors.words_limit) errorMessage = errors.words_limit;
                 else if (errors.stories_limit) errorMessage = errors.stories_limit;
                 else if (errors.features) errorMessage = errors.features;
@@ -390,35 +384,7 @@ const Create = ({ flash }) => {
                                 </CRow>
 
                                 <CRow className="mb-3">
-                                    <CCol md={6}>
-                                        <CFormLabel htmlFor="stripe_price_id">
-                                            Stripe Price ID
-                                        </CFormLabel>
-                                        <CFormInput
-                                            id="stripe_price_id"
-                                            value={data.stripe_price_id}
-                                            onChange={(e) =>
-                                                setData(
-                                                    "stripe_price_id",
-                                                    e.target.value,
-                                                )
-                                            }
-                                            invalid={
-                                                !!errors.stripe_price_id
-                                            }
-                                            placeholder="Enter Stripe price ID (optional)"
-                                        />
-                                        <small className="text-muted">
-                                            Enter the Stripe price ID if you
-                                            have dont have create one
-                                        </small>
-                                        {errors.stripe_price_id && (
-                                            <div className="text-danger">
-                                                {errors.stripe_price_id}
-                                            </div>
-                                        )}
-                                    </CCol>
-                                    <CCol md={6}>
+                                    <CCol md={12}>
                                         <CFormLabel htmlFor="badge">
                                             Badge
                                         </CFormLabel>

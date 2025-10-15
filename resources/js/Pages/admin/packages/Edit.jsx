@@ -124,10 +124,6 @@ const Edit = ({ package: pkg, flash }) => {
       newErrors.interval = 'Please select a valid interval';
     }
 
-    if (!data.stripe_price_id || data.stripe_price_id.trim() === '') {
-      newErrors.stripe_price_id = 'Stripe Price ID is required';
-    }
-
     if (!data.words_limit || isNaN(data.words_limit) || data.words_limit <= 0) {
       newErrors.words_limit = 'Valid words limit is required';
     }
@@ -295,9 +291,10 @@ const Edit = ({ package: pkg, flash }) => {
                         placeholder="10.30 for $10.30"
                         min="0"
                         step="0.01"
+                        disabled={true}
                       />
                     </CInputGroup>
-                    <small className="text-muted">Enter price in dollars (e.g., 10.30 for $10.30)</small>
+                    <small className="text-muted">you can't change the price here</small>
                     {errors.price_cents && (
                       <div className="text-danger">{errors.price_cents}</div>
                     )}
@@ -314,6 +311,7 @@ const Edit = ({ package: pkg, flash }) => {
                       onChange={(e) => setData('interval', e.target.value)}
                       invalid={!!errors.interval}
                       options={intervalOptions}
+                      disabled={true}
                     />
                     {errors.interval && (
                       <div className="text-danger">{errors.interval}</div>
@@ -338,22 +336,7 @@ const Edit = ({ package: pkg, flash }) => {
                 </CRow>
 
                 <CRow className="mb-3">
-                  <CCol md={6}>
-                    <CFormLabel htmlFor="stripe_price_id">Stripe Price ID</CFormLabel>
-                    <CFormInput
-                      id="stripe_price_id"
-                      value={data.stripe_price_id}
-                      onChange={(e) => setData('stripe_price_id', e.target.value)}
-                      invalid={!!errors.stripe_price_id}
-                      placeholder="Enter Stripe price ID (optional)"
-                    />
-                    <small className="text-muted">Enter the Stripe price ID if you have dont have create one</small>
-                    {errors.stripe_price_id && (
-                      <div className="text-danger">{errors.stripe_price_id}</div>
-                    )}
-                    {/* Removed validationErrors.stripe_price_id */}
-                  </CCol>
-                  <CCol md={6}>
+                  <CCol md={12}>
                     <CFormLabel htmlFor="badge">Badge</CFormLabel>
                     <CFormInput
                       id="badge"

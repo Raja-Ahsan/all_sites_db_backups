@@ -131,7 +131,6 @@ function Index({ publishPackages = { data: [] }, flash }) {
                                         <CTableHeaderCell>Name</CTableHeaderCell>
                                         <CTableHeaderCell>Price ($)</CTableHeaderCell>
                                         <CTableHeaderCell>Features</CTableHeaderCell>
-                                        <CTableHeaderCell>Stripe Price ID</CTableHeaderCell>
                                         <CTableHeaderCell>Status</CTableHeaderCell>
                                         <CTableHeaderCell>Actions</CTableHeaderCell>
                                     </CTableRow>
@@ -153,7 +152,6 @@ function Index({ publishPackages = { data: [] }, flash }) {
                                                         <span className="text-muted">No features</span>
                                                     )}
                                                 </CTableDataCell>
-                                                <CTableDataCell>{pkg.stripe_price_id || '-'}</CTableDataCell>
                                                 <CTableDataCell>
                                                     <div className="mt-1">
                                                         {pkg.is_active ? (
