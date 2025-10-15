@@ -9,6 +9,7 @@ use Inertia\Inertia;
 
 class PackagesController extends Controller
 {
+    // auto generate packages in stripe 
     /**
      * Display a listing of the resource.
      */
