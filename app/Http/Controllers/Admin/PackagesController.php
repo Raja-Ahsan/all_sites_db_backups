@@ -153,17 +153,25 @@ class PackagesController extends Controller
 
             // 🔍 Step 1: Find the product linked to this package
             if ($package->stripe_price_id) {
-                $price = \Stripe\Price::retrieve($package->stripe_price_id);
-                $productId = $price->product ?? null;
+                $oldPrice = \Stripe\Price::retrieve($package->stripe_price_id);
+                $productId = $oldPrice->product;
 
-                if ($productId) {
-                    // ⚡ Step 2: Update Stripe product name/description
-                    \Stripe\Product::update($productId, [
-                        'name' => $data['name'],
-                        'description' => !empty($data['features'])
-                            ? implode(', ', $data['features'])
-                            : 'Subscription package for StoryVault.',
+                \Stripe\Product::update($productId, [
+                    'name' => $data['name'],
+                    'description' => implode(', ', $data['features'] ?? []),
+                ]);
+
+                if ($data['price_cents'] != $package->price_cents || $data['interval'] != $package->interval) {
+                    $interval = $data['interval'] ?? 'month';
+
+                    $newPrice = \Stripe\Price::create([
+                        'unit_amount' => $data['price_cents'],
+                        'currency' => 'usd',
+                        'recurring' => ['interval' => $interval === 'yearly' ? 'year' : 'month'],
+                        'product' => $productId,
                     ]);
+
+                    $data['stripe_price_id'] = $newPrice->id;
                 }
             }
 
@@ -183,12 +191,12 @@ class PackagesController extends Controller
     {
         try {
             \Stripe\Stripe::setApiKey(config('services.stripe.secret'));
-    
+
             // ✅ Step 1: Find linked Stripe Product
             if ($package->stripe_price_id) {
                 $price = \Stripe\Price::retrieve($package->stripe_price_id);
                 $productId = $price->product ?? null;
-    
+
                 if ($productId) {
                     // ⚡ Step 2: Archive (deactivate) the product in Stripe
                     \Stripe\Product::update($productId, [
@@ -196,10 +204,10 @@ class PackagesController extends Controller
                     ]);
                 }
             }
-    
+
             // ✅ Step 3: Delete from local DB
             $package->delete();
-    
+
             return back()->with('success', 'Package deleted locally and archived in Stripe.');
         } catch (\Exception $e) {
             return back()->with('error', 'Stripe deletion failed: ' . $e->getMessage());

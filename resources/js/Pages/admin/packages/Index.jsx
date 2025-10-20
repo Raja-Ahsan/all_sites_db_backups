@@ -132,7 +132,6 @@ function Index({ packages, flash }) {
                                         <CTableHeaderCell>Price ($)</CTableHeaderCell>
                                         <CTableHeaderCell>Interval</CTableHeaderCell>
                                         <CTableHeaderCell>Features</CTableHeaderCell>
-                                        <CTableHeaderCell>Stripe Price ID</CTableHeaderCell>
                                         <CTableHeaderCell>Status</CTableHeaderCell>
                                         <CTableHeaderCell>Actions</CTableHeaderCell>
                                     </CTableRow>
@@ -155,7 +154,6 @@ function Index({ packages, flash }) {
                                                         <span className="text-muted">No features</span>
                                                     )}
                                                 </CTableDataCell>
-                                                <CTableDataCell>{pkg.stripe_price_id || '-'}</CTableDataCell>
                                                 <CTableDataCell>
                                                     <div className="mt-1">
                                                         {pkg.is_active ? (
