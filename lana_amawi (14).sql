@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 11, 2025 at 10:53 PM
+-- Generation Time: Nov 19, 2025 at 11:42 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -237,7 +237,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (33, '2025_11_11_200937_add_additional_booking_charge_to_programs_table', 22),
 (34, '2025_11_11_200938_create_payments_table', 22),
 (35, '2025_11_11_202001_add_one_time_payment_amount_to_programs_table', 23),
-(36, '2025_11_11_212209_add_agreement_template_path_to_programs_table', 24);
+(36, '2025_11_11_212209_add_agreement_template_path_to_programs_table', 24),
+(37, '2025_11_18_212510_add_stripe_fields_to_payments_table', 25),
+(38, '2025_11_18_212511_add_stripe_fields_to_user_programs_table', 25),
+(39, '2025_11_19_165801_create_settings_table', 26);
 
 -- --------------------------------------------------------
 
@@ -265,6 +268,9 @@ CREATE TABLE `payments` (
   `status` enum('pending','completed','failed','refunded') NOT NULL DEFAULT 'pending',
   `amount` decimal(10,2) NOT NULL,
   `payment_reference` varchar(255) DEFAULT NULL,
+  `stripe_payment_intent_id` varchar(255) DEFAULT NULL,
+  `stripe_charge_id` varchar(255) DEFAULT NULL,
+  `stripe_customer_id` varchar(255) DEFAULT NULL,
   `notes` text DEFAULT NULL,
   `month_number` int(11) DEFAULT NULL COMMENT 'For monthly payments: 1, 2, or 3',
   `paid_at` timestamp NULL DEFAULT NULL,
@@ -276,8 +282,9 @@ CREATE TABLE `payments` (
 -- Dumping data for table `payments`
 --
 
-INSERT INTO `payments` (`id`, `user_program_id`, `appointment_id`, `payment_type`, `status`, `amount`, `payment_reference`, `notes`, `month_number`, `paid_at`, `created_at`, `updated_at`) VALUES
-(2, 14, NULL, 'contract_one_time', 'completed', 1080.00, 'PAY-6J6XMLZR-1762897859', 'Payment completed via checkout. Card: **** **** **** 109', NULL, '2025-11-11 16:50:59', '2025-11-11 16:50:59', '2025-11-11 16:50:59');
+INSERT INTO `payments` (`id`, `user_program_id`, `appointment_id`, `payment_type`, `status`, `amount`, `payment_reference`, `stripe_payment_intent_id`, `stripe_charge_id`, `stripe_customer_id`, `notes`, `month_number`, `paid_at`, `created_at`, `updated_at`) VALUES
+(3, 15, NULL, 'contract_one_time', 'completed', 675.00, 'PAY-SJIVQ4CI-1763509373', 'pi_3SUyXuLXqt7gmBJh0609oDiG', 'ch_3SUyXuLXqt7gmBJh0djl2zNt', 'cus_TRqCsdWtWaGCwc', 'Payment completed via Stripe. Payment Intent: pi_3SUyXuLXqt7gmBJh0609oDiG', NULL, '2025-11-18 18:42:53', '2025-11-18 18:42:53', '2025-11-18 18:42:53'),
+(4, 16, NULL, 'contract_monthly', 'completed', 399.00, 'PAY-3HIICHRE-1763510194', 'pi_3SUyl9LXqt7gmBJh0vfi1nfw', 'ch_3SUyl9LXqt7gmBJh0SCaCpbc', 'cus_TRsWSIWur6r7qi', 'Payment completed via Stripe. Payment Intent: pi_3SUyl9LXqt7gmBJh0vfi1nfw', 1, '2025-11-18 18:56:34', '2025-11-18 18:56:34', '2025-11-18 18:56:34');
 
 -- --------------------------------------------------------
 
@@ -339,10 +346,36 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('8PI8I5RvkKv40mDNEOtkFCMMNx01KBl4VFXiyeJI', 15, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoicjVWenduUzQwb05qSlVtTXFtcWdzVW1kRmdXVlFIckJaS2ZPWVlmcCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jbGllbnQvcHJvZ3JhbXMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxNTt9', 1762897866),
-('9URFmQZpyP7L3oxmqg1QK7AYSS1HCsJSzy58nvMF', 15, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiMVEyS1o5TU5CenVGSW1nWVpWZUI3eGZwTExVeUplWG9YeWNmQU1sMSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jbGllbnQvcHJvZ3JhbXMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxNTt9', 1762895611),
-('UG3TSlXdr2gODJHCdUCH6R0yCpkj1wtp1B7p2Hwc', 14, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiWmk0U1EzdHpDRUdLcWFpaDJjVlFVM3BYVk9kSncxWkptcTNwdGt2NiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9wcm9ncmFtcyI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE0O30=', 1762897960),
-('VWG64jLo0DGaF1w0ycP3bgEnbUkXEt9vwx7R6B2x', 14, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiSVp0Vm1ZVklaSzZKbkxJdUd6SEhOV0pYVUlWaEJ0cjhNMzJSNEN3OSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE0O30=', 1762892032);
+('CiD2zO82JwITM3x9oQbGJJgcL6HzCqmirBBtRwKA', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiYVJ4ZDY5dUF0VzZBNUVMamdaZ3FIWEp0RVROcnpCSnpYeXJOekxnNSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jbGllbnQvcHJvZ3JhbXMvNCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1763579027),
+('dzsiNMys32cFLTnUgzDWmngdjqjFvB0frKQ7LWPN', 14, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiNGlBNlFFMGh5VHNMQ1lsUjdwTERJVEZwOGEyYURuVUlhdEE1TWQ3WiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9zdWJzY3JpcHRpb25zLWxpc3QiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxNDt9', 1763572487),
+('NLy600CBng2HJsuy7OAhvrNoeRO3iadg5khqJVZP', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoic0Z5ZU1zc2d3UmZ5cHpOZ2NNMHg5b1htTDFmV2NBd2RERjlFeFZyTCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9wYXltZW50cyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1763571298),
+('tUiyN4kl3f6dGkkwgTacpKRGqEpvuFdUWaqt61fe', 14, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoib0p4RlpzcU9PejNPYkNrRk5TdVdHUmZWbmtNVk5Ld1RzSUlKbVJPdiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9wYXltZW50cyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE0O30=', 1763510245),
+('x7RjD0IUgyw3OsnDjpHWezNKj4NbDyfQ9uzXti0m', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiZHlTcHZlOFhpbngzRHR1Ymd5YVUwbkxkeldIM1NTYmtYbVdZUk9qTSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9wYXltZW50cyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1763571299),
+('Xv9z02W3HeY8y7K5rAx6OlV4IXHXNPQd5ti5ONEO', 15, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoia0dtakU5OW1MQjJLTUM5QW1uZTNzWEpNaWQxdEY3V0dTaFV5a3diSSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jbGllbnQvcHJvZ3JhbXMvYWdyZWVtZW50LzE3L2Rvd25sb2FkIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTU7fQ==', 1763510313);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `settings`
+--
+
+CREATE TABLE `settings` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `key` varchar(255) NOT NULL,
+  `value` text DEFAULT NULL,
+  `group` varchar(255) NOT NULL DEFAULT 'general',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `settings`
+--
+
+INSERT INTO `settings` (`id`, `key`, `value`, `group`, `created_at`, `updated_at`) VALUES
+(1, 'stripe_key', 'YOUR_STRIPE_PUBLISHABLE_KEY_HERE', 'stripe', '2025-11-19 12:03:38', '2025-11-19 12:03:38'),
+(2, 'stripe_secret', 'YOUR_STRIPE_SECRET_KEY_HERE', 'stripe', '2025-11-19 12:03:38', '2025-11-19 12:03:38'),
+(3, 'stripe_webhook_secret', 'YOUR_STRIPE_WEBHOOK_SECRET_HERE', 'stripe', '2025-11-19 12:03:38', '2025-11-19 12:03:38');
 
 -- --------------------------------------------------------
 
@@ -462,8 +495,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `address`, `date_of_birth`, `gender`, `age`, `languages_spoken`, `institution_hospital`, `position`, `position_as_of_date`, `specialty`, `education_institution`, `graduation_date`, `email_verified_at`, `password`, `is_admin`, `signed_agreement_path`, `signed_agreement_name`, `agreement_uploaded_at`, `remember_token`, `created_at`, `updated_at`) VALUES
-(14, 'Admin User', 'admin@example.com', '+1 (555) 000-0000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-08-07 15:03:40', '$2y$12$nV9CxLciXFYiNSIl9ehUGO5l8JcZ9Y/Ni.9bn9Ea3GLj0krv6qmn6', 1, NULL, NULL, NULL, 'Q8GdYBUIRhqJMq94UpSpLfu7XJUNqmQjEGsSNOv8ZTejcavF9VYniK0eFkVR', '2025-08-07 15:03:40', '2025-09-13 21:31:06'),
-(15, 'Demo User', 'demo@example.com', '+1 (555) 000-0000', '123 Medical Center Dr, Suite 200, New York, NY 10001', '1985-03-15', 'female', 39, '[\"English\",\"Spanish\"]', 'New York General Hospital', 'Cardiologist', '2020-01-15', 'Interventional Cardiology', NULL, '2010-06-15', '2025-08-07 15:03:40', '$2y$12$2xeDWAA2JBkMqBpbb47iF./aG2NhKqii/2LtskDP/fE1APX1511qa', 0, NULL, NULL, NULL, NULL, '2025-08-07 15:03:40', '2025-09-13 21:38:56'),
+(14, 'Admin User', 'admin@example.com', '+1 (555) 000-0000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-08-07 15:03:40', '$2y$12$4NOvhn6kqJm/3frH6D181ud0c1WEDLzLuoLHoFiJkFQFT5upBOKbW', 1, NULL, NULL, NULL, 'Q8GdYBUIRhqJMq94UpSpLfu7XJUNqmQjEGsSNOv8ZTejcavF9VYniK0eFkVR', '2025-08-07 15:03:40', '2025-11-18 16:18:38'),
+(15, 'Demo User', 'demo@example.com', '+1 (555) 000-0000', '123 Medical Center Dr, Suite 200, New York, NY 10001', '1985-03-15', 'female', 39, '[\"English\",\"Spanish\"]', 'New York General Hospital', 'Cardiologist', '2020-01-15', 'Interventional Cardiology', NULL, '2010-06-15', '2025-08-07 15:03:40', '$2y$12$yZnjSViyCK3VBS4uC8Ti7..7zm.Shcgr7mxX/vYG6cLQaNMDp/lLW', 0, NULL, NULL, NULL, NULL, '2025-08-07 15:03:40', '2025-11-18 16:15:06'),
 (16, 'Test User', 'test@example.com', '+1 (555) 000-0000', '456 Healthcare Ave, Floor 5, Los Angeles, CA 90210', '1982-07-22', 'male', 42, '[\"English\",\"Chinese\",\"French\"]', 'Cedars-Sinai Medical Center', 'Emergency Medicine Physician', '2018-09-01', 'Emergency Medicine', NULL, '2008-05-20', '2025-08-07 15:03:41', '$2y$12$YCLznGXTvzWku2zqROdwFexXTqztB83EioioIm9DqxVzekFRePLly', 0, NULL, NULL, NULL, NULL, '2025-08-07 15:03:41', '2025-09-13 21:38:56'),
 (38, 'Lareina Love', 'hiqos@mailinator.com', '+1 (414) 201-6348', 'Nemo qui commodi pos', '2001-12-30', 'female', 42, '[\"English\",\"French\",\"Other\"]', 'Qui sed et sunt occa', 'Fugit distinctio F', '1991-07-18', 'Fugiat eligendi qui', NULL, '1970-01-17', NULL, '$2y$12$Hs//s07LotAOyZqr88rZNelVr3hNw1mxI0k8rZXuCNMDiu1s1JrQu', 0, NULL, NULL, NULL, NULL, '2025-09-16 13:22:07', '2025-09-16 13:22:07'),
 (39, 'Brittany Sparks', 'wytebypora@mailinator.com', '+1 (868) 576-5411', 'Sit vel at voluptate', '2016-02-05', 'other', 73, '[\"English\",\"French\",\"Mandarin Chinese\",\"Japanese\",\"Other\"]', 'Eveniet ad molestia', 'In doloremque commod', '1982-03-12', 'Natus suscipit nulla', NULL, '1993-12-12', NULL, '$2y$12$20uHo5NVPytw0Mgkzfs5DOriGlIdjZlYLkuDBjpWGJf/oXzqysaUe', 0, NULL, NULL, NULL, NULL, '2025-09-18 18:24:41', '2025-09-18 18:24:41'),
@@ -491,6 +524,9 @@ CREATE TABLE `user_programs` (
   `total_payments_due` int(11) NOT NULL DEFAULT 3,
   `payments_completed` int(11) NOT NULL DEFAULT 0,
   `one_time_payment_amount` decimal(10,2) DEFAULT NULL,
+  `stripe_customer_id` varchar(255) DEFAULT NULL,
+  `stripe_subscription_id` varchar(255) DEFAULT NULL,
+  `stripe_price_id` varchar(255) DEFAULT NULL,
   `admin_notes` text DEFAULT NULL,
   `agreement_path` varchar(255) DEFAULT NULL,
   `signed_agreement_path` varchar(255) DEFAULT NULL,
@@ -510,8 +546,10 @@ CREATE TABLE `user_programs` (
 -- Dumping data for table `user_programs`
 --
 
-INSERT INTO `user_programs` (`id`, `user_id`, `program_id`, `status`, `contract_duration_months`, `payment_type`, `contract_start_date`, `contract_end_date`, `next_payment_date`, `total_payments_due`, `payments_completed`, `one_time_payment_amount`, `admin_notes`, `agreement_path`, `signed_agreement_path`, `signed_agreement_name`, `agreement_sent_at`, `agreement_uploaded_at`, `approved_at`, `payment_requested_at`, `payment_completed_at`, `amount_paid`, `payment_reference`, `created_at`, `updated_at`) VALUES
-(14, 15, 14, 'active', 3, 'one_time', '2025-11-11', '2026-02-11', NULL, 3, 1, 1080.00, '\n\n[PAYMENT COMPLETED & PROGRAM ACTIVATED]\nPayment Type: One-Time\nPayment Method: Credit Card\nAmount: $1,080.00\nPayment Reference: PAY-6J6XMLZR-1762897859\nCard: **** **** **** 109\nCard Holder: Yolanda Howe\nExpiry: 09/2028\nBilling Address: Cupiditate assumenda, Dolore necessitatibu, Officia optio autem Culpa sunt sequi iu, Recusandae Odio vel\nCompleted: 2025-11-11 21:50:59', 'agreements/agreement_14_1762897793.pdf', 'signed-agreements/signed_agreement_14_1762897809.pdf', 'medical-concierge-program_agreement.pdf', '2025-11-11 16:49:53', '2025-11-11 16:50:09', '2025-11-11 16:50:34', NULL, '2025-11-11 16:50:59', 1080.00, 'PAY-6J6XMLZR-1762897859', '2025-11-11 16:49:53', '2025-11-11 16:50:59');
+INSERT INTO `user_programs` (`id`, `user_id`, `program_id`, `status`, `contract_duration_months`, `payment_type`, `contract_start_date`, `contract_end_date`, `next_payment_date`, `total_payments_due`, `payments_completed`, `one_time_payment_amount`, `stripe_customer_id`, `stripe_subscription_id`, `stripe_price_id`, `admin_notes`, `agreement_path`, `signed_agreement_path`, `signed_agreement_name`, `agreement_sent_at`, `agreement_uploaded_at`, `approved_at`, `payment_requested_at`, `payment_completed_at`, `amount_paid`, `payment_reference`, `created_at`, `updated_at`) VALUES
+(15, 15, 15, 'cancelled', 3, 'one_time', '2025-11-18', '2026-02-18', NULL, 3, 1, 675.00, 'cus_TRqCsdWtWaGCwc', 'sub_1SUyUjLXqt7gmBJh78BszdiA', 'price_1SUyUiLXqt7gmBJhVXTMijiG', '\n\n[PAYMENT COMPLETED & PROGRAM ACTIVATED]\nPayment Type: One-Time\nPayment Method: Stripe (Credit Card)\nAmount: $675.00\nPayment Reference: PAY-SJIVQ4CI-1763509373\nStripe Payment Intent: pi_3SUyXuLXqt7gmBJh0609oDiG\nStripe Charge: ch_3SUyXuLXqt7gmBJh0djl2zNt\nBilling Address: 123 Medical Center Dr, Suite 200, New York, NY 10001, San Antonio, Texas 78222, US\nCompleted: 2025-11-18 23:42:53\n\n[CANCELLED BY CLIENT]\nReason: Testing\nCancelled at: 2025-11-18 23:49:49\nStripe Subscription ID: sub_1SUyUjLXqt7gmBJh78BszdiA', 'agreements/agreement_15_1763500590.pdf', 'signed-agreements/signed_agreement_15_1763500619.pdf', 'student-coaching-program_agreement.pdf', '2025-11-18 16:16:31', '2025-11-18 16:16:59', '2025-11-18 16:18:50', NULL, '2025-11-18 18:42:53', 675.00, 'PAY-SJIVQ4CI-1763509373', '2025-11-18 16:16:30', '2025-11-18 18:49:49'),
+(16, 15, 16, 'active', 3, 'monthly', '2025-11-18', '2026-02-18', '2025-12-18', 3, 1, NULL, 'cus_TRsWSIWur6r7qi', 'sub_1SUyl7LXqt7gmBJh050FeTRP', 'price_1SUyl6LXqt7gmBJhRtBg101n', '\n\n[PAYMENT COMPLETED & PROGRAM ACTIVATED]\nPayment Type: Monthly\nPayment Method: Stripe (Credit Card)\nAmount: $399.00\nPayment Reference: PAY-3HIICHRE-1763510194\nStripe Payment Intent: pi_3SUyl9LXqt7gmBJh0vfi1nfw\nStripe Charge: ch_3SUyl9LXqt7gmBJh0SCaCpbc\nStripe Subscription: sub_1SUyl7LXqt7gmBJh050FeTRP\nBilling Address: 123 Medical Center Dr, Suite 200, New York, NY 10001, San Antonio, Texas 78222, US\nCompleted: 2025-11-18 23:56:34', 'agreements/agreement_16_1763510126.pdf', 'signed-agreements/signed_agreement_16_1763510145.pdf', 'student-coaching-program_agreement.pdf', '2025-11-18 18:55:26', '2025-11-18 18:55:45', '2025-11-18 18:55:55', NULL, '2025-11-18 18:56:34', 399.00, 'PAY-3HIICHRE-1763510194', '2025-11-18 18:55:26', '2025-11-18 18:56:34'),
+(17, 15, 14, 'agreement_sent', 3, NULL, NULL, NULL, NULL, 3, 0, NULL, NULL, NULL, NULL, NULL, 'agreements/agreement_17_1763510301.pdf', NULL, NULL, '2025-11-18 18:58:21', NULL, NULL, NULL, NULL, NULL, NULL, '2025-11-18 18:58:21', '2025-11-18 18:58:21');
 
 --
 -- Indexes for dumped tables
@@ -596,7 +634,9 @@ ALTER TABLE `payments`
   ADD PRIMARY KEY (`id`),
   ADD KEY `payments_appointment_id_foreign` (`appointment_id`),
   ADD KEY `payments_user_program_id_status_index` (`user_program_id`,`status`),
-  ADD KEY `payments_payment_type_status_index` (`payment_type`,`status`);
+  ADD KEY `payments_payment_type_status_index` (`payment_type`,`status`),
+  ADD KEY `payments_stripe_payment_intent_id_index` (`stripe_payment_intent_id`),
+  ADD KEY `payments_stripe_customer_id_index` (`stripe_customer_id`);
 
 --
 -- Indexes for table `programs`
@@ -611,6 +651,13 @@ ALTER TABLE `sessions`
   ADD PRIMARY KEY (`id`),
   ADD KEY `sessions_user_id_index` (`user_id`),
   ADD KEY `sessions_last_activity_index` (`last_activity`);
+
+--
+-- Indexes for table `settings`
+--
+ALTER TABLE `settings`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `settings_key_unique` (`key`);
 
 --
 -- Indexes for table `slot_exceptions`
@@ -648,7 +695,9 @@ ALTER TABLE `users`
 ALTER TABLE `user_programs`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_programs_user_id_foreign` (`user_id`),
-  ADD KEY `user_programs_program_id_foreign` (`program_id`);
+  ADD KEY `user_programs_program_id_foreign` (`program_id`),
+  ADD KEY `user_programs_stripe_customer_id_index` (`stripe_customer_id`),
+  ADD KEY `user_programs_stripe_subscription_id_index` (`stripe_subscription_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -694,19 +743,25 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `programs`
 --
 ALTER TABLE `programs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `settings`
+--
+ALTER TABLE `settings`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `slot_exceptions`
@@ -736,7 +791,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_programs`
 --
 ALTER TABLE `user_programs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables
