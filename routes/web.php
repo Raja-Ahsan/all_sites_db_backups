@@ -34,6 +34,7 @@ use App\Http\Controllers\Admin\SubscriptionController as AdminSubscriptionContro
 use App\Http\Controllers\Admin\RatingController as AdminRatingController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/from-the-vault', [HomeController::class, 'fromTheVault'])->name('from-the-vault');
 // google auth 
 
 

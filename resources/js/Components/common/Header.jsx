@@ -51,18 +51,21 @@ const Header = ({ logoClass, headerClass }) => {
                   </Link>
                   <ul className="dropdown-menu user-dropdown stories-dropdown" aria-labelledby="storiesDropdown">
                     {categories && categories.length > 0 ? (
-                      categories.map((category) => (
-                        <li key={category.id}>
-                          <Link href={`/stories?category=${category.slug}`} className="user-dropdown-item">
-                            {category.name}
-                          </Link>
-                        </li>
-                      ))
+                      <div className="stories-dropdown-columns">
+                        {categories.map((category) => (
+                          <li key={category.id}>
+                            <Link href={`/stories?category=${category.slug}`} className="user-dropdown-item">
+                              {category.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </div>
                     ) : (
                       <li><span className="user-dropdown-item text-muted">No categories available</span></li>
                     )}
                   </ul>
                 </li>
+                <li><Link href="/from-the-vault">From the Vault</Link></li>
                 <li><Link href="/packages">Packages</Link></li>
                 <li><Link href="/community">Community</Link></li>
                 <li><Link href="/how-it-works">How It Works</Link></li>

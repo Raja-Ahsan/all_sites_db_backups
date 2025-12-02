@@ -52,6 +52,22 @@ class HomeController extends Controller
 
         return Inertia::render('Home', [
             'latestStories' => $formattedStories,
+        ]);
+    }
+
+    /**
+     * Display the "From the Vault" page with featured stories.
+     */
+    public function fromTheVault()
+    {
+        $featuredStories = Story::where('is_community', true)
+            ->orderByRaw('
+                (read_count * 0.5) + (comment_count * 0.3) + (likes_count * 0.2) DESC
+            ')
+            ->take(5)
+            ->get();
+
+        return Inertia::render('FromTheVault', [
             'featuredStories' => $featuredStories,
         ]);
     }
