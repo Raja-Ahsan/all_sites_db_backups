@@ -412,12 +412,11 @@ const Create = ({ flash }) => {
                                         )}
                                     </CCol>
                                 </CRow>
-                                <CRow className="mb-3">
+                                {/* <CRow className="mb-3">
                                     <CCol md={6}>
                                         <CFormLabel htmlFor="name">
                                             Words Limit
                                         </CFormLabel>
-                                        {/* add type number in words limit input */}
                                         <CFormInput
                                             id="words_limit"
                                             type="number"
@@ -459,7 +458,7 @@ const Create = ({ flash }) => {
                                             </div>
                                         )}
                                     </CCol>
-                                </CRow>
+                                </CRow> */}
                                 
 
                                 <CRow className="mb-3">

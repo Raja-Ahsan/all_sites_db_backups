@@ -170,6 +170,9 @@ Route::prefix('admin-dashboard')->name('admin-dashboard.')->middleware(['auth', 
     // Rating routes
     Route::resource('ratings', \App\Http\Controllers\Admin\AdminRatingController::class);
 
+    // Category routes
+    Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
+
 });
 
 Route::prefix('user-dashboard')->name('user-dashboard.')->middleware(['auth', 'user'])->group(function() {

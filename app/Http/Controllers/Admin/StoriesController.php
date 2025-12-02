@@ -84,10 +84,10 @@ class StoriesController extends Controller
 
     public function create()
     {
-        $ratings = \App\Models\Rating::orderBy('name')->get();
+        $categories = \App\Models\Category::orderBy('name')->get();
         
         return Inertia::render('admin/stories/Create', [
-            'ratings' => $ratings
+            'categories' => $categories
         ]);
     }
 
@@ -99,30 +99,24 @@ class StoriesController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'author' => 'required|string|max:255',
-            'genre' => 'required|string|max:100',
-            'rating' => 'nullable|string|exists:ratings,name',
+            'category' => 'required|exists:categories,id',
             'content' => 'required|string',
-            'cover_image' => 'nullable|image|max:2048', // Max 2MB
+            'cover_image' => 'required|image|max:2048', // Max 2MB
             'backcover_image' => 'required|image|max:2048', // Max 2MB
-            'characters' => 'nullable|array',
-            'characters.*.name' => 'required|string|max:255',
-            'characters.*.description' => 'nullable|string',
         ]);
 
-        // Get rating_id from rating name
-        $ratingId = null;
-        if ($validated['rating']) {
-            $rating = \App\Models\Rating::where('name', $validated['rating'])->first();
-            $ratingId = $rating ? $rating->id : null;
-        }
+        // Get category name from category ID
+        $category = \App\Models\Category::findOrFail($validated['category']);
+        
+        // Get logged-in admin user
+        $user = \Illuminate\Support\Facades\Auth::user();
 
         $storyData = [
             'title' => $validated['title'],
             'description' => $validated['description'],
-            'author' => $validated['author'],
-            'genre' => $validated['genre'],
-            'rating_id' => $ratingId,
+            'author' => $user->username, // Use username as author
+            'genre' => $category->name, // Store category name in genre field
+            'rating_id' => null,
             'content' => $validated['content'],
             'is_community' => false, // Admin-created stories are not community stories
             'read_count' => 0,
@@ -143,16 +137,6 @@ class StoriesController extends Controller
         
 
         $story = Story::create($storyData);
-
-        // Create characters for the story if provided
-        if (isset($validated['characters']) && is_array($validated['characters'])) {
-            foreach ($validated['characters'] as $characterData) {
-                $story->characters()->create([
-                    'name' => $characterData['name'],
-                    'description' => $characterData['description'] ?? '',
-                ]);
-            }
-        }
 
        
 

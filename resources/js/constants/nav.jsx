@@ -96,6 +96,11 @@ const adminNav = [
         name: 'Community',
         to: '/admin-dashboard/community/stories',
       },
+      {
+        component: CNavItem,
+        name: 'Categories',
+        to: '/admin-dashboard/categories',
+      },
     ],
   },
   {
@@ -197,6 +202,11 @@ const userNav = [
         component: InertiaNavItem,
         name: 'List',
         to: '/user-dashboard/stories',
+      },
+      {
+        component: InertiaNavItem,
+        name: 'Create',
+        to: '/user-dashboard/stories/create',
       },
     ],
   },

@@ -119,7 +119,7 @@ export default function Show({ story, ratings }) {
                     )}
 
                     {/* Characters Section */}
-                    <div className="story-characters mt-4">
+                    {/* <div className="story-characters mt-4">
                       <h5 className="secondry-font fs-20 mb-3">Characters</h5>
                       <div className="character-list">
                         {story.characters && story.characters.length > 0 ? (
@@ -140,7 +140,7 @@ export default function Show({ story, ratings }) {
                           <p className="fs-16">No characters available</p>
                         )}
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                   <div className="col-md-8">
                     <h1 className="fs-50 fw-600 mb-3">{story.title}</h1>
@@ -160,12 +160,12 @@ export default function Show({ story, ratings }) {
                       >
                         <i className="fas fa-book me-2"></i> Read Story
                       </Link>
-                      <button
+                      {/* <button
                         className="btn btn-primary story-btn continue-btn"
                         onClick={handleOpenModal}
                       >
                         <i className="fas fa-pen me-2"></i> Continue This Story
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                 </div>

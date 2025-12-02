@@ -17,17 +17,23 @@ class StoriesController extends Controller
      */
     public function index(Request $request)
     {
-        // Only show non-community stories
-        $query = Story::with('rating')->where('is_community', false);
+        // Show both community and non-community stories
+        // Non-community stories (admin-created) are always shown
+        // Community stories (user-created) are shown regardless of status
+        $query = Story::with('rating')
+            ->where(function($q) {
+                // Show non-community stories (admin-created)
+                $q->where('is_community', false)
+                // Or show community stories (user-created) - show all statuses
+                  ->orWhere('is_community', true);
+            });
         
-        // Filter by genre if provided
-        if ($request->has('genre') && $request->genre !== 'all') {
-            $query->where('genre', $request->genre);
-        }
-
-        // Filter by rating if provided
-        if ($request->has('rating') && $request->rating !== 'all') {
-            $query->where('rating_id', $request->rating);
+        // Filter by category if provided
+        if ($request->has('category') && !empty($request->category)) {
+            $category = \App\Models\Category::where('slug', $request->category)->first();
+            if ($category) {
+                $query->where('genre', $category->name);
+            }
         }
 
         // Search by title or description if provided
@@ -38,29 +44,21 @@ class StoriesController extends Controller
             });
         }
 
-        // Get all available genres for the filter dropdown (only from non-community stories)
-        $genres = Story::where('is_community', false)
-            ->select('genre')
-            ->distinct()
-            ->pluck('genre');
-
-        // Get all ratings for the filter dropdown
-        $ratings = \App\Models\Rating::orderBy('name')->get();
-
         // Paginate the results - use fresh() to ensure we get the latest data
         $stories = $query->latest()->paginate(9);
 
         // We'll keep the data refresh to ensure accurate counts
         // but we won't force a page refresh in the frontend
         foreach ($stories as $key => $story) {
-            $stories[$key] = $story->fresh(['rating']);
+            $freshStory = $story->fresh(['rating']);
+            // Ensure accessors are included
+            $freshStory->setAppends(['created_at_formatted', 'cover_image_url', 'backcover_image_url']);
+            $stories[$key] = $freshStory;
         }
 
         return Inertia::render('Stories/Index', [
             'stories' => $stories,
-            'genres' => $genres,
-            'ratings' => $ratings,
-            'filters' => $request->only(['search', 'genre', 'rating']),
+            'filters' => $request->only(['search', 'category']),
             'flash' => [
                 'success' => session('success'),
                 'error' => session('error'),

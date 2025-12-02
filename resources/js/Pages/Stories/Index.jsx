@@ -6,34 +6,18 @@ import { debounce } from 'lodash';
 import Swal from 'sweetalert2';
 import '@/assets/styles/stories.css';
 
-export default function Index({ stories, genres, filters, flash, ratings }) {
+export default function Index({ stories, filters, flash }) {
   const [search, setSearch] = useState(filters.search || '');
-  const [genre, setGenre] = useState(filters.genre || 'all');
-  const [rating, setRating] = useState(filters.rating || 'all');
 
   // Debounce the search to avoid too many requests
   const debouncedSearch = debounce((value) => {
-    router.get(route('stories.index'), { search: value, genre, rating }, { preserveState: true });
+    router.get(route('stories.index'), { search: value, category: filters.category }, { preserveState: true });
   }, 300);
 
   // Handle search input change
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
     debouncedSearch(e.target.value);
-  };
-
-  // Handle genre filter change
-  const handleGenreChange = (e) => {
-    const selectedGenre = e.target.value;
-    setGenre(selectedGenre);
-    router.get(route('stories.index'), { search, genre: selectedGenre, rating }, { preserveState: true });
-  };
-
-  // Handle rating filter change
-  const handleRatingChange = (e) => {
-    const selectedRating = e.target.value;
-    setRating(selectedRating);
-    router.get(route('stories.index'), { search, genre, rating: selectedRating }, { preserveState: true });
   };
 
   // Clean up debounce on unmount
@@ -123,11 +107,11 @@ export default function Index({ stories, genres, filters, flash, ratings }) {
             </div>
           </div>
 
-          {/* Search and Filter Section */}
+          {/* Search Section */}
           <div className="row mb-50">
             <div className="col-md-8 col-lg-6 mx-auto">
-              <div className="d-flex flex-column flex-md-row gap-10 justify-content-center">
-                <div className="flex-grow-1">
+              <div className="d-flex justify-content-center">
+                <div className="flex-grow-1" style={{ maxWidth: '500px' }}>
                   <div className="input-group">
                     <span className="input-group-text text-white">
                       <i className="fas fa-search"></i>
@@ -140,30 +124,6 @@ export default function Index({ stories, genres, filters, flash, ratings }) {
                       onChange={handleSearchChange}
                     />
                   </div>
-                </div>
-                <div>
-                  <select
-                    className="form-select secondry-font"
-                    value={genre}
-                    onChange={handleGenreChange}
-                  >
-                    <option value="all">All Genres</option>
-                    {genres.map((g) => (
-                      <option key={g} value={g}>{g}</option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <select
-                    className="form-select secondry-font"
-                    value={rating || 'all'}
-                    onChange={handleRatingChange}
-                  >
-                    <option value="all">All Ratings</option>
-                    {ratings.map((r) => (
-                      <option key={r.id} value={r.id}>{r.name}</option>
-                    ))}
-                  </select>
                 </div>
               </div>
             </div>
@@ -184,9 +144,12 @@ export default function Index({ stories, genres, filters, flash, ratings }) {
                         <span className="fs-18 text-white">{story.rating}</span>
                       </div> */}
                       <img
-                        src={story.cover_image ? `/storage/${story.cover_image}` : '/assets/images/default-cover.jpg'}
+                        src={story.cover_image_url || (story.cover_image ? `/storage/${story.cover_image}` : '/assets/images/default-cover.jpg')}
                         className="mb-20 w-100 story-book-img"
                         alt={story.title}
+                        onError={(e) => {
+                          e.target.src = '/assets/images/default-cover.jpg';
+                        }}
                       />
                     </div>
                     <div className="d-flex align-items-center justify-content-between mb-10">

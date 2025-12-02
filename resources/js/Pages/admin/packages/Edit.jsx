@@ -352,12 +352,11 @@ const Edit = ({ package: pkg, flash }) => {
                     {/* Removed validationErrors.stripe_price_id */}
                   </CCol>
                 </CRow>
-                <CRow className="mb-3">
+                {/* <CRow className="mb-3">
                   <CCol md={6}>
                     <CFormLabel htmlFor="name">
                       Words Limit
                     </CFormLabel>
-                    {/* add type number in words limit input */}
                     <CFormInput
                       id="words_limit"
                       type="number"
@@ -373,7 +372,6 @@ const Edit = ({ package: pkg, flash }) => {
                         {errors.words_limit}
                       </div>
                     )}
-                    {/* Removed validationErrors.words_limit */}
                   </CCol>
 
                   <CCol md={6}>
@@ -395,9 +393,8 @@ const Edit = ({ package: pkg, flash }) => {
                         {errors.stories_limit}
                       </div>
                     )}
-                    {/* Removed validationErrors.stories_limit */}
                   </CCol>
-                </CRow>
+                </CRow> */}
                 <CRow className="mb-3">
                   <CCol md={12}>
                     <CFormLabel htmlFor="features">Features</CFormLabel>

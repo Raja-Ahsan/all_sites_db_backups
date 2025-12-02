@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\Storage;
 
 class Story extends Model
 {
@@ -136,7 +137,7 @@ class Story extends Model
         });
     }
 
-    protected $appends = ['created_at_formatted'];
+    protected $appends = ['created_at_formatted', 'cover_image_url', 'backcover_image_url'];
 
     public function getCreatedAtFormattedAttribute()
     {
@@ -174,5 +175,29 @@ class Story extends Model
             });
         }
         return $query;
+    }
+
+    /**
+     * Get the URL for the cover image.
+     */
+    public function getCoverImageUrlAttribute()
+    {
+        if (!$this->cover_image) {
+            return null;
+        }
+        // Use relative URL to avoid APP_URL issues
+        return '/storage/' . $this->cover_image;
+    }
+
+    /**
+     * Get the URL for the back cover image.
+     */
+    public function getBackcoverImageUrlAttribute()
+    {
+        if (!$this->backcover_image) {
+            return null;
+        }
+        // Use relative URL to avoid APP_URL issues
+        return '/storage/' . $this->backcover_image;
     }
 }

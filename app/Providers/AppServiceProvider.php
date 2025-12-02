@@ -34,6 +34,9 @@ class AppServiceProvider extends ServiceProvider
                     'subscription_active' => $user?->subscription?->ends_at?->isFuture() ?? false,
                 ];
             },
+            'categories' => function () {
+                return \App\Models\Category::orderBy('name')->get();
+            },
         ]);
     }
 }

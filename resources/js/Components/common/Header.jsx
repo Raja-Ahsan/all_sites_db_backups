@@ -8,7 +8,7 @@ import LoginPromptModal from '@/Components/stories/LoginPromptModal';
 const Header = ({ logoClass, headerClass }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { url } = usePage();
-  const { auth } = usePage().props;
+  const { auth, categories } = usePage().props;
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
 
 
@@ -39,7 +39,30 @@ const Header = ({ logoClass, headerClass }) => {
                 <div className="close-menu d-flex d-lg-none" onClick={toggleMenu}><Icons.Cross /></div>
                 <li><Link href="/">Home</Link></li>
                 <li><Link href="/about">About</Link></li>
-                <li><Link href="/stories">Stories</Link></li>
+                <li className="dropdown">
+                  <Link 
+                    href="/stories" 
+                    className="dropdown-toggle" 
+                    data-bs-toggle="dropdown" 
+                    aria-expanded="false"
+                    id="storiesDropdown"
+                  >
+                    Stories
+                  </Link>
+                  <ul className="dropdown-menu user-dropdown stories-dropdown" aria-labelledby="storiesDropdown">
+                    {categories && categories.length > 0 ? (
+                      categories.map((category) => (
+                        <li key={category.id}>
+                          <Link href={`/stories?category=${category.slug}`} className="user-dropdown-item">
+                            {category.name}
+                          </Link>
+                        </li>
+                      ))
+                    ) : (
+                      <li><span className="user-dropdown-item text-muted">No categories available</span></li>
+                    )}
+                  </ul>
+                </li>
                 <li><Link href="/packages">Packages</Link></li>
                 <li><Link href="/community">Community</Link></li>
                 <li><Link href="/how-it-works">How It Works</Link></li>

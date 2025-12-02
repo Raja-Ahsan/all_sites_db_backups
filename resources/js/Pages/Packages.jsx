@@ -665,7 +665,7 @@ const Packages = ({ packages = [] }) => {
 
                                         {/* Features List */}
                                         <div className="mb-40 package-features">
-                                            <div className="package-feature-item">
+                                            {/* <div className="package-feature-item">
                                                 {
                                                     packageItem.words_limit > 0 ? (
                                                         <div className={`feature-check-icon`}>
@@ -680,7 +680,7 @@ const Packages = ({ packages = [] }) => {
                                                         </div>
 
                                                     ) : (
-                                                        ""
+                                                        ""Set up a full-stack Learning Management System (LMS) project using React + Laravel + MySQL + Tailwind + Vite. Configure the necessary packages and dependencies for React, Laravel (Backend API), MySQL, and Tailwind with Vite for fast development.
                                                     )
                                                 }
                                                 <span className="para-mid feature-text">
@@ -724,7 +724,7 @@ const Packages = ({ packages = [] }) => {
                                                     )
                                                 }
                                                 </span>
-                                            </div>
+                                            </div> */}
                                             {packageItem.features.map(
                                                 (feature, index) => (
                                                     <div

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Head, useForm } from '@inertiajs/react';
+import { Head, useForm, usePage } from '@inertiajs/react';
 import DashboardLayout from '../../../Layouts/DashboardLayout';
 import Swal from 'sweetalert2';
 import {
@@ -14,11 +14,6 @@ import {
   CFormTextarea,
   CRow,
   CFormSelect,
-  CAlert,
-  CListGroup,
-  CListGroupItem,
-  CInputGroup,
-  CInputGroupText,
 } from '@coreui/react';
 import ReactQuill from 'react-quill-new';
 
@@ -28,19 +23,18 @@ const themeColors = {
   secondary: '#74989E',
 };
 
-const Create = ({ flash, ratings = [] }) => {
+const Create = ({ flash, categories = [] }) => {
+  const { auth } = usePage().props;
   const { data, setData, post, processing, errors, reset } = useForm({
     title: '',
     description: '',
-    author: '',
-    genre: '',
-    rating: '',
+    author: auth?.user?.username || '',
+    category: '',
     content: '',
     cover_image: null,
-    characters: []
+    backcover_image: null,
   });
 
-  const [newCharacter, setNewCharacter] = useState({ name: '', description: '' });
   const [preview, setPreview] = useState({ cover_image: null, backcover_image: null });
   const [showHtml, setShowHtml] = useState(false);
 
@@ -114,8 +108,7 @@ const Create = ({ flash, ratings = [] }) => {
         if (errors.title) errorMessage = errors.title;
         else if (errors.description) errorMessage = errors.description;
         else if (errors.author) errorMessage = errors.author;
-        else if (errors.genre) errorMessage = errors.genre;
-        else if (errors.rating) errorMessage = errors.rating;
+        else if (errors.category) errorMessage = errors.category;
         else if (errors.content) errorMessage = errors.content;
         else if (errors.cover_image) errorMessage = errors.cover_image;
         else if (errors.backcover_image) errorMessage = errors.backcover_image;
@@ -148,29 +141,6 @@ const Create = ({ flash, ratings = [] }) => {
     }
   };
 
-  const handleAddCharacter = () => {
-    if (newCharacter.name.trim() === '') return;
-    
-    setData('characters', [...data.characters, { ...newCharacter }]);
-    setNewCharacter({ name: '', description: '' });
-  };
-
-  const handleRemoveCharacter = (index) => {
-    const updatedCharacters = [...data.characters];
-    updatedCharacters.splice(index, 1);
-    setData('characters', updatedCharacters);
-  };
-
-  const genreOptions = [
-    { value: '', label: 'Select a genre' },
-    { value: 'Mystery', label: 'Mystery' },
-    { value: 'Romance', label: 'Romance' },
-    { value: 'Fantasy', label: 'Fantasy' },
-    { value: 'Science Fiction', label: 'Science Fiction' },
-    { value: 'Thriller', label: 'Thriller' },
-    { value: 'Horror', label: 'Horror' },
-    { value: 'Historical Fiction', label: 'Historical Fiction' },
-  ];
 
   return (
     <DashboardLayout>
@@ -201,46 +171,32 @@ const Create = ({ flash, ratings = [] }) => {
                     <CFormLabel htmlFor="author">Author</CFormLabel>
                     <CFormInput
                       id="author"
-                      value={data.author}
-                      onChange={(e) => setData('author', e.target.value)}
-                      invalid={errors.author}
-                      feedback={errors.author}
+                      value={auth?.user?.username || ''}
+                      disabled
+                      readOnly
+                      className="bg-light"
                     />
-                   
+                    <div className="form-text">Author is automatically set to your username</div>
                   </CCol>
                 </CRow>
                 
                 <CRow className="mb-3">
-                  <CCol md={6}>
-                    <CFormLabel htmlFor="genre">Genre</CFormLabel>
+                  <CCol md={12}>
+                    <CFormLabel htmlFor="category">Category</CFormLabel>
                     <CFormSelect
-                      id="genre"
-                      value={data.genre}
-                      onChange={(e) => setData('genre', e.target.value)}
-                      invalid={errors.genre}
-                      feedback={errors.genre}
-                      options={genreOptions}
+                      id="category"
+                      value={data.category}
+                      onChange={(e) => setData('category', e.target.value)}
+                      invalid={errors.category}
+                      feedback={errors.category}
+                      options={[
+                        { value: '', label: 'Select a category' },
+                        ...categories.map(category => ({
+                          value: category.id,
+                          label: category.name
+                        }))
+                      ]}
                     />
-                    
-                  </CCol>
-                  
-                  <CCol md={6}>
-                     <CFormLabel htmlFor="rating">Content Rating</CFormLabel>
-                     <CFormSelect
-                       id="rating"
-                       value={data.rating}
-                       onChange={(e) => setData('rating', e.target.value)}
-                       invalid={errors.rating}
-                       feedback={errors.rating}
-                       options={[
-                         { value: '', label: 'Select a rating' },
-                         ...ratings.map(rating => ({
-                           value: rating.name,
-                           label: rating.name
-                         }))
-                       ]}
-                     />
-                   
                   </CCol>
                 </CRow>
                 
@@ -306,60 +262,6 @@ const Create = ({ flash, ratings = [] }) => {
                   </CCol>
                 </CRow>
 
-                <CRow className="mb-3">
-                  <CCol md={12}>
-                    <CFormLabel>Story Characters</CFormLabel>
-                    
-                    <CInputGroup className="mb-3">
-                      <CInputGroupText>Name</CInputGroupText>
-                      <CFormInput
-                        value={newCharacter.name}
-                        onChange={(e) => setNewCharacter({...newCharacter, name: e.target.value})}
-                        placeholder="Character name"
-                      />
-                      <CInputGroupText>Description</CInputGroupText>
-                      <CFormInput
-                        value={newCharacter.description}
-                        onChange={(e) => setNewCharacter({...newCharacter, description: e.target.value})}
-                        placeholder="Brief character description"
-                      />
-                      <CButton 
-                        type="button" 
-                        color="primary"
-                        onClick={handleAddCharacter}
-                      >
-                        Add Character
-                      </CButton>
-                    </CInputGroup>
-                    
-                    {data.characters.length > 0 && (
-                      <CListGroup className="mb-3">
-                        {data.characters.map((char, index) => (
-                          <CListGroupItem key={index} className="d-flex justify-content-between align-items-center">
-                            <div>
-                              <strong>{char.name}</strong>
-                              {char.description && (
-                                <p className="mb-0 text-muted small">{char.description}</p>
-                              )}
-                            </div>
-                            <CButton 
-                              color="danger" 
-                              size="sm" 
-                              onClick={() => handleRemoveCharacter(index)}
-                            >
-                              Remove
-                            </CButton>
-                          </CListGroupItem>
-                        ))}
-                      </CListGroup>
-                    )}
-                    
-                    {errors.characters && (
-                      <div className="text-danger">{errors.characters}</div>
-                    )}
-                  </CCol>
-                </CRow>
-                
                 <CRow className="mb-3">
                   <CCol md={12}>
                     <div className="d-flex justify-content-between align-items-center mb-2">
