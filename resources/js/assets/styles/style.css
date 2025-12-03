@@ -1725,6 +1725,56 @@ h6 {
     background-color: rgba(0, 0, 0, 0.04);
     transform: translateX(2px);
 }
+
+/* Genre Link Hover Effects */
+.genre-link {
+    display: block;
+    text-decoration: none;
+    overflow: hidden;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.genre-link:hover {
+    transform: translateY(-5px);
+}
+
+.genre-link-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.genre-link-wrapper img {
+    transition: transform 0.3s ease, filter 0.3s ease;
+    display: block;
+}
+
+.genre-link:hover .genre-link-wrapper img {
+    transform: scale(1.1);
+    filter: brightness(0.7);
+}
+
+.genre-name {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    font-family: var(--primary-font);
+}
+
+.genre-link:hover .genre-name {
+    opacity: 1;
+}
 /* responsive */
 @media (min-width: 1560px) {
     .container {
@@ -2226,54 +2276,9 @@ h6 {
         width: 35px;
         height: 35px;
     }
+    .stories-dropdown,
+    .stories-dropdown .user-dropdown-item {
+        padding: 0;
+    }
 }
 
-/* Genre Link Hover Effects */
-.genre-link {
-    display: block;
-    text-decoration: none;
-    overflow: hidden;
-    border-radius: 8px;
-    transition: transform 0.3s ease;
-}
-
-.genre-link:hover {
-    transform: translateY(-5px);
-}
-
-.genre-link-wrapper {
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
-}
-
-.genre-link-wrapper img {
-    transition: transform 0.3s ease, filter 0.3s ease;
-    display: block;
-}
-
-.genre-link:hover .genre-link-wrapper img {
-    transform: scale(1.1);
-    filter: brightness(0.7);
-}
-
-.genre-name {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #fff;
-    font-size: 24px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 2;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-    font-family: var(--primary-font);
-}
-
-.genre-link:hover .genre-name {
-    opacity: 1;
-}
