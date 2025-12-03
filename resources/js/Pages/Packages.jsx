@@ -731,7 +731,7 @@ const Packages = ({ packages = [] }) => {
                                                         key={index}
                                                         className="package-feature-item"
                                                     >
-                                                        <div
+                                                        {/* <div
                                                             className={`feature-check-icon ${feature.isNegative ? "feature-cross-icon" : ""}`}
                                                         >
                                                             {feature.isNegative ? (
@@ -746,10 +746,10 @@ const Packages = ({ packages = [] }) => {
                                                                     <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
                                                                 </svg>
                                                             )}
-                                                        </div>
-                                                        <span className="para-mid feature-text">
+                                                        </div> */}
+                                                        {/* <span className="para-mid feature-text">
                                                             {feature.text}
-                                                        </span>
+                                                        </span> */}
                                                     </div>
                                                 ),
                                             )}

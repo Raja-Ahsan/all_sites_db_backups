@@ -4,6 +4,10 @@ import { Link, Head, usePage } from '@inertiajs/react'
 import StoryOfTheMonth from '@/Components/StoryOfTheMonth'
 import Testimonials from '@/Components/Testimonials';
 import HeroBanner from '@/Components/home/HeroBanner'
+import Book001 from '@/assets/images/Book-001.png'
+import Book002 from '@/assets/images/Book-002.png'
+import Book003 from '@/assets/images/Book-003.png'
+import Book004 from '@/assets/images/Book-004.png'
 
 const Home = () => {
   const { auth, latestStories } = usePage().props;
@@ -19,24 +23,76 @@ const Home = () => {
           <div className="row justify-content-center row-gap-30">
             <div className="col-6 col-md-3">
               <Link href="/stories?category=sci-fi" className="genre-link">
-                <img src="/assets/images/book-02.png" alt="Sci-Fi" className="w-100" />
+                <div className="genre-link-wrapper">
+                  <img src={Book001} alt="Sci-Fi" className="w-100" />
+                  <span className="genre-name">Sci-Fi</span>
+                </div>
               </Link>
             </div>
             <div className="col-6 col-md-3">
               <Link href="/stories?category=fantasy" className="genre-link">
-                <img src="/assets/images/book-02.png" alt="Fantasy" className="w-100" />
+                <div className="genre-link-wrapper">
+                  <img src={Book002} alt="Fantasy" className="w-100" />
+                  <span className="genre-name">Fantasy</span>
+                </div>
               </Link>
             </div>
             <div className="col-6 col-md-3">
               <Link href="/stories?category=fanfiction" className="genre-link">
-                <img src="/assets/images/collection-01.png" alt="Fanfiction" className="w-100" />
+                <div className="genre-link-wrapper">
+                  <img src={Book003} alt="Fanfiction" className="w-100" />
+                  <span className="genre-name">Fanfiction</span>
+                </div>
               </Link>
             </div>
             <div className="col-6 col-md-3">
               <Link href="/stories?category=romance" className="genre-link">
-                <img src="/assets/images/collection-02.png" alt="Romance" className="w-100" />
+                <div className="genre-link-wrapper">
+                  <img src={Book004} alt="Romance" className="w-100" />
+                  <span className="genre-name">Romance</span>
+                </div>
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+      <section className='collection-sec'>
+        <div className="container">
+          <h2 className='hd-md fw-500 mb-70 uppercase text-center'>Top Featured Stories</h2>
+          <div className="row justify-content-center row-gap-40">
+            {latestStories && latestStories.slice(0, 3).map((story, index) => (
+              <div key={story.id} className="col-12 col-lg-4 col-xl-4">
+                <div className="collection-card d-flex justify-content-center align-items-center gap-20" >
+                  <div className="collection-card-img" >
+                    <img
+                      src={story.cover_image ? `/storage/${story.cover_image}` : `/assets/images/collection-0${index + 1}.png`}
+                      alt={story.title}
+                    />
+                  </div>
+                  <div className='collection-card-content'>
+                    <h4 className='text-30-bold mb-10' style={{ maxWidth: "195px" }}>{story.title}</h4>
+                    {/* {story.author && (
+                      <span className="text-primary secondary-font text-20">{story.author}</span>
+                    )} */}
+                    <p className='text-black secondary-font mb-20 mt-10'>
+                      {story.read_count === 0
+                        ? 'No one has read this story'
+                        : story.read_count === 1
+                          ? '1 person has read this story'
+                          : `${story.read_count} people have read this story`}
+                    </p>
+                    {/* {story.genre && (
+                      <div className="mb-3">
+                        <span className="label bg-secondry-theme text-white fs-16 py-10 px-20 radius-60 d-inline-block">
+                          {story.genre}
+                        </span>
+                      </div>
+                    )} */}
+                    <Link href={`/stories/${story.id}`} className='btn btn-primary text-white'>Story Detail</Link>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

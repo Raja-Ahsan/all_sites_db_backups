@@ -26,24 +26,23 @@ const Header = ({ logoClass, headerClass }) => {
   };
   return (
     <header className={`position-absolute top-0 w-100 z-3 ${headerClass}`}>
-      <div className="container">
-        <div className="d-flex align-items-center justify-content-between">
-          <div className="">
+      <div className="container px-2 px-md-3 px-lg-4">
+        <div className="d-flex align-items-center justify-content-between flex-wrap">
+          <div className="flex-shrink-0">
             <div className="logo">
-              <Link href="/"><img src="/assets/images/logo.png" alt="logo" /></Link>
+              <Link href="/"><img src="/assets/images/logo.png" alt="logo" className="img-fluid" style={{ maxWidth: '200px', width: '100%', height: 'auto' }} /></Link>
             </div>
           </div>
-          <div className="">
+          <div className="d-none d-lg-block flex-shrink-1" style={{ minWidth: 0, flex: '1 1 auto' }}>
             <nav>
-              <ul className={`d-flex primary-navs align-items-center justify-content-center gap-50 ${isMenuOpen ? 'active' : ''}`}>
-                <div className="close-menu d-flex d-lg-none" onClick={toggleMenu}><Icons.Cross /></div>
+              <ul className={`d-flex primary-navs align-items-center justify-content-center ${isMenuOpen ? 'active' : ''}`} style={{ gap: 'clamp(10px, 2vw, 40px)' }}>
                 <li><Link href="/">Home</Link></li>
                 <li><Link href="/about">About</Link></li>
                 <li className="dropdown">
-                  <Link 
-                    href="/stories" 
-                    className="dropdown-toggle" 
-                    data-bs-toggle="dropdown" 
+                  <Link
+                    href="/stories"
+                    className="dropdown-toggle"
+                    data-bs-toggle="dropdown"
                     aria-expanded="false"
                     id="storiesDropdown"
                   >
@@ -74,14 +73,16 @@ const Header = ({ logoClass, headerClass }) => {
             </nav>
           </div>
           <div
-            className={`d-flex align-items-center gap-20 justify-content-end ${auth?.user ? 'justify-content-center' : 'justify-content-end'} ${isMenuOpen ? 'active' : ''}`}
+            className={`d-flex align-items-center justify-content-end flex-shrink-0`}
+            style={{ gap: 'clamp(10px, 1.5vw, 20px)' }}
           >
-            <div>
+            <div className="d-none d-md-block">
               {!auth?.user ? (
                 <>
                   <div className="dropdown">
                     <button
-                      className="btn btn-primary dropdown-toggle text-18"
+                      className="btn btn-primary dropdown-toggle"
+                      style={{ fontSize: 'clamp(12px, 1.2vw, 18px)', whiteSpace: 'nowrap' }}
                       type="button"
                       id="authDropdown"
                       data-bs-toggle="dropdown"
@@ -114,6 +115,45 @@ const Header = ({ logoClass, headerClass }) => {
           </div>
         </div>
       </div>
+      <nav className="d-lg-none">
+        <ul className={`d-flex primary-navs align-items-center justify-content-center ${isMenuOpen ? 'active' : ''}`}>
+          <div className="close-menu d-flex d-lg-none" onClick={toggleMenu}><Icons.Cross /></div>
+          <li><Link href="/" onClick={() => setIsMenuOpen(false)}>Home</Link></li>
+          <li><Link href="/about" onClick={() => setIsMenuOpen(false)}>About</Link></li>
+          <li className="dropdown">
+            <Link
+              href="/stories"
+              className="dropdown-toggle"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              id="storiesDropdownMobile"
+              onClick={(e) => e.preventDefault()}
+            >
+              Stories
+            </Link>
+            <ul className="dropdown-menu user-dropdown stories-dropdown" aria-labelledby="storiesDropdownMobile">
+              {categories && categories.length > 0 ? (
+                <div className="stories-dropdown-columns">
+                  {categories.map((category) => (
+                    <li key={category.id}>
+                      <Link href={`/stories?category=${category.slug}`} className="user-dropdown-item" onClick={() => setIsMenuOpen(false)}>
+                        {category.name}
+                      </Link>
+                    </li>
+                  ))}
+                </div>
+              ) : (
+                <li><span className="user-dropdown-item text-muted">No categories available</span></li>
+              )}
+            </ul>
+          </li>
+          <li><Link href="/from-the-vault" onClick={() => setIsMenuOpen(false)}>From the Vault</Link></li>
+          <li><Link href="/packages" onClick={() => setIsMenuOpen(false)}>Packages</Link></li>
+          <li><Link href="/community" onClick={() => setIsMenuOpen(false)}>Community</Link></li>
+          <li><Link href="/how-it-works" onClick={() => setIsMenuOpen(false)}>How It Works</Link></li>
+          <li><Link href="/publish" onClick={() => setIsMenuOpen(false)}>Publish</Link></li>
+        </ul>
+      </nav>
     </header>
 
   )
