@@ -99,7 +99,7 @@ class StoriesController extends Controller
 
         Story::create($storyData);
 
-        return redirect()->route('user-dashboard.stories.index')
+        return redirect()->route('stories.index', ['category' => $category->slug])
             ->with('success', 'Story created successfully.');
     }
 

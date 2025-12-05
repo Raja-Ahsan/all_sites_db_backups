@@ -186,6 +186,16 @@ Route::prefix('user-dashboard')->name('user-dashboard.')->middleware(['auth', 'u
 Route::get('/publish', function () {
     return Inertia::render('Publish');
 })->name('publish');
+Route::get('/createstory', function () {
+    $categories = \App\Models\Category::orderBy('name')->get();
+    return Inertia::render('CreateStory', [
+        'categories' => $categories,
+        'flash' => [
+            'success' => session('success'),
+            'error' => session('error'),
+        ],
+    ]);
+})->name('createstory');
 Route::get('/about', function () {
     return Inertia::render('About');
 })->name('about');

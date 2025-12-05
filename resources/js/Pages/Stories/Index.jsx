@@ -96,7 +96,10 @@ export default function Index({ stories, filters, flash }) {
       <section className="stories-sec py-200 sec-bg">
         <div className="container">
           <div className="row text-center mb-70">
-            <div className="col-12" data-aos-duration="3000" data-aos="fade-down">
+            <div className="col-12 position-relative" data-aos-duration="3000" data-aos="fade-down">
+              <div className="position-absolute top-0 end-0">
+                <Link href="/createstory" className="btn btn-primary"><i className="fas fa-plus me-2"></i>Create a story</Link>
+              </div>
               <span className="fs-32 light-black ls-8">Explore</span>
               <h2 className="heading mb-10">Our <span className="">Stories</span></h2>
               <h5 className="secondry-font fs-30 light-black mb-20">Discover Tales That Captivate</h5>
