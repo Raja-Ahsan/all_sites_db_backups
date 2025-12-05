@@ -184,7 +184,7 @@ const CreateStory = ({ categories = [], flash }) => {
                   padding: '25px 30px',
                   color: '#fff'
                 }}>
-                  <h3 style={{ margin: 0, fontSize: '1.8rem', fontWeight: '700' }}>
+                  <h3 style={{ margin: 0, fontSize: '2rem', fontWeight: '700' }}>
                     Story Details
                   </h3>
                   <p style={{ margin: '8px 0 0 0', opacity: 0.95, fontSize: '1.05rem' }}>

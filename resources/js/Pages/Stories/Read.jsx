@@ -13,8 +13,10 @@ import LikeButton from "@/Components/stories/LikeButton";
 
 export default function Read({ story, paginatedContent, auth }) {
     const bookRef = useRef(null);
+    const scrollContainerRef = useRef(null);
     const [currentPage, setCurrentPage] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
+    const [isScrollable, setIsScrollable] = useState(false);
 
     // Use backend paginated content instead of frontend pagination
     const storyPages = paginatedContent || [];
@@ -29,6 +31,31 @@ export default function Read({ story, paginatedContent, auth }) {
         const total = calculateTotalPages();
         setTotalPages(total);
     }, [storyPages.length]);
+
+    // Check if content is scrollable
+    useEffect(() => {
+        const checkScrollable = () => {
+            if (scrollContainerRef.current) {
+                const element = scrollContainerRef.current;
+                const hasScroll = element.scrollHeight > element.clientHeight;
+                setIsScrollable(hasScroll);
+            }
+        };
+
+        // Check initially
+        checkScrollable();
+
+        // Check after a short delay to ensure content is rendered
+        const timeoutId = setTimeout(checkScrollable, 100);
+
+        // Check on window resize
+        window.addEventListener('resize', checkScrollable);
+
+        return () => {
+            clearTimeout(timeoutId);
+            window.removeEventListener('resize', checkScrollable);
+        };
+    }, [storyPages]);
 
     const flipNext = () => {
         // Check if we can go to next page
@@ -222,7 +249,7 @@ export default function Read({ story, paginatedContent, auth }) {
                                     </p>
                                 </div>
                             ) : (
-                                <div className="book-wrapper-scroll">
+                                <div className="book-wrapper-scroll" ref={scrollContainerRef}>
                                     {/* Story Pages */}
                                     {storyPages.map((page, index) => (
                                         <div
@@ -238,11 +265,13 @@ export default function Read({ story, paginatedContent, auth }) {
                             {/* <div className="story-raw-preview" dangerouslySetInnerHTML={{ __html: story.content }} /> */}
 
                             {/* Chapter Navigation */}
-                            <div className="chapter-navigation">
-                                <div className="chapter-indicator secondry-font">
-                                    Scroll to read all pages
+                            {storyPages.length > 1 && isScrollable && (
+                                <div className="chapter-navigation">
+                                    <div className="chapter-indicator secondry-font">
+                                        Scroll to read all pages
+                                    </div>
                                 </div>
-                            </div>
+                            )}
 
                             {/* Reading Footer */}
                             <div className="reading-footer">

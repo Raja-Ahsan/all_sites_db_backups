@@ -464,3 +464,78 @@
 .page-content ol li {
     list-style-type: disc;
 }
+
+/* Rating Section Styles */
+.rating-section {
+    background-color: #f9f7f4;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    position: sticky;
+    top: 20px;
+}
+
+.rating-section-title {
+    color: var(--primary-theme);
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.rating-category {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.rating-category:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.rating-category-label {
+    margin-bottom: 0.75rem;
+}
+
+.rating-badge {
+    font-weight: 600;
+    color: var(--primary-theme);
+}
+
+.star-rating {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.star-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #ddd;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.star-btn:hover {
+    color: #ffc107;
+    transform: scale(1.1);
+}
+
+.star-btn.active {
+    color: #ffc107;
+}
+
+.rating-display {
+    color: var(--light-black);
+    font-weight: 500;
+}
+
+@media (max-width: 991px) {
+    .rating-section {
+        position: relative;
+        top: 0;
+        margin-top: 2rem;
+    }
+}
