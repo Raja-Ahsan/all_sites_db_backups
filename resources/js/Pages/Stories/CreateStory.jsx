@@ -125,7 +125,7 @@ const CreateStory = ({ categories = [], flash }) => {
         `}</style>
       </Head>
       <section className="stories-sec py-200 sec-bg" style={{ 
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        background: '#8DAAAD',
         minHeight: '100vh',
         padding: '60px 0'
       }}>
