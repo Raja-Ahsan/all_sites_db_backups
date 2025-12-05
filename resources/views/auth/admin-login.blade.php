@@ -62,7 +62,7 @@
                         </div>
 
                         <div class="text-center">
-                            <a href="{{ route('password.request') }}" class="text-decoration-none">
+                            <a href="{{ route('admin.password.request') }}" class="text-decoration-none">
                                 Forgot your password?
                             </a>
                         </div>
@@ -70,11 +70,11 @@
 
                     <hr class="my-4">
 
-                                         <div class="text-center">
+                                         <!-- <div class="text-center">
                          <a href="{{ route('booking') }}" class="btn btn-outline-secondary btn-sm">
                              <i class="fas fa-calendar-plus me-2"></i>Book Session
                          </a>
-                     </div>
+                     </div> -->
                 </div>
             </div>
         </div>
