@@ -76,14 +76,12 @@ const StarRating = ({ storyId, initialRating = null, averageRating = null }) => 
         <div className="star-rating d-flex align-items-center">
           {[0, 1, 2, 3, 4].map((index) => renderStar(index))}
         </div>
-        {average && (
-          <div className="ms-3">
-            <span className="fs-18 secondry-font">
-              Average: <strong>{average}</strong> / 5.0
-            </span>
-          </div>
-        )}
       </div>
+      {!auth.user && (
+        <p className="text-muted fs-14">
+          <a href={route('login')}>Login</a> to rate this story
+        </p>
+      )}
       {!auth.user && (
         <p className="text-muted fs-14">
           <a href={route('login')}>Login</a> to rate this story

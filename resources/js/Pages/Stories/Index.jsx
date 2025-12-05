@@ -211,12 +211,9 @@ export default function Index({ stories, filters, flash }) {
                     </div>
                     <div className="d-flex justify-content-between align-items-center mb-20">
                       <div className="d-flex gap-10 align-items-center">
-                        <span className="label bg-secondry-theme text-white fs-16 py-10 px-20 radius-60 d-inline-block">
-                          {story.genre}
-                        </span>
-                        {story.rating && story.rating.name && (
-                          <span className="label bg-primary-theme text-white fs-16 py-10 px-20 radius-60 d-inline-block">
-                            {story.rating.name.charAt(0)}
+                        {story.genre && (
+                          <span className="label bg-secondry-theme text-white fs-16 py-10 px-20 radius-60 d-inline-block">
+                            {story.genre}
                           </span>
                         )}
                       </div>
