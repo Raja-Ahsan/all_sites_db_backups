@@ -206,7 +206,7 @@ export default function Read({ story, paginatedContent, auth }) {
                                 </div>
                             </div>
 
-                            {/* Reading Content with Flipbook */}
+                            {/* Reading Content with Scroll */}
                             {storyPages.length === 0 ? (
                                 <div className="text-center py-5">
                                     <div
@@ -222,9 +222,9 @@ export default function Read({ story, paginatedContent, auth }) {
                                     </p>
                                 </div>
                             ) : (
-                                <Book
-                                    ref={bookRef}
-                                    pages={storyPages.map((page, index) => (
+                                <div className="book-wrapper-scroll">
+                                    {/* Story Pages */}
+                                    {storyPages.map((page, index) => (
                                         <div
                                             key={index}
                                             className="page-content"
@@ -233,46 +233,15 @@ export default function Read({ story, paginatedContent, auth }) {
                                             }}
                                         />
                                     ))}
-                                    coverImage={
-                                        story.cover_image
-                                            ? `/storage/${story.cover_image}`
-                                            : "/assets/images/default-cover.jpg"
-                                    }
-                                    backcoverImage={
-                                        story.backcover_image
-                                            ? `/storage/${story.backcover_image}`
-                                            : "/assets/images/default-cover.jpg"
-                                    }
-                                    onInit={handleBookInit}
-                                    onFlip={handleBookFlip}
-                                    allowCloseAfterBackCover={story.allow_close_after_back_cover !== false}
-                                />
+                                </div>
                             )}
                             {/* <div className="story-raw-preview" dangerouslySetInnerHTML={{ __html: story.content }} /> */}
 
                             {/* Chapter Navigation */}
                             <div className="chapter-navigation">
-                                <button
-                                    className="btn btn-primary story-btn chapter-btn"
-                                    onClick={flipPrev}
-                                    disabled={currentPage <= 0}
-                                >
-                                    <i className="fas fa-chevron-left me-2"></i>{" "}
-                                    Previous Page
-                                </button>
                                 <div className="chapter-indicator secondry-font">
-                                    Page{" "}
-                                    {currentPage + 1}{" "}
-                                    of {totalPages}
+                                    Scroll to read all pages
                                 </div>
-                                <button
-                                    className="btn btn-primary story-btn chapter-btn"
-                                    onClick={flipNext}
-                                    disabled={currentPage >= totalPages - 1}
-                                >
-                                    Next Page{" "}
-                                    <i className="fas fa-chevron-right ms-2"></i>
-                                </button>
                             </div>
 
                             {/* Reading Footer */}

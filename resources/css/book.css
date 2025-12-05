@@ -1,9 +1,8 @@
 .turn-book-wrapper {
   width: 100%;
   max-width: 920px;
-  /* min-height: 100vh; */
-  /* margin: 0 auto; */
-  /* display: flex; */
+  max-height: calc(85vh - 2rem) !important;
+  overflow: hidden;
   justify-content: center;
   align-items: center;
 }

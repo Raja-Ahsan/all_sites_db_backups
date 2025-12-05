@@ -603,4 +603,88 @@ class StoriesController extends Controller
             ], 500);
         }
     }
+
+    /**
+     * Show the form for creating a new story.
+     */
+    public function createStory()
+    {
+        // Check if user is logged in
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'You must be logged in to create stories.');
+        }
+
+        $user = Auth::user();
+
+        // Check if user has active subscription
+        if (!$user->subscription || $user->subscription->stripe_status !== 'active') {
+            return redirect()->route('packages')->with('error', 'Active subscription required to create stories');
+        }
+
+        $categories = \App\Models\Category::orderBy('name')->get();
+        
+        return Inertia::render('Stories/CreateStory', [
+            'categories' => $categories
+        ]);
+    }
+
+    /**
+     * Store a newly created story.
+     */
+    public function storeStory(Request $request)
+    {
+        $user = Auth::user();
+
+        // Check if user is logged in
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'You must be logged in to create stories.');
+        }
+
+        // Check if user has active subscription
+        if (!$user->subscription || $user->subscription->stripe_status !== 'active') {
+            return redirect()->back()->with('error', 'Active subscription required to create stories');
+        }
+        
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'category' => 'required|exists:categories,id',
+            'content' => 'required|string',
+            'cover_image' => 'required|image|max:2048', // Max 2MB
+            'backcover_image' => 'required|image|max:2048', // Max 2MB
+        ]);
+
+        // Get category name from category ID
+        $category = \App\Models\Category::findOrFail($validated['category']);
+
+        $storyData = [
+            'title' => $validated['title'],
+            'description' => $validated['description'],
+            'author' => $user->username, // Use username as author
+            'genre' => $category->name, // Store category name in genre field
+            'content' => $validated['content'],
+            'is_community' => true, // User-created stories are community stories
+            'read_count' => 0,
+            'likes_count' => 0,
+            'comment_count' => 0,
+            'user_id' => $user->id,
+            'status' => 'pending',
+        ];
+
+        // Handle cover image upload
+        if ($request->hasFile('cover_image')) {
+            $path = $request->file('cover_image')->store('user_stories/cover_images', 'public');
+            $storyData['cover_image'] = $path;
+        }
+
+        if ($request->hasFile('backcover_image')) {
+            $path = $request->file('backcover_image')->store('user_stories/backcover_images', 'public');
+            $storyData['backcover_image'] = $path;
+        }
+
+        Story::create($storyData);
+
+        return redirect()->route('stories.index', ['category' => $category->slug])
+            ->with('success', 'Story created successfully and will be visible after approval.');
+    }
 }

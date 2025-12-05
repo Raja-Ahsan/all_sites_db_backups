@@ -66,6 +66,10 @@ Route::get('/logout-and-register', [GuestAuthController::class, 'logoutAndRegist
 Route::get('/stories', [StoriesController::class, 'index'])->name('stories.index');
 Route::get('/stories/{story}', [StoriesController::class, 'show'])->name('stories.show');
 Route::get('/stories/{story}/read', [StoriesController::class, 'read'])->name('stories.read');
+Route::middleware('auth')->group(function () {
+    Route::get('/create-story', [StoriesController::class, 'createStory'])->name('stories.create');
+    Route::post('/create-story', [StoriesController::class, 'storeStory'])->name('stories.store');
+});
 
 
 // Community routes
@@ -186,16 +190,6 @@ Route::prefix('user-dashboard')->name('user-dashboard.')->middleware(['auth', 'u
 Route::get('/publish', function () {
     return Inertia::render('Publish');
 })->name('publish');
-Route::get('/createstory', function () {
-    $categories = \App\Models\Category::orderBy('name')->get();
-    return Inertia::render('CreateStory', [
-        'categories' => $categories,
-        'flash' => [
-            'success' => session('success'),
-            'error' => session('error'),
-        ],
-    ]);
-})->name('createstory');
 Route::get('/about', function () {
     return Inertia::render('About');
 })->name('about');
