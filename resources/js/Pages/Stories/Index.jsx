@@ -14,6 +14,33 @@ export default function Index({ stories, filters, flash }) {
     router.get(route('stories.index'), { search: value, category: filters.category }, { preserveState: true });
   }, 300);
 
+  // Function to render stars only (without number)
+  const renderStarsOnly = (rating) => {
+    if (!rating) return null;
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 >= 0.5;
+    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
+    return (
+      <div className="d-flex align-items-center gap-2" style={{ 
+        background: '#000000',
+        padding: '8px 12px',
+        borderRadius: '20px',
+        boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
+      }}>
+        {[...Array(fullStars)].map((_, i) => (
+          <i key={i} className="fas fa-star" style={{ color: '#CEA212', fontSize: '14px' }}></i>
+        ))}
+        {hasHalfStar && (
+          <i className="fas fa-star-half-alt" style={{ color: '#CEA212', fontSize: '14px' }}></i>
+        )}
+        {[...Array(emptyStars)].map((_, i) => (
+          <i key={`empty-${i}`} className="far fa-star" style={{ color: '#CEA212', fontSize: '14px', opacity: 0.5 }}></i>
+        ))}
+      </div>
+    );
+  };
+
   // Handle search input change
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
@@ -146,10 +173,17 @@ export default function Index({ stories, filters, flash }) {
                 <div className="col-lg-4 col-md-6" key={story.id}>
                   <div className="cards" data-aos-duration="3000" data-aos="flip-left">
                     <div className="position-relative">
-                      {/* <div className="badge-wrapper">
-                        <img src="/assets/images/badge-01.png" alt="badge" className="w-100 h-100" />
-                        <span className="fs-18 text-white">{story.rating}</span>
-                      </div> */}
+                      {/* Rating Stars - Top Right */}
+                      {story.average_rating && (
+                        <div style={{
+                          position: 'absolute',
+                          top: '10px',
+                          right: '10px',
+                          zIndex: 10
+                        }}>
+                          {renderStarsOnly(parseFloat(story.average_rating))}
+                        </div>
+                      )}
                       <img
                         src={story.cover_image_url || (story.cover_image ? `/storage/${story.cover_image}` : '/assets/images/default-cover.jpg')}
                         className="mb-20 w-100 story-book-img"

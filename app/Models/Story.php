@@ -97,6 +97,14 @@ class Story extends Model
     }
 
     /**
+     * Get the ratings for the story.
+     */
+    public function storyRatings(): HasMany
+    {
+        return $this->hasMany(StoryRating::class);
+    }
+
+    /**
      * Get the users who liked the story.
      */
     public function likedBy(): BelongsToMany

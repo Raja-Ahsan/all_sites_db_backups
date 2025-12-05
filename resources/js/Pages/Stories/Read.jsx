@@ -10,8 +10,9 @@ import { motion } from "framer-motion";
 import HTMLFlipBook from "react-pageflip";
 import Book from "../../Components/Book";
 import LikeButton from "@/Components/stories/LikeButton";
+import StarRating from "@/Components/stories/StarRating";
 
-export default function Read({ story, paginatedContent, auth }) {
+export default function Read({ story, paginatedContent, auth, averageRating, userRating }) {
     const bookRef = useRef(null);
     const scrollContainerRef = useRef(null);
     const [currentPage, setCurrentPage] = useState(0);
@@ -324,6 +325,13 @@ export default function Read({ story, paginatedContent, auth }) {
                                 <CommentSection
                                     storyId={story.id}
                                     currentUser={auth.user}
+                                />
+
+                                {/* Rating Section */}
+                                <StarRating
+                                    storyId={story.id}
+                                    initialRating={userRating}
+                                    averageRating={averageRating}
                                 />
                             </div>
                         </div>

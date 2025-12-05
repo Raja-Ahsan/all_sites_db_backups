@@ -53,6 +53,11 @@ class StoriesController extends Controller
             $freshStory = $story->fresh(['rating']);
             // Ensure accessors are included
             $freshStory->setAppends(['created_at_formatted', 'cover_image_url', 'backcover_image_url']);
+            
+            // Calculate average rating
+            $averageRating = \App\Models\StoryRating::where('story_id', $freshStory->id)->avg('rating');
+            $freshStory->average_rating = $averageRating ? number_format($averageRating, 1) : null;
+            
             $stories[$key] = $freshStory;
         }
 
@@ -141,12 +146,24 @@ class StoriesController extends Controller
         // Paginate the story content on the backend
         $paginatedContent = $this->paginateStoryContent($story->content);
 
-        // Debug: Check the paginated content
-       
+        // Calculate average rating
+        $averageRating = \App\Models\StoryRating::where('story_id', $story->id)->avg('rating');
+        $averageRating = $averageRating ? number_format($averageRating, 1) : null;
+
+        // Get user's rating if logged in
+        $userRating = null;
+        if (Auth::check()) {
+            $rating = \App\Models\StoryRating::where('story_id', $story->id)
+                ->where('user_id', Auth::id())
+                ->first();
+            $userRating = $rating ? $rating->rating : null;
+        }
 
         return Inertia::render('Stories/Read', [
             'story' => $story,
             'paginatedContent' => $paginatedContent,
+            'averageRating' => $averageRating,
+            'userRating' => $userRating,
             'auth' => [
                 'user' => Auth::user(),
             ],

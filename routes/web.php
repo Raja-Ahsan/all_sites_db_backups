@@ -16,6 +16,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StoriesController;
 use App\Http\Controllers\StoryDraftsController;
 use App\Http\Controllers\StoryLikesController;
+use App\Http\Controllers\StoryRatingsController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -101,6 +102,12 @@ Route::middleware('auth')->group(function () {
 Route::get('/stories/{story}/likes', [StoryLikesController::class, 'checkLikeStatus'])->name('likes.check');
 Route::middleware('auth')->group(function () {
     Route::post('/stories/{story}/likes', [StoryLikesController::class, 'toggleLike'])->name('likes.toggle');
+});
+
+// Ratings routes
+Route::get('/stories/{story}/rating', [StoryRatingsController::class, 'getRating'])->name('ratings.get');
+Route::middleware('auth')->group(function () {
+    Route::post('/stories/{story}/rating', [StoryRatingsController::class, 'store'])->name('ratings.store');
 });
 
 // Drafts routes
