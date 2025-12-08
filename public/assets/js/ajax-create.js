@@ -1,5 +1,5 @@
-function ajaxCreate(formSelector, successRedirect = null) {
-    $(document).on('submit', formSelector, function (e) {
+function ajaxCreate(successRedirect = null) {
+    $(document).on('submit', 'form.ajax-form', function (e) {
         e.preventDefault();
 
         let form = $(this);

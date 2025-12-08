@@ -1,5 +1,5 @@
 function ajaxDelete(buttonSelector, dataTableId = null) {
-    $(document).on('click', buttonSelector, function(e) {
+    $(document).on('click' , 'button.ajax-delete', buttonSelector, function(e) {
         e.preventDefault();
 
         let form = $(this).closest('form');

@@ -1,5 +1,5 @@
 function ajaxUpdate(formSelector, successRedirect = null) {
-    $(document).on('submit', formSelector, function(e) {
+    $(document).on('submit', 'form.ajax-form', formSelector, function(e) {
         e.preventDefault();
         let form = $(this);
         let formData = form.serialize();
@@ -22,7 +22,6 @@ function ajaxUpdate(formSelector, successRedirect = null) {
                     text: response.message || 'Updated successfully!',
                     showConfirmButton: false,
                     timer: 1500,
-                    
                 });
 
                 if (successRedirect) {
@@ -44,7 +43,6 @@ function ajaxUpdate(formSelector, successRedirect = null) {
                             input.after(`<div class="invalid-feedback d-block">${messages[0]}</div>`);
                         }
                     });
-
                 }
             }
         });

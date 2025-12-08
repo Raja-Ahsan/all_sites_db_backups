@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="edit-profile">
-            <form class="card" id="createCompanyProfileForm" action={{ route('company-profile.store') }} method="POST">
+            <form class="card ajax-form" action={{ route('company-profile.store') }} method="POST">
                 @csrf
                 <div class="card-header">
                     <div class="card-options">
@@ -57,7 +57,7 @@
     </div>
     @push('scripts')
         <script>
-            ajaxCreate('#createCompanyProfileForm', "{{ route('admin.dashboard') }}");
+            ajaxCreate("{{ route('admin.dashboard') }}");
         </script>
     @endpush
 @endsection

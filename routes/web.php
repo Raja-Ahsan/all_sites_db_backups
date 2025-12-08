@@ -13,65 +13,47 @@ use App\Http\Controllers\PackageController;
 use App\Http\Controllers\CheckoutPurchaseController;
 use App\Http\Controllers\CompanyController;
 // Web Routes
-Route::get('/', function () {
-    return view('screens.web.home.index', ['isHome' => true]);
-})->name('home');
+Route::get('/', fn() => view('screens.web.home.index', ['isHome' => true])
+)->name('home');
 
-Route::get('/about', function () {
-    return view('screens.web.about.index');
-})->name('about');
+Route::get('/about', fn() => view('screens.web.about.index')
+)->name('about');
 
-Route::get('/contact', function () {
-    return view('screens.web.contact.index');
-})->name('contact');
+Route::get('/contact', fn() => view('screens.web.contact.index')
+)->name('contact');
 
-Route::get('/services', function () {
-    return view('screens.web.services.index');
-})->name('services');
+Route::get('/services', fn() => view('screens.web.services.index')
+)->name('services');
 
-Route::get('/services/show', function () {
-    return view('screens.web.services.show');
-})->name('service-detail');
+Route::get('/services/show', fn() => view('screens.web.services.show')
+)->name('service-detail');
 
-// Route::get('/membership', function () {
-//     return view('screens.web.membership.index');
-// })->name('membership');
+Route::get('/referrals', fn() => view('screens.web.referrals.index')
+)->name('referrals');
 
-Route::get('/referrals', function () {
-    return view('screens.web.referrals.index');
-})->name('referrals');
+Route::get('/marketplace', fn() => view('screens.web.marketplace.index')
+)->name('marketplace');
 
-Route::get('/marketplace', function () {
-    return view('screens.web.marketplace.index');
-})->name('marketplace');
+Route::get('/store', fn() => view('screens.web.store.index')
+)->name('store');
 
-Route::get('/store', function () {
-    return view('screens.web.store.index');
-})->name('store');
+Route::get('/products', fn() => view('screens.web.products.index')
+)->name('products');
 
-Route::get('/products', function () {
-    return view('screens.web.products.index');
-})->name('products');
+Route::get('/product-detail', fn() => view('screens.web.products.show')
+)->name('product-detail');
 
-Route::get('/product-detail', function () {
-    return view('screens.web.products.show');
-})->name('product-detail');
+Route::get('/book-now', fn() => view('screens.web.book-now.index')
+)->name('book-now');
 
-Route::get('/book-now', function () {
-    return view('screens.web.book-now.index');
-})->name('book-now');
+Route::get('/cart', fn() => view('screens.web.cart.index')
+)->name('cart');
 
-Route::get('/cart', function () {
-    return view('screens.web.cart.index');
-})->name('cart');
+Route::get('/checkout', fn() => view('screens.web.checkout.index')
+)->name('checkout');
 
-Route::get('/checkout', function () {
-    return view('screens.web.checkout.index');
-})->name('checkout');
-
-Route::get('/profile', function () {
-    return view('screens.web.profile.index');
-})->middleware('auth')->name('profile');
+Route::get('/profile', fn() =>view('screens.web.profile.index')
+)->middleware('auth')->name('profile');
 
 Route::get('/memberships', [PackageController::class, 'index'])->name('packages.index');
 
@@ -80,19 +62,7 @@ Route::get('/select-plan/{package}', [PackageController::class, 'select'])->name
 Route::get('/checkout', [CheckoutPurchaseController::class, 'show'])->name('checkout');
 Route::post('/fake-payment', [CheckoutPurchaseController::class, 'fakePayment'])->name('fake.payment');
 
-
-// admin routes 
-// Route::middleware(['auth', 'role:super_admin'])->group(function () {
-//     Route::get('/admin/dashboard', function () {
-//         return view('screens.admin.dashboard.admin');
-//     })->name('admin.dashboard');
-// });
-// Route::middleware(['auth', 'role:super_admin'])->group(function () {
-//     Route::get('/admin/dashboard', function () {
-//         return view('screens.admin.dashboard.admin');
-//     })->name('admin.dashboard');
-// });
-
+// admin routes
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/users', [UsersController::class, 'index'])->name('users.index');
