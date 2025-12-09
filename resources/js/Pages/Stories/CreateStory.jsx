@@ -184,10 +184,10 @@ const CreateStory = ({ categories = [], flash }) => {
                   padding: '25px 30px',
                   color: '#fff'
                 }}>
-                  <h3 style={{ margin: 0, fontSize: '2rem', fontWeight: '700' }}>
+                  <h3 style={{ margin: 0, fontSize: '30px', fontWeight: '700' }}>
                     Story Details
                   </h3>
-                  <p style={{ margin: '8px 0 0 0', opacity: 0.95, fontSize: '1.05rem' }}>
+                  <p style={{ margin: '8px 0 0 0', opacity: 0.95, fontSize: '1.7rem' , fontWeight: '500' }}>
                     Fill in the information below to create your story
                   </p>
                 </div>
@@ -200,7 +200,7 @@ const CreateStory = ({ categories = [], flash }) => {
                         fontWeight: '600',
                         color: '#333',
                         marginBottom: '10px',
-                        fontSize: '1.15rem',
+                        fontSize: '2rem',
                         display: 'flex',
                         alignItems: 'center',
                         gap: '8px'
@@ -219,7 +219,7 @@ const CreateStory = ({ categories = [], flash }) => {
                           padding: '14px 18px',
                           borderRadius: '10px',
                           border: errors.title ? '2px solid #dc3545' : '2px solid #e0e0e0',
-                          fontSize: '1.1rem',
+                          fontSize: '1.5rem',
                           fontWeight: '500',
                           color: '#333',
                           transition: 'all 0.3s ease',
@@ -249,7 +249,7 @@ const CreateStory = ({ categories = [], flash }) => {
                         fontWeight: '600',
                         color: '#333',
                         marginBottom: '10px',
-                        fontSize: '1.15rem',
+                        fontSize: '2rem',
                         display: 'flex',
                         alignItems: 'center',
                         gap: '8px'
@@ -268,7 +268,7 @@ const CreateStory = ({ categories = [], flash }) => {
                           padding: '14px 18px',
                           borderRadius: '10px',
                           border: '2px solid #e0e0e0',
-                          fontSize: '1.1rem',
+                          fontSize: '1.5rem',
                           fontWeight: '500',
                           background: '#f5f5f5',
                           color: '#666',
@@ -279,7 +279,8 @@ const CreateStory = ({ categories = [], flash }) => {
                       <div className="form-text" style={{ 
                         marginTop: '5px', 
                         fontSize: '1.5rem',
-                        color: '#171717'
+                        color: '#171717',
+                        fontWeight: '500'
                       }}>
                         Automatically set to your username
                       </div>
@@ -293,7 +294,7 @@ const CreateStory = ({ categories = [], flash }) => {
                         fontWeight: '600',
                         color: '#333',
                         marginBottom: '10px',
-                        fontSize: '1.15rem',
+                        fontSize: '2rem',
                         display: 'flex',
                         alignItems: 'center',
                         gap: '8px'
@@ -310,7 +311,7 @@ const CreateStory = ({ categories = [], flash }) => {
                           padding: '14px 18px',
                           borderRadius: '10px',
                           border: errors.category ? '2px solid #dc3545' : '2px solid #e0e0e0',
-                          fontSize: '1.1rem',
+                          fontSize: '1.5rem',
                           fontWeight: '500',
                           color: '#333',
                           transition: 'all 0.3s ease',
@@ -327,6 +328,7 @@ const CreateStory = ({ categories = [], flash }) => {
                           e.target.style.borderColor = errors.category ? '#dc3545' : '#e0e0e0';
                           e.target.style.background = '#fafafa';
                           e.target.style.boxShadow = 'none';
+                          fontSize: '1.5rem';
                         }}
                       >
                         <option value="">Select a category</option>
@@ -351,7 +353,7 @@ const CreateStory = ({ categories = [], flash }) => {
                         fontWeight: '600',
                         color: '#333',
                         marginBottom: '10px',
-                        fontSize: '1.15rem',
+                        fontSize: '2rem',
                         display: 'flex',
                         alignItems: 'center',
                         gap: '8px'
@@ -370,7 +372,7 @@ const CreateStory = ({ categories = [], flash }) => {
                           padding: '14px 18px',
                           borderRadius: '10px',
                           border: errors.description ? '2px solid #dc3545' : '2px solid #e0e0e0',
-                          fontSize: '1.1rem',
+                          fontSize: '1.5rem',
                           fontWeight: '500',
                           color: '#333',
                           transition: 'all 0.3s ease',
@@ -404,7 +406,7 @@ const CreateStory = ({ categories = [], flash }) => {
                         fontWeight: '600',
                         color: '#333',
                         marginBottom: '10px',
-                        fontSize: '1.15rem',
+                        fontSize: '2rem',
                         display: 'flex',
                         alignItems: 'center',
                         gap: '8px'
@@ -502,7 +504,7 @@ const CreateStory = ({ categories = [], flash }) => {
                         fontWeight: '600',
                         color: '#333',
                         marginBottom: '10px',
-                        fontSize: '1.15rem',
+                        fontSize: '2rem',
                         display: 'flex',
                         alignItems: 'center',
                         gap: '8px'
@@ -604,7 +606,7 @@ const CreateStory = ({ categories = [], flash }) => {
                           fontWeight: '600',
                           color: '#333',
                           margin: 0,
-                          fontSize: '1.15rem',
+                          fontSize: '2rem',
                           display: 'flex',
                           alignItems: 'center',
                           gap: '8px'
@@ -703,12 +705,12 @@ const CreateStory = ({ categories = [], flash }) => {
                           className="btn"
                           onClick={() => router.visit(route('stories.index'))}
                           style={{
-                            padding: '12px 30px',
+                            padding: '12px 20px',
                             borderRadius: '10px',
                             border: '2px solid #6c757d',
                             background: 'transparent',
                             color: '#6c757d',
-                            fontSize: '1rem',
+                            fontSize: '1.2rem',
                             fontWeight: '600',
                             transition: 'all 0.3s ease',
                             cursor: 'pointer'
@@ -738,7 +740,7 @@ const CreateStory = ({ categories = [], flash }) => {
                             background: processing ? '#ccc' : 'linear-gradient(135deg, #fea257 0%, #ff8c42 100%)',
                             border: 'none',
                             color: '#fff',
-                            fontSize: '1rem',
+                            fontSize: '1.5rem',
                             fontWeight: '600',
                             transition: 'all 0.3s ease',
                             cursor: processing ? 'not-allowed' : 'pointer',

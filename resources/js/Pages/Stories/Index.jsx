@@ -22,7 +22,7 @@ export default function Index({ stories, filters, flash }) {
     const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 
     return (
-      <div className="d-flex align-items-center gap-2" style={{ 
+      <div className="d-flex align-items-center gap-2" style={{
         background: '#000000',
         padding: '8px 12px',
         borderRadius: '20px',
@@ -125,7 +125,7 @@ export default function Index({ stories, filters, flash }) {
           <div className="row mb-20">
             <div className="col-12 d-flex justify-content-end">
               <Link href={route('stories.create')} className="btn btn-primary">
-                <i className="fas fa-plus me-2"></i>Create a story
+                <i className="fas fa-plus me-2"></i>Create Story
               </Link>
             </div>
           </div>

@@ -10,6 +10,7 @@ const Header = ({ logoClass, headerClass }) => {
   const { url } = usePage();
   const { auth, categories } = usePage().props;
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
+  const [isHowItWorksOpen, setIsHowItWorksOpen] = useState(false);
 
 
   const toggleMenu = () => {
@@ -37,7 +38,7 @@ const Header = ({ logoClass, headerClass }) => {
             <nav>
               <ul className={`d-flex primary-navs align-items-center justify-content-center ${isMenuOpen ? 'active' : ''}`} style={{ gap: 'clamp(10px, 2vw, 40px)' }}>
                 <li><Link href="/">Home</Link></li>
-                <li><Link href="/about">About</Link></li>
+
                 <li className="dropdown">
                   <Link
                     href="/stories"
@@ -49,6 +50,12 @@ const Header = ({ logoClass, headerClass }) => {
                     Stories
                   </Link>
                   <ul className="dropdown-menu user-dropdown stories-dropdown" aria-labelledby="storiesDropdown">
+                    <li>
+                      <Link href="/create-story" className="user-dropdown-item text-primary fw-bold flex justify-content-center" style={{ padding: '10px 20px' }}>
+                        Create Story
+                      </Link>
+                    </li>
+                    <li><hr className="dropdown-divider" /></li>
                     {categories && categories.length > 0 ? (
                       <div className="stories-dropdown-columns">
                         {categories.map((category) => (
@@ -67,7 +74,29 @@ const Header = ({ logoClass, headerClass }) => {
                 <li><Link href="/from-the-vault">From the Vault</Link></li>
                 <li><Link href="/packages">Packages</Link></li>
                 <li><Link href="/community">Community</Link></li>
-                <li><Link href="/how-it-works">How It Works</Link></li>
+                <li><Link href="/contests">Contests</Link></li>
+                
+                <li className="dropdown">
+                  <div className="d-flex align-items-center">
+                    <Link href="/how-it-works" className="me-1">How It Works</Link>
+                    <span
+                      className="dropdown-toggle"
+                      style={{ cursor: 'pointer', color: 'white' }}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setIsHowItWorksOpen(!isHowItWorksOpen);
+                      }}
+                      aria-expanded={isHowItWorksOpen}
+                    ></span>
+                  </div>
+                  <ul className={`dropdown-menu user-dropdown ${isHowItWorksOpen ? 'show' : ''}`} style={{ backgroundColor: '#fff', padding: '10px 0', border: '1px solid #eee' }}>
+                    <li>
+                      <Link href="/about" className="user-dropdown-item" style={{ color: '#333', padding: '8px 10px', display: 'block', fontWeight: '500' }}>
+                        About
+                      </Link>
+                    </li>
+                  </ul>
+                </li>
                 <li><Link href="/publish">Publish</Link></li>
               </ul>
             </nav>
@@ -76,9 +105,10 @@ const Header = ({ logoClass, headerClass }) => {
             className={`d-flex align-items-center justify-content-end flex-shrink-0`}
             style={{ gap: 'clamp(10px, 1.5vw, 20px)' }}
           >
-            <div className="d-none d-md-block">
+            <div className="d-none d-md-block d-flex align-items-center" style={{ gap: 'clamp(10px, 1.5vw, 20px)' }}>
               {!auth?.user ? (
                 <>
+
                   <div className="dropdown">
                     <button
                       className="btn btn-primary dropdown-toggle"
@@ -99,9 +129,11 @@ const Header = ({ logoClass, headerClass }) => {
                 </>
               ) : (
                 <>
+
                   <UserAvatar user={auth.user} className="" />
                 </>
               )}
+             
             </div>
             <div className="d-lg-none">
               <button
@@ -119,7 +151,7 @@ const Header = ({ logoClass, headerClass }) => {
         <ul className={`d-flex primary-navs align-items-center justify-content-center ${isMenuOpen ? 'active' : ''}`}>
           <div className="close-menu d-flex d-lg-none" onClick={toggleMenu}><Icons.Cross /></div>
           <li><Link href="/" onClick={() => setIsMenuOpen(false)}>Home</Link></li>
-          <li><Link href="/about" onClick={() => setIsMenuOpen(false)}>About</Link></li>
+
           <li className="dropdown">
             <Link
               href="/stories"
@@ -132,6 +164,12 @@ const Header = ({ logoClass, headerClass }) => {
               Stories
             </Link>
             <ul className="dropdown-menu user-dropdown stories-dropdown" aria-labelledby="storiesDropdownMobile">
+              <li>
+                <Link href="/create-story" className="user-dropdown-item text-primary fw-bold justify-content-center" onClick={() => setIsMenuOpen(false)} style={{ padding: '10px 20px' }}>
+                  Create Story
+                </Link>
+              </li>
+              <li><hr className="dropdown-divider" /></li>
               {categories && categories.length > 0 ? (
                 <div className="stories-dropdown-columns">
                   {categories.map((category) => (
@@ -150,7 +188,30 @@ const Header = ({ logoClass, headerClass }) => {
           <li><Link href="/from-the-vault" onClick={() => setIsMenuOpen(false)}>From the Vault</Link></li>
           <li><Link href="/packages" onClick={() => setIsMenuOpen(false)}>Packages</Link></li>
           <li><Link href="/community" onClick={() => setIsMenuOpen(false)}>Community</Link></li>
-          <li><Link href="/how-it-works" onClick={() => setIsMenuOpen(false)}>How It Works</Link></li>
+          <li><Link href="/contests" onClick={() => setIsMenuOpen(false)}>Contests</Link></li>
+          <li><Link href="/create-contest" onClick={() => setIsMenuOpen(false)}>Ongoing Contests</Link></li>
+          <li className="dropdown">
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Link href="/how-it-works" onClick={() => setIsMenuOpen(false)}>How It Works</Link>
+              <span
+                className="dropdown-toggle"
+                style={{ cursor: 'pointer', color: 'white', padding: '10px', marginLeft: '10px' }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setIsHowItWorksOpen((prev) => !prev);
+                }}
+                aria-expanded={isHowItWorksOpen}
+              ></span>
+            </div>
+            <ul className="user-dropdown" style={{ display: isHowItWorksOpen ? 'block' : 'none', backgroundColor: '#fff', padding: '10px 0', border: '1px solid #eee', width: '100%', boxShadow: 'none' }}>
+              <li>
+                <Link href="/about" className="user-dropdown-item hover:text-primary" onClick={() => setIsMenuOpen(false)} style={{ color: '#333', padding: '8px 20px', display: 'block', fontWeight: '500' }}>
+                  About
+                </Link>
+              </li>
+            </ul>
+          </li>
           <li><Link href="/publish" onClick={() => setIsMenuOpen(false)}>Publish</Link></li>
         </ul>
       </nav>

@@ -217,6 +217,14 @@ Route::get('/how-it-works', function () {
     return Inertia::render('HowItWorks');
 })->name('how-it-works');
 
+Route::get('/contests', function () {
+    return Inertia::render('Contests');
+})->name('contests');
+
+Route::get('/create-contest', function () {
+    return Inertia::render('Contests/CreateContest');
+})->name('create-contest');
+
 Route::get('/faqs', function () {
     return Inertia::render('Faqs');
 })->name('faqs');
