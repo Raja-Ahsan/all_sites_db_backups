@@ -39,10 +39,10 @@ class ContractorController extends Controller
             'password' => bcrypt($plainPassword),
         ]);
 
-        CompanyContractor::create([
-            'company_id' => auth()->user()->company->id,
-            'user_id'    => $user->id,
-        ]);
+        // CompanyContractor::create([
+        //     'company_id' => auth()->user()->company->id,
+        //     'user_id'    => $user->id,
+        // ]);
 
         // assign contractor role (Spatie)
         $user->assignRole('contractor');

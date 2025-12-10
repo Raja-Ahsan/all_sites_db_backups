@@ -19,18 +19,25 @@ class CompanyController extends Controller
             'insurance' => 'required|string|max:255',
             'phone' => 'required|string|max:255',
         ]);
-        $company = Company::firstOrCreate(
-            [
-                'user_id' => $request->user_id,
-                'business_name' => $request->business_name,
-                'license'       => $request->license,
-                'insurance'     => $request->insurance,
-                'phone'         => $request->phone,
-                'is_profile_completed' => true,
-                'is_profile_approved' => false,
-                'is_active' => true,
-            ]
-        );
+
+        $company = Company::where('user_id', auth()->id())->first();
+
+        if (!$company) {
+            $company = new Company();
+            $company->user_id = auth()->id();
+        }
+
+        $company->business_name = $request->business_name;
+        $company->license = $request->license;
+        $company->insurance = $request->insurance;
+        $company->phone = $request->phone;
+        $company->is_profile_completed = true;
+        $company->is_profile_approved = false;
+        $company->is_active = true;
+
+
+        $company->save();
+
         return response()->json([
             'success' => true,
             'message' => 'Company profile completed successfully'
