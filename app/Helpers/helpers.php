@@ -33,3 +33,8 @@ if (! function_exists('isRole')) {
         return $userRole->name === $role;
     }
 }
+
+function generateRandomPassword($length = 10)
+{
+    return substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*'), 0, $length);
+}

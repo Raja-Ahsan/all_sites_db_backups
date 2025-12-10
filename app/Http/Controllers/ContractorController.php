@@ -3,13 +3,53 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\CompanyContractor;
 
 class ContractorController extends Controller
 {
-    public function index() {
-        return view('screens.admin.contractors.index');
+    public function index()
+    {
+        $contractors = User::whereHas('company', function ($q) {
+            $q->where('is_profile_approved', true);
+        })->get();
+        return view('screens.admin.contractors.index', compact('contractors'));
     }
-    public function create() {
+    public function create()
+    {
         return view('screens.admin.contractors.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name'  => 'required|string|max:255',
+            'email' => 'required|email|unique:contractors,email',
+            'phone' => 'nullable|string',
+        ]);
+
+        // auto generate password
+        $plainPassword = generateRandomPassword();
+
+        // create contractor
+        $user = User::create([
+            'name'     => $request->name,
+            'email'    => $request->email,
+            'phone'    => $request->phone,
+            'password' => bcrypt($plainPassword),
+        ]);
+
+        CompanyContractor::create([
+            'company_id' => auth()->user()->company->id,
+            'user_id'    => $user->id,
+        ]);
+
+        // assign contractor role (Spatie)
+        $user->assignRole('contractor');
+
+        // send email with login credentials
+        // Mail::to($contractor->email)->send(new ContractorCredentialsMail($contractor, $plainPassword));
+
+        return back()->with('success', 'Contractor created and credentials emailed successfully.');
     }
 }

@@ -6,11 +6,11 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header card-no-border text-end">
-                        <div class="card-header-right-icon">
+                        {{-- <div class="card-header-right-icon">
                             <a class="btn btn-primary f-w-500" href="{{ route('contractors.create') }}"><i
                                     class="fa-solid fa-plus pe-2"></i>Add
                                 Contractor</a>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="card-body pt-0 px-0">
                         <div class="list-product user-list-table">
@@ -42,84 +42,42 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="product-removes inbox-data">
-                                            <td><a href="#!">John Contractor</a></td>
-                                            <td>
-                                                <p>john@contractor.com</p>
-                                            </td>
-                                            <td>
-                                                <p>ABC Construction</p>
-                                            </td>
-                                            <td>
-                                                <p>+1 234-567-8900</p>
-                                            </td>
-                                            <td><span class="badge badge-light-success">Active</span></td>
-                                            <td>
-                                                <p>15 Jan 2024, 10:30 AM</p>
-                                            </td>
-                                            <td>
-                                                <div class="common-align gap-2 justify-content-start">
-                                                    <a class="square-white" href="#!">
-                                                        <span><i class="fa-solid fa-eye"></i></span>
-                                                    </a>
-                                                    <a class="square-white" href="#!">
-                                                        <span><i class="fa-solid fa-pen"></i></span>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="product-removes inbox-data">
-                                            <td><a href="#!">Jane Builder</a></td>
-                                            <td>
-                                                <p>jane@builder.com</p>
-                                            </td>
-                                            <td>
-                                                <p>XYZ Builders</p>
-                                            </td>
-                                            <td>
-                                                <p>+1 234-567-8901</p>
-                                            </td>
-                                            <td><span class="badge badge-light-success">Active</span></td>
-                                            <td>
-                                                <p>20 Jan 2024, 02:15 PM</p>
-                                            </td>
-                                            <td>
-                                                <div class="common-align gap-2 justify-content-start">
-                                                    <a class="square-white" href="#!">
-                                                        <span><i class="fa-solid fa-eye"></i></span>
-                                                    </a>
-                                                    <a class="square-white" href="#!">
-                                                        <span><i class="fa-solid fa-pen"></i></span>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="product-removes inbox-data">
-                                            <td><a href="#!">Mike Developer</a></td>
-                                            <td>
-                                                <p>mike@developer.com</p>
-                                            </td>
-                                            <td>
-                                                <p>DEF Developers</p>
-                                            </td>
-                                            <td>
-                                                <p>+1 234-567-8902</p>
-                                            </td>
-                                            <td><span class="badge badge-light-warning">Pending</span></td>
-                                            <td>
-                                                <p>25 Jan 2024, 11:45 AM</p>
-                                            </td>
-                                            <td>
-                                                <div class="common-align gap-2 justify-content-start">
-                                                    <a class="square-white" href="#!">
-                                                        <span><i class="fa-solid fa-eye"></i></span>
-                                                    </a>
-                                                    <a class="square-white" href="#!">
-                                                        <span><i class="fa-solid fa-pen"></i></span>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        @forelse ($contractors as $contractor)
+                                            <tr class="product-removes inbox-data">
+                                                <td><a href="#!">{{ $contractor->name }}</a></td>
+                                                <td>
+                                                    <p>{{ $contractor->email }}</p>
+                                                </td>
+                                                <td>
+                                                    <p>{{ $contractor->company->business_name }}</p>
+                                                </td>
+                                                <td>
+                                                    <p>{{ $contractor->company->phone }}</p>
+                                                </td>
+                                                <td><span id="status-badge-{{ $contractor->company->id }}"
+                                                        class="badge {{ $contractor->company->is_active ? 'badge-light-success' : 'badge-light-warning' }}">
+                                                        {{ $contractor->company->is_active ? 'Active' : 'Inactive' }}
+                                                    </span></td>
+                                                <td>
+                                                    <p>{{ $contractor->created_at->format('d M Y') }}</p>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-switch form-check-inline custom-switch">
+                                                        <input
+                                                            class="form-check-input switch-primary check-size approve-toggle"
+                                                            type="checkbox" role="switch"
+                                                            data-id="{{ $contractor->company->id }}"
+                                                            {{ $contractor->company->is_active ? 'checked' : '' }}>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="6" class="text-center">
+                                                    <h3 class="pt-5">No @yield('title', 'Dashboard') Found</h3>
+                                                </td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
@@ -130,4 +88,69 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $(document).on('change', '.approve-toggle', function() {
 
+            let toggle = $(this); // save toggle reference
+            let companyId = toggle.data('id');
+            let newStatus = toggle.is(':checked') ? 1 : 0;
+
+            // First Show Confirmation Popup
+            Swal.fire({
+                title: newStatus ? "Activate this contractor?" : "Deactivate this contractor?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes, Continue",
+                cancelButtonText: "Cancel",
+            }).then((result) => {
+
+                if (result.isConfirmed) {
+
+                    // User clicked "Yes"
+                    $.ajax({
+                        url: "{{ route('company.toggleActive') }}",
+                        type: "POST",
+                        data: {
+                            id: companyId,
+                            status: newStatus,
+                            _token: "{{ csrf_token() }}"
+                        },
+                        success: function(res) {
+
+                            Swal.fire({
+                                icon: "success",
+                                title: "Success",
+                                text: res.message,
+                                timer: 1500
+                            });
+
+                            // setTimeout(() => {
+                            //     window.location.href = "{{ route('contractors.index') }}";
+                            // }, 1500);
+
+                            // Update status badge
+                            let badge = $('#status-badge-' + companyId);
+
+                            if (newStatus == 1) {
+                                badge.removeClass()
+                                    .addClass('badge badge-light-success')
+                                    .text('Acitve');
+                            } else {
+                                badge.removeClass()
+                                    .addClass('badge badge-light-warning')
+                                    .text('Inactive');
+                            }
+                        }
+                    });
+
+                } else {
+                    // If cancelled → toggle ko wapis purani state me le aao
+                    toggle.prop('checked', !newStatus);
+                }
+
+            });
+
+        });
+    </script>
+@endpush

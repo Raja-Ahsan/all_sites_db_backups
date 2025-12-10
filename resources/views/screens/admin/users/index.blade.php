@@ -36,7 +36,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($users as $user)
+                                        @forelse ($users as $user)
                                             <tr class="product-removes inbox-data">
                                                 <td><a href="user-profile.html">{{ $user->name }}</a></td>
                                                 <td>
@@ -63,7 +63,13 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @empty
+                                            <tr>
+                                                <td colspan="6" class="text-center">
+                                                    <h3 class="pt-5">No @yield('title', 'Dashboard') Found</h3>
+                                                </td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>

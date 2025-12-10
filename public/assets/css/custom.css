@@ -3,6 +3,7 @@
     --primary-theme: #262932;
     --secondary-theme: #000;
     --default-color: #fff;
+    --primary-theme-web: #FC7100;
 }
 
 .doted-list {
@@ -157,4 +158,18 @@ body.dark-only .dropdown.custom-dropdown .dropdown-menu .dropdown-item:hover,
 }
 body.dark-only .alert-warning.custom-alert {
     background-color: var(--primary-theme) !important;
+}
+body.dark-only .custom-switch .form-check-input  {
+}
+body.dark-only .custom-switch .form-check-input:checked  {
+    background-color: var(--primary-theme-web);
+}
+.swal2-container .swal2-actions .swal2-confirm {
+    background-color: var(--primary-theme-web) !important;
+    color: var(--default-color);
+}
+a[aria-disabled="true"] {
+    pointer-events: none;
+    opacity: 0.3;
+    cursor: not-allowed;
 }

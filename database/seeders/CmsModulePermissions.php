@@ -27,6 +27,7 @@ class CmsModulePermissions extends Seeder
             'services' => CmsModule::where('route_name', 'services-module')->first(),
             'products' => CmsModule::where('route_name', 'products-module')->first(),
             'orders' => CmsModule::where('route_name', 'orders-module')->first(),
+            'contractor_approval' => CmsModule::where('route_name', 'contractor-approval')->first(),
         ];
         
         // Get submenus by route_name
@@ -43,6 +44,7 @@ class CmsModulePermissions extends Seeder
             'products.index' => CmsModule::where('route_name', 'products.index')->first(),
             'products.create' => CmsModule::where('route_name', 'products.create')->first(),
             'orders.index' => CmsModule::where('route_name', 'orders.index')->first(),
+            'contractor-approval.index' => CmsModule::where('route_name', 'contractor-approval.index')->first(),
         ];
         
         $permissions = [
@@ -56,6 +58,7 @@ class CmsModulePermissions extends Seeder
             ['role_id' => 1, 'module_id' => $modules['services']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // services
             ['role_id' => 1, 'module_id' => $modules['products']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // products
             ['role_id' => 1, 'module_id' => $modules['orders']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // orders
+            ['role_id' => 1, 'module_id' => $modules['contractor_approval']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // contractor approval
             // Submenus
             ['role_id' => 1, 'module_id' => $submenus['users.index']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // All Users (users.index)
             ['role_id' => 1, 'module_id' => $submenus['users.create']->id ?? null, 'is_add' => 0, 'is_view' => 0, 'is_update' => 0, 'is_delete' => 0], // Add User (users.create)
@@ -68,6 +71,7 @@ class CmsModulePermissions extends Seeder
             ['role_id' => 1, 'module_id' => $submenus['services.create']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // Add Service (services.create)
             ['role_id' => 1, 'module_id' => $submenus['products.index']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // All Products (products.index)
             ['role_id' => 1, 'module_id' => $submenus['orders.index']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // All Orders (orders.index)
+            ['role_id' => 1, 'module_id' => $submenus['contractor-approval.index']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // All Contractor Approval (contractor-approval.index)
             // Submenus permissions end
 
 
@@ -84,6 +88,7 @@ class CmsModulePermissions extends Seeder
             ['role_id' => 2, 'module_id' => $modules['services']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // services
             ['role_id' => 2, 'module_id' => $modules['products']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // products
             ['role_id' => 2, 'module_id' => $modules['orders']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // orders
+            ['role_id' => 2, 'module_id' => $modules['contractor_approval']->id ?? null, 'is_add' => 0, 'is_view' => 0, 'is_update' => 0, 'is_delete' => 0], // contractor approval
 
             // Submenus for contractor Role 2
             ['role_id' => 2, 'module_id' => $submenus['users.index']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 0, 'is_delete' => 0], // All Users
@@ -93,6 +98,7 @@ class CmsModulePermissions extends Seeder
             ['role_id' => 2, 'module_id' => $submenus['services.index']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // All Services
             ['role_id' => 2, 'module_id' => $submenus['products.index']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // All Products
             ['role_id' => 2, 'module_id' => $submenus['orders.index']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // All Orders
+            ['role_id' => 2, 'module_id' => $submenus['contractor-approval.index']->id ?? null, 'is_add' => 0, 'is_view' => 0, 'is_update' => 0, 'is_delete' => 0], // All Contractor Approval (contractor-approval.index)
 
             // customer Role 3
             ['role_id' => 3, 'module_id' => $modules['dashboard']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 0, 'is_delete' => 0], // Dashboard
@@ -104,6 +110,7 @@ class CmsModulePermissions extends Seeder
             ['role_id' => 3, 'module_id' => $modules['services']->id ?? null, 'is_add' => 0, 'is_view' => 0, 'is_update' => 1, 'is_delete' => 0], // services
             ['role_id' => 3, 'module_id' => $modules['products']->id ?? null, 'is_add' => 0, 'is_view' => 0, 'is_update' => 1, 'is_delete' => 0], // products
             ['role_id' => 3, 'module_id' => $modules['orders']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // orders
+            ['role_id' => 3, 'module_id' => $modules['contractor_approval']->id ?? null, 'is_add' => 0, 'is_view' => 0, 'is_update' => 0, 'is_delete' => 0], // contractor approval
 
             // Submenus for customer Role 3
             ['role_id' => 3, 'module_id' => $submenus['users.index']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 0, 'is_delete' => 0], // All Users
@@ -113,6 +120,7 @@ class CmsModulePermissions extends Seeder
             ['role_id' => 3, 'module_id' => $submenus['services.index']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // All Services
             ['role_id' => 3, 'module_id' => $submenus['products.index']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // All Products
             ['role_id' => 3, 'module_id' => $submenus['orders.index']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // All Orders
+            ['role_id' => 3, 'module_id' => $submenus['contractor-approval.index']->id ?? null, 'is_add' => 0, 'is_view' => 0, 'is_update' => 0, 'is_delete' => 0], // All Contractor Approval (contractor-approval.index)
 
             // league contractor Role 4
             ['role_id' => 4, 'module_id' => $modules['dashboard']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 0, 'is_delete' => 0], // Dashboard
@@ -124,6 +132,7 @@ class CmsModulePermissions extends Seeder
             ['role_id' => 4, 'module_id' => $modules['services']->id ?? null, 'is_add' => 1, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 1], // services
             ['role_id' => 4, 'module_id' => $modules['products']->id ?? null, 'is_add' => 1, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 1], // products
             ['role_id' => 4, 'module_id' => $modules['orders']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // orders
+            ['role_id' => 4, 'module_id' => $modules['contractor_approval']->id ?? null, 'is_add' => 0, 'is_view' => 0, 'is_update' => 0, 'is_delete' => 0], // contractor approval
 
             // Submenus for league contractor Role 4
             ['role_id' => 4, 'module_id' => $submenus['users.index']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 0, 'is_delete' => 0], // All Users
@@ -133,6 +142,7 @@ class CmsModulePermissions extends Seeder
             ['role_id' => 4, 'module_id' => $submenus['services.create']->id ?? null, 'is_add' => 1, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 1], // Add Service
             ['role_id' => 4, 'module_id' => $submenus['products.index']->id ?? null, 'is_add' => 1, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 1], // All Products
             ['role_id' => 4, 'module_id' => $submenus['orders.index']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // All Orders
+            ['role_id' => 4, 'module_id' => $submenus['contractor-approval.index']->id ?? null, 'is_add' => 0, 'is_view' => 0, 'is_update' => 0, 'is_delete' => 0], // All Contractor Approval (contractor-approval.index)
 
 
             // individual contractor Role 5
@@ -145,6 +155,7 @@ class CmsModulePermissions extends Seeder
             ['role_id' => 5, 'module_id' => $modules['services']->id ?? null, 'is_add' => 0, 'is_view' => 0, 'is_update' => 1, 'is_delete' => 0], // services
             ['role_id' => 5, 'module_id' => $modules['products']->id ?? null, 'is_add' => 0, 'is_view' => 0, 'is_update' => 1, 'is_delete' => 0], // products
             ['role_id' => 5, 'module_id' => $modules['orders']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // orders
+            ['role_id' => 5, 'module_id' => $modules['contractor_approval']->id ?? null, 'is_add' => 0, 'is_view' => 0, 'is_update' => 0, 'is_delete' => 0], // contractor approval
 
             // Submenus for indi Role 5
             ['role_id' => 5, 'module_id' => $submenus['users.index']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 0, 'is_delete' => 0], // All Users
@@ -154,6 +165,7 @@ class CmsModulePermissions extends Seeder
             ['role_id' => 5, 'module_id' => $submenus['services.index']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // All Services
             ['role_id' => 5, 'module_id' => $submenus['products.index']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // All Products
             ['role_id' => 5, 'module_id' => $submenus['orders.index']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // All Orders
+            ['role_id' => 5, 'module_id' => $submenus['contractor-approval.index']->id ?? null, 'is_add' => 0, 'is_view' => 0, 'is_update' => 0, 'is_delete' => 0], // All Contractor Approval (contractor-approval.index)
         ];
 
         foreach ($permissions as $perm) {

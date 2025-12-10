@@ -19,6 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'role' => \App\Http\Middleware\RoleMiddleware::class,
             'permission' => \App\Http\Middleware\PermissionMiddleware::class,
             'role_or_permission' => \App\Http\Middleware\RoleOrPermissionMiddleware::class,
+            'company.approved' => \App\Http\Middleware\CheckCompanyApproval::class,
         ]);
         
     })

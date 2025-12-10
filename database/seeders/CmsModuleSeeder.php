@@ -106,6 +106,7 @@ class CmsModuleSeeder extends Seeder
             'parent_id' => 0,
         ]);
 
+       
 
         // submenus 
         // users submenu start
@@ -213,6 +214,16 @@ class CmsModuleSeeder extends Seeder
             'sort_order' => 1,
             'status' => 'active',
             'parent_id' => $orders->id,
+        ]);
+
+        CmsModule::firstOrCreate([
+            'route_name' => 'contractor-approval.index'
+        ], [
+            'name' => 'Pending Contractors',
+            'icon' => 'fa-solid fa-user-check',
+            'sort_order' => 1,
+            'status' => 'active',
+            'parent_id' => $contractors->id,
         ]);
 
         

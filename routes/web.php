@@ -12,47 +12,76 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\CheckoutPurchaseController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\Admin\ContractorApprovalController as AdminContractorApprovalController;
 // Web Routes
-Route::get('/', fn() => view('screens.web.home.index', ['isHome' => true])
+Route::get(
+    '/',
+    fn() => view('screens.web.home.index', ['isHome' => true])
 )->name('home');
 
-Route::get('/about', fn() => view('screens.web.about.index')
+Route::get(
+    '/about',
+    fn() => view('screens.web.about.index')
 )->name('about');
 
-Route::get('/contact', fn() => view('screens.web.contact.index')
+Route::get(
+    '/contact',
+    fn() => view('screens.web.contact.index')
 )->name('contact');
 
-Route::get('/services', fn() => view('screens.web.services.index')
+Route::get(
+    '/services',
+    fn() => view('screens.web.services.index')
 )->name('services');
 
-Route::get('/services/show', fn() => view('screens.web.services.show')
+Route::get(
+    '/services/show',
+    fn() => view('screens.web.services.show')
 )->name('service-detail');
 
-Route::get('/referrals', fn() => view('screens.web.referrals.index')
+Route::get(
+    '/referrals',
+    fn() => view('screens.web.referrals.index')
 )->name('referrals');
 
-Route::get('/marketplace', fn() => view('screens.web.marketplace.index')
+Route::get(
+    '/marketplace',
+    fn() => view('screens.web.marketplace.index')
 )->name('marketplace');
 
-Route::get('/store', fn() => view('screens.web.store.index')
+Route::get(
+    '/store',
+    fn() => view('screens.web.store.index')
 )->name('store');
 
-Route::get('/products', fn() => view('screens.web.products.index')
+Route::get(
+    '/products',
+    fn() => view('screens.web.products.index')
 )->name('products');
 
-Route::get('/product-detail', fn() => view('screens.web.products.show')
+Route::get(
+    '/product-detail',
+    fn() => view('screens.web.products.show')
 )->name('product-detail');
 
-Route::get('/book-now', fn() => view('screens.web.book-now.index')
+Route::get(
+    '/book-now',
+    fn() => view('screens.web.book-now.index')
 )->name('book-now');
 
-Route::get('/cart', fn() => view('screens.web.cart.index')
+Route::get(
+    '/cart',
+    fn() => view('screens.web.cart.index')
 )->name('cart');
 
-Route::get('/checkout', fn() => view('screens.web.checkout.index')
+Route::get(
+    '/checkout',
+    fn() => view('screens.web.checkout.index')
 )->name('checkout');
 
-Route::get('/profile', fn() =>view('screens.web.profile.index')
+Route::get(
+    '/profile',
+    fn() => view('screens.web.profile.index')
 )->middleware('auth')->name('profile');
 
 Route::get('/memberships', [PackageController::class, 'index'])->name('packages.index');
@@ -69,10 +98,13 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/users/create', [UsersController::class, 'create'])->name('users.create');
     Route::post('/users', [UsersController::class, 'store'])->name('users.store');
     Route::get('/memberships', [MembershipController::class, 'index'])->name('memberships.index');
-    Route::get('/contractors', [ContractorController::class, 'index'])->name('contractors.index');
-    Route::get('/contractors/create', [ContractorController::class, 'create'])->name('contractors.create');
-    Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
-    Route::get('/services/create', [ServiceController::class, 'create'])->name('services.create');
+    Route::middleware(['auth', 'company.approved'])->group(function () {
+        Route::get('/contractors', [ContractorController::class, 'index'])->name('contractors.index');
+        Route::get('/contractors/create', [ContractorController::class, 'create'])->name('contractors.create');
+        Route::post('/contractors', [ContractorController::class, 'store'])->name('contractors.store');
+        Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
+        Route::get('/services/create', [ServiceController::class, 'create'])->name('services.create');
+    });
     Route::get('/referrals', [ReferralController::class, 'index'])->name('referrals.index');
     Route::get('/referrals/create', [ReferralController::class, 'create'])->name('referrals.create');
     Route::get('/products', [ProductController::class, 'index'])->name('products.index');
@@ -80,6 +112,9 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('/complete-profile', [CompanyController::class, 'index'])->name('company-profile.index');
     Route::post('/complete-profile', [CompanyController::class, 'store'])->name('company-profile.store');
+    Route::get('/contractor-approval', [AdminContractorApprovalController::class, 'index'])->name('contractor-approval.index');
+    Route::post('/admin/contractor-approval/toggle', [AdminContractorApprovalController::class, 'ajaxToggle'])->name('admin.contractor-approval.ajax');
+    Route::post('/company/toggle-active', [CompanyController::class, 'toggleActive'])->name('company.toggleActive');
 });
 
 

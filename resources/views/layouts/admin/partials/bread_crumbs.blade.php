@@ -17,8 +17,7 @@
                         @elseif($company->is_profile_completed && !$company->is_profile_approved)
                             <div class="alert alert-info" style="background:#1d1d1d; border-color:#0dcaf0; color:#fff;">
                                 <i class="fa-solid fa-hourglass-half"></i>
-                                Your profile has been submitted for approval. Once approved, your services will be
-                                activated.
+                                Your profile has been submitted for approval. Once approved, you can add Services and Contractors.
                             </div>
                         @endif
                     @endif

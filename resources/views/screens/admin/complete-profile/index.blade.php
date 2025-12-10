@@ -18,7 +18,7 @@
                             <div class="mb-3">
                                 <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                                 <label class="form-label" for="business_name">Business Name
-                                    </label>
+                                </label>
                                 <input class="form-control @error('business_name') is-invalid @enderror" id="business_name"
                                     type="text" placeholder="Enter Business Name" name="business_name" />
                                 @error('business_name')
@@ -29,7 +29,7 @@
                         <div class="col-sm-6 col-md-6">
                             <div class="mb-3">
                                 <label class="form-label" for="license">License</label>
-                                        <input class="form-control @error('license') is-invalid @enderror" id="license"
+                                <input class="form-control @error('license') is-invalid @enderror" id="license"
                                     type="text" placeholder="Enter License Number" name="license" />
                                 @error('license')
                                     <span class="text-danger">{{ $message }}</span>
@@ -38,20 +38,30 @@
                         </div>
                         <div class="col-sm-6 col-md-6">
                             <div class="mb-3">
-                                <label class="form-label" for="insurance">Insurance</label><input class="form-control @error('insurance') is-invalid @enderror" id="insurance"
+                                <label class="form-label" for="insurance">Insurance</label><input
+                                    class="form-control @error('insurance') is-invalid @enderror" id="insurance"
                                     type="text" placeholder="Enter insurance Number" name="insurance" />
                                 @error('insurance')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="phone">Phone</label>
+                                <input class="form-control @error('phone') is-invalid @enderror" id="phone"
+                                    type="text" placeholder="Enter Phone Number" name="phone" />
+                                @error('phone')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="card-footer text-end">
-                    <button class="btn btn-primary" type="submit">
-                        Create
-                    </button>
-                </div>
+                    <div class="card-footer text-end">
+                        <button class="btn btn-primary" type="submit">
+                            Create
+                        </button>
+                    </div>
             </form>
         </div>
     </div>
