@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { usePage } from '@inertiajs/react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const StarRating = ({ storyId, initialRating = null, averageRating = null }) => {
   const { auth } = usePage().props;
@@ -38,6 +39,32 @@ const StarRating = ({ storyId, initialRating = null, averageRating = null }) => 
       });
       setUserRating(response.data.user_rating);
       setAverage(response.data.average_rating);
+      
+    Swal.fire({
+  html: `
+    <div style="
+      font-size: 50px;
+      color: #28a745;
+      margin-bottom: 10px;
+    ">✔️</div>
+  `,
+  title: 'Thank you for your rating!',
+  text: 'Your feedback helps us improve.',
+  showConfirmButton: false,
+  timer: 1800,
+  timerProgressBar: true,
+  background: '#ffffff',
+  color: '#333',
+  iconColor: '#22c55e',
+  position: 'center',
+  showClass: {
+    popup: 'animate__animated animate__zoomIn'
+  },
+  hideClass: {
+    popup: 'animate__animated animate__zoomOut'
+  }
+});
+
     } catch (error) {
       console.error('Error submitting rating:', error);
       if (error.response?.status === 401) {
@@ -78,14 +105,26 @@ const StarRating = ({ storyId, initialRating = null, averageRating = null }) => 
         </div>
       </div>
       {!auth.user && (
-        <p className="text-muted fs-14">
-          <a href={route('login')}>Login</a> to rate this story
-        </p>
-      )}
-      {!auth.user && (
-        <p className="text-muted fs-14">
-          <a href={route('login')}>Login</a> to rate this story
-        </p>
+        <div 
+          className="mt-3 p-3 rounded-3 d-flex align-items-center"
+          style={{
+            background: 'linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%)',
+            border: '1px solid #e1e4e8',
+            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)'
+          }}
+        >
+            <div className="me-3 d-flex align-items-center justify-content-center bg-white rounded-circle shadow-sm" style={{ width: '40px', height: '40px', minWidth: '40px' }}>
+                <i className="fas fa-lock text-muted" style={{ fontSize: '14px' }}></i>
+            </div>
+            <div>
+                <p className="mb-0 text-muted" style={{ fontSize: '13px', lineHeight: '1' }}>
+                    Want to leave a rating?
+                </p>
+                <a href={route('login')} className="text-dark fw-bold text-decoration-none d-inline-flex align-items-center mt-1" style={{ fontSize: '14px' }}>
+                    Login to your account <i className="fas fa-arrow-right ms-1" style={{ fontSize: '10px' }}></i>
+                </a>
+            </div>
+        </div>
       )}
       {isLoading && (
         <div className="mt-2">

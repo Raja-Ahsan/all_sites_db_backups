@@ -189,24 +189,47 @@ const Header = ({ logoClass, headerClass }) => {
           <li><Link href="/packages" onClick={() => setIsMenuOpen(false)}>Packages</Link></li>
           <li><Link href="/community" onClick={() => setIsMenuOpen(false)}>Community</Link></li>
           <li><Link href="/contests" onClick={() => setIsMenuOpen(false)}>Contests</Link></li>
-          <li><Link href="/create-contest" onClick={() => setIsMenuOpen(false)}>Ongoing Contests</Link></li>
-          <li className="dropdown">
+    
+          <li>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <Link href="/how-it-works" onClick={() => setIsMenuOpen(false)}>How It Works</Link>
               <span
-                className="dropdown-toggle"
-                style={{ cursor: 'pointer', color: 'white', padding: '10px', marginLeft: '10px' }}
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
-                  setIsHowItWorksOpen((prev) => !prev);
+                  setIsHowItWorksOpen(!isHowItWorksOpen);
                 }}
-                aria-expanded={isHowItWorksOpen}
-              ></span>
+                style={{ cursor: 'pointer', padding: '0 10px', color: 'white' }}
+              >
+                <i className="fas fa-chevron-down" style={{ transition: 'transform 0.3s', transform: isHowItWorksOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}></i>
+              </span>
             </div>
-            <ul className="user-dropdown" style={{ display: isHowItWorksOpen ? 'block' : 'none', backgroundColor: '#fff', padding: '10px 0', border: '1px solid #eee', width: '100%', boxShadow: 'none' }}>
+            <ul style={{ 
+               display: isHowItWorksOpen ? 'block' : 'none', 
+               backgroundColor: '#fff', 
+              
+               listStyle: 'none',
+               borderRadius: '0.25rem',
+               boxShadow: '0 0.5rem 1rem rgba(0, 0, 0, 0.15)' 
+            }}>
               <li>
-                <Link href="/about" className="user-dropdown-item hover:text-primary" onClick={() => setIsMenuOpen(false)} style={{ color: '#333', padding: '8px 20px', display: 'block', fontWeight: '500' }}>
+                <Link 
+                  href="/about" 
+                  onClick={() => setIsMenuOpen(false)}
+                  style={{ 
+                    display: 'block', 
+                    width: '100%', 
+                    padding: '0.5rem 1rem', 
+                    clear: 'both', 
+                    fontWeight: '400', 
+                    color: '#000', 
+                    textAlign: 'center', 
+                    textDecoration: 'none', 
+                    backgroundColor: 'transparent', 
+                    border: 0 ,
+                    fontSize: '14px',
+                  }}
+                >
                   About
                 </Link>
               </li>

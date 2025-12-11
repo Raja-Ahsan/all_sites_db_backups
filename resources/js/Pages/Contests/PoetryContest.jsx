@@ -109,9 +109,7 @@ const PoetryContest = () => {
                                         </div>
                                         </div>
 
-                                        {/* <div className="mb-10 pl-10">
-                                            <span className="label bg-primary-theme text-white fs-20 py-10 px-20 radius-20">Ongoing</span>
-                                        </div> */}
+                                       
 
                                         <h5 className="fs-16 text-primary-theme text-capitalize  fw-600 pl-10 mb-10">{contest.organizer || contest.author || 'Organizer'}</h5>
                                         <div className="mb-10 pl-10">
