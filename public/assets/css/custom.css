@@ -24,6 +24,10 @@
 
 .page-wrapper .page-header .header-wrapper .nav-right .profile-dropdown {
     top: 30px;
+    left: -120px;
+    width: 100%;
+    min-width: 230px;
+
 }
 
 .loader {

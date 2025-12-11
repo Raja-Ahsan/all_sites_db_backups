@@ -36,8 +36,8 @@
                 </nav>
             </div>
             <div class="col-lg-3 col-8 d-flex gap-20 justify-content-end align-items-center">
-                <div class="d-flex align-items-center flex-grow-1 justify-content-between"
-                    @if (auth()->check()) style="max-width: 190px;"
+                <div class="d-flex align-items-center flex-grow-1 gap-30 justify-content-between"
+                    @if (auth()->check()) style="max-width: max-content;"
                 @else
                  style="max-width: 310px;" @endif
                     data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">

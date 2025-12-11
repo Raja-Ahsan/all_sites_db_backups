@@ -44,14 +44,10 @@
                     $userRole = Auth::user()->roles->first();
                     $modules = $userRole ? dynamic_sidebar($userRole->id) : [];
                     $companyApproved = auth()->user()->company?->is_profile_approved ?? false;
+                    $companyActive = auth()->user()->company?->is_active ?? false;
                     $rolesById == 4;
 
-                    $protectedRoutes = [
-        'contractors.index',
-        'contractors.create',
-        'services.index',
-        'services.create',
-    ];
+                    $protectedRoutes = ['contractors.index', 'contractors.create', 'services.index', 'services.create'];
                 @endphp
 
                 @foreach ($modules as $module)
@@ -66,18 +62,19 @@
                         @if (!empty($module->children))
                             <ul class="sidebar-submenu">
                                 @foreach ($module->children as $child)
-                                @php
-                                $isDisabled = (
-                                    $rolesById == 4 &&                 // league contractor
-                                    !$companyApproved &&              // company NOT approved
-                                    in_array($child->route_name, $protectedRoutes) // protected route
-                                );
-                            @endphp
+                                    @php
+                                        $isDisabled =
+                                            $rolesById == 4 && // league contractor
+                                            (!$companyApproved || 
+                                            !$companyActive
+                                            ) &&  
+                                            in_array($child->route_name, $protectedRoutes); // protected route
+                                    @endphp
                                     <li>
                                         <a href="{{ $isDisabled ? 'javascript:void(0)' : route($child->route_name) }}"
                                             aria-disabled="{{ $isDisabled ? 'true' : 'false' }}">
-                                             {{ $child->name }}
-                                         </a>
+                                            {{ $child->name }}
+                                        </a>
                                     </li>
                                 @endforeach
                             </ul>

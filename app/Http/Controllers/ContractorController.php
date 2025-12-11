@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\CompanyContractor;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContractorCredentialsMail;
 
 class ContractorController extends Controller
 {
@@ -39,14 +41,15 @@ class ContractorController extends Controller
             'password' => bcrypt($plainPassword),
         ]);
 
-        // CompanyContractor::create([
-        //     'company_id' => auth()->user()->company->id,
-        //     'user_id'    => $user->id,
-        // ]);
+        CompanyContractor::create([
+            'company_id' => auth()->user()->company->id,
+            'user_id'    => $user->id,
+        ]);
 
         // assign contractor role (Spatie)
         $user->assignRole('contractor');
 
+        Mail::to($user->email)->send(new ContractorCredentialsMail($user, $plainPassword));
         // send email with login credentials
         // Mail::to($contractor->email)->send(new ContractorCredentialsMail($contractor, $plainPassword));
 

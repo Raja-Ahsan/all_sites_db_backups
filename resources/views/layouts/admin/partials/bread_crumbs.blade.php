@@ -3,7 +3,7 @@
         <div class="row">
             <div class="row mb-3">
                 <div class="col-12">
-                    @if (isRole(4) || isRole(2))
+                    @if (isRole(4))
                         @if (!$company || !$company->is_profile_completed)
                             <div class="alert alert-warning custom-alert alert-dismissible fade show d-flex align-items-center justify-content-between"
                                 role="alert" style="background-color: #1d1d1d; border-color: #ffc107; color: #fff;">
@@ -17,7 +17,13 @@
                         @elseif($company->is_profile_completed && !$company->is_profile_approved)
                             <div class="alert alert-info" style="background:#1d1d1d; border-color:#0dcaf0; color:#fff;">
                                 <i class="fa-solid fa-hourglass-half"></i>
-                                Your profile has been submitted for approval. Once approved, you can add Services and Contractors.
+                                Your profile has been submitted for approval. Once approved, you can add Services and
+                                Contractors.
+                            </div>
+                        @elseif(!$company->is_active)
+                            <div class="alert alert-danger" style="background:#1d1d1d; border-color:#0dcaf0; color:#fff;">
+                                <i class="fa-solid fa-hourglass-half"></i>
+                                Your profile Deactivated By Admin. Please contact support to reactivate your profile.
                             </div>
                         @endif
                     @endif
