@@ -117,7 +117,7 @@ const MonthlyFictionContest = () => {
 
                                         <h5 className="fs-16 text-primary-theme text-capitalize mb-10 fw-600 pl-10">{contest.organizer || contest.author || 'Organizer'}</h5>
                                            <div className="mb-10 pl-10">
-                                            <span className="fs-16 label bg-primary-theme text-white fs-12 py-5 px-10 radius-20 text-primary-theme text-capitalize fw-600">Monthly Fiction Contest</span>
+                                            <span className="fs-12 label bg-primary-theme text-white fs-12 py-5 px-10 radius-20 text-primary-theme text-capitalize fw-600">Monthly Fiction Contest</span>
                                         </div>
 
                                         {/* <div className="d-flex align-items-center mb-20 pl-10">

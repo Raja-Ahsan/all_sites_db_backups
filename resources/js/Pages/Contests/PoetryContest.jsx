@@ -18,7 +18,7 @@ const PoetryContest = () => {
     const demoOld = [
         {
             id: 'demo-1',
-            type: 'poetry',
+            type: 'poetry contest',
             title: 'The Lost Lantern',
             author: 'A. Writer',
             cover_image: Book001,
@@ -28,7 +28,7 @@ const PoetryContest = () => {
         },
         {
             id: 'demo-2',
-                type: 'poetry',
+                type: 'poetry contest',
             title: 'Moonlit Verses',
             author: 'Poetica',
             cover_image: Book002,
@@ -38,7 +38,7 @@ const PoetryContest = () => {
         },
         {
             id: 'demo-3',
-            type: 'story',
+            type: 'poetry contest',
             title: 'Across the Silver Sea',
             author: 'R. Marlow',
             cover_image: Book003,
@@ -113,9 +113,9 @@ const PoetryContest = () => {
                                             <span className="label bg-primary-theme text-white fs-20 py-10 px-20 radius-20">Ongoing</span>
                                         </div> */}
 
-                                        <h5 className="fs-16 text-primary-theme text-capitalize  fw-600 pl-10">{contest.organizer || contest.author || 'Organizer'}</h5>
+                                        <h5 className="fs-16 text-primary-theme text-capitalize  fw-600 pl-10 mb-10">{contest.organizer || contest.author || 'Organizer'}</h5>
                                         <div className="mb-10 pl-10">
-                                            <span className="fs-16 label bg-primary-theme text-white fs-12 py-5 px-10 radius-20 text-primary-theme text-capitalize fw-600">Poetry Contest</span>
+                                            <span className="fs-12 label bg-primary-theme text-white fs-12 py-5 px-10 radius-20 text-primary-theme text-capitalize fw-600">Poetry Contest</span>
                                         </div>
 
                                         {/* <div className="d-flex align-items-center mb-20 pl-10">
