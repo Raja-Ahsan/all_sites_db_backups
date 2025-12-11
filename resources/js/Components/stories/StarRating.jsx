@@ -98,8 +98,8 @@ const StarRating = ({ storyId, initialRating = null, averageRating = null }) => 
 
   return (
     <div className="rating-section mt-4">
-      <h5 className="mb-3">Rate this Story</h5>
-      <div className="d-flex align-items-center mb-3">
+      <h5 className="mb-10">Rate this Story</h5>
+      <div className="d-flex align-items-center mb-10">
         <div className="star-rating d-flex align-items-center">
           {[0, 1, 2, 3, 4].map((index) => renderStar(index))}
         </div>
