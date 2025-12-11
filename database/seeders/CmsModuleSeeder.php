@@ -196,12 +196,41 @@ class CmsModuleSeeder extends Seeder
             'status' => 'active',
             'parent_id' => $services->id,
         ]);
+
+        CmsModule::firstOrCreate([
+            'route_name' => 'services-categories.create'
+        ], [
+            'name' => 'Create Category',
+            'icon' => 'fa-solid fa-list-ul',
+            'sort_order' => 3,
+            'status' => 'active',
+            'parent_id' => $services->id,
+        ]);
+        CmsModule::firstOrCreate([
+            'route_name' => 'services-categories.index'
+        ], [
+            'name' => 'All Categories',
+            'icon' => 'fa-solid fa-list-ul',
+            'sort_order' => 4,
+            'status' => 'active',
+            'parent_id' => $services->id,
+        ]);
         CmsModule::firstOrCreate([
             'route_name' => 'products.index'
         ], [
             'name' => 'All Products',
             'icon' => 'fa-solid fa-boxes-packing',
             'sort_order' => 1,
+            'status' => 'active',
+            'parent_id' => $products->id,
+        ]);
+
+        CmsModule::firstOrCreate([
+            'route_name' => 'products.create'
+        ], [
+            'name' => 'Add Product',
+            'icon' => 'fa-solid fa-boxes-packing',
+            'sort_order' => 2,
             'status' => 'active',
             'parent_id' => $products->id,
         ]);

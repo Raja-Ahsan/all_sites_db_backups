@@ -15,12 +15,10 @@ class CheckCompanyApproval
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $user = auth()->user();
-        $rolesById = $user->roles->first()->id;
 
-        if ($rolesById == 4) {
+        if (userRoleId() == 4) {
 
-            $company = $user->company;
+            $company = auth()->user()->company;
 
             if (!$company || !$company->is_profile_completed) {
                 return redirect()->route('company-profile.index')

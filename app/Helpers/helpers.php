@@ -1,15 +1,17 @@
 <?php
+
 use Illuminate\Support\Facades\Auth;
 
-if(!function_exists('checkUser')) {
-    function checkUser() {
+if (!function_exists('checkUser')) {
+    function checkUser()
+    {
         return Auth::user();
     }
-
 }
 
 if (! function_exists('formatRole')) {
-    function formatRole($roleName) {
+    function formatRole($roleName)
+    {
         return \Illuminate\Support\Str::of($roleName ?? 'Not Set')->replace('_', ' ')->title();
     }
 }
@@ -37,4 +39,19 @@ if (! function_exists('isRole')) {
 function generateRandomPassword($length = 10)
 {
     return substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*'), 0, $length);
+}
+
+
+if (!function_exists('userRoleId')) {
+    function userRoleId()
+    {
+        return auth()->check() ? auth()->user()->roles->first()->id : null;
+    }
+}
+
+if (!function_exists('userHasRole')) {
+    function userHasRole($roleName)
+    {
+        return auth()->check() && auth()->user()->hasRole($roleName);
+    }
 }

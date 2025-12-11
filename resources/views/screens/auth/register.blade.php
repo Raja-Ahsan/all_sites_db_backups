@@ -36,7 +36,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6 mb-20">
+                            <div class="col-12 mb-20">
                                 <div class="field-wrapper">
                                     <label for="firstName" class="text-white fs-14 mb-10 d-block">Full Name</label>
                                     <input type="text" id="firstName" name="name" class="glass input-field" placeholder="John" required>

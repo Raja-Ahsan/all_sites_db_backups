@@ -1,5 +1,5 @@
-function ajaxDelete(buttonSelector, dataTableId = null) {
-    $(document).on('click' , 'button.ajax-delete', buttonSelector, function(e) {
+function ajaxDelete(buttonSelector, itemSelector, dataTableId = null) {
+    $(document).on('click', buttonSelector, function(e) {
         e.preventDefault();
 
         let form = $(this).closest('form');
@@ -27,6 +27,7 @@ function ajaxDelete(buttonSelector, dataTableId = null) {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     success: function(response) {
+                        form.closest(itemSelector).remove();
                         Swal.fire({
                             icon: 'success',
                             title: 'Deleted!',

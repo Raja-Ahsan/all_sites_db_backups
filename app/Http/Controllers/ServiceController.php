@@ -12,4 +12,8 @@ class ServiceController extends Controller
     public function create() {
         return view('screens.admin.services.create');
     }
+
+    
+    
+
 }

@@ -25,7 +25,7 @@
                                         <span class="f-light">Total Contractors</span>
                                         <h4>
                                             <span class="">
-                                                {{-- data-target="{{ $blogCount }}">{{ $blogCount }}</span> --}}
+                                                {{ $totalContractors }}
                                             </span>
                                         </h4>
                                     </div>

@@ -13,6 +13,7 @@ use App\Http\Controllers\PackageController;
 use App\Http\Controllers\CheckoutPurchaseController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\Admin\ContractorApprovalController as AdminContractorApprovalController;
+use App\Http\Controllers\Admin\ServiceCategoryController as AdminServiceCategoryController;
 // Web Routes
 Route::get(
     '/',
@@ -104,6 +105,13 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::post('/contractors', [ContractorController::class, 'store'])->name('contractors.store');
         Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
         Route::get('/services/create', [ServiceController::class, 'create'])->name('services.create');
+    });
+
+    Route::middleware(['auth', 'admin.middleware'])->group(function () {
+        Route::get('/services/categories/create', [AdminServiceCategoryController::class, 'create'])->name('services-categories.create');
+        Route::get('/services/categories', [AdminServiceCategoryController::class, 'index'])->name('services-categories.index');
+        Route::post('/services/categories', [AdminServiceCategoryController::class, 'store'])->name('services-categories.store');
+        Route::delete('/services/categories/{id}', [AdminServiceCategoryController::class, 'destroy'])->name('services-categories.destroy');
     });
     Route::get('/referrals', [ReferralController::class, 'index'])->name('referrals.index');
     Route::get('/referrals/create', [ReferralController::class, 'create'])->name('referrals.create');
