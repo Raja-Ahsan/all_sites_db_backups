@@ -225,6 +225,14 @@ Route::get('/create-contest', function () {
     return Inertia::render('Contests/CreateContest');
 })->name('create-contest');
 
+Route::get('/monthly-fiction-contest', function () {
+    return Inertia::render('Contests/MonthlyFictionContest');
+})->name('monthly-fiction-contest');
+
+Route::get('/poetry-contest', function () {
+    return Inertia::render('Contests/PoetryContest');
+})->name('poetry-contest');
+
 Route::get('/faqs', function () {
     return Inertia::render('Faqs');
 })->name('faqs');
