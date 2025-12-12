@@ -16,4 +16,11 @@ class Company extends Model
     public function user() {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function services()
+    {
+        return $this->hasMany(Service::class, 'company_id');
+    }
+
+    
 }

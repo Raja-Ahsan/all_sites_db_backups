@@ -103,9 +103,11 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('/contractors', [ContractorController::class, 'index'])->name('contractors.index');
         Route::get('/contractors/create', [ContractorController::class, 'create'])->name('contractors.create');
         Route::post('/contractors', [ContractorController::class, 'store'])->name('contractors.store');
-        Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
         Route::get('/services/create', [ServiceController::class, 'create'])->name('services.create');
+        Route::post('/services', [ServiceController::class, 'store'])->name('services.store');
+        Route::delete('/services/{id}', [ServiceController::class, 'destroy'])->name('services.destroy');
     });
+    Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
 
     Route::middleware(['auth', 'admin.middleware'])->group(function () {
         Route::get('/services/categories/create', [AdminServiceCategoryController::class, 'create'])->name('services-categories.create');

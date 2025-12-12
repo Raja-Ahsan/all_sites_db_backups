@@ -22,16 +22,16 @@
                                                 <span class="c-o-light f-w-600">Service Name</span>
                                             </th>
                                             <th>
+                                                <span class="c-o-light f-w-600">Image</span>
+                                            </th>
+                                            <th>
                                                 <span class="c-o-light f-w-600">Category</span>
                                             </th>
                                             <th>
-                                                <span class="c-o-light f-w-600">Price</span>
+                                                <span class="c-o-light f-w-600">Duration</span>
                                             </th>
                                             <th>
                                                 <span class="c-o-light f-w-600">Status</span>
-                                            </th>
-                                            <th>
-                                                <span class="c-o-light f-w-600">Creation Date</span>
                                             </th>
                                             <th>
                                                 <span class="c-o-light f-w-600">Actions</span>
@@ -39,75 +39,50 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="product-removes inbox-data">
-                                            <td><a href="#!">Plumbing Service</a></td>
-                                            <td>
-                                                <p>Plumbing</p>
-                                            </td>
-                                            <td>
-                                                <p>$150.00</p>
-                                            </td>
-                                            <td><span class="badge badge-light-success">Active</span></td>
-                                            <td>
-                                                <p>15 Jan 2024, 10:30 AM</p>
-                                            </td>
-                                            <td>
-                                                <div class="common-align gap-2 justify-content-start">
-                                                    <a class="square-white" href="#!">
-                                                        <span><i class="fa-solid fa-eye"></i></span>
-                                                    </a>
-                                                    <a class="square-white" href="#!">
-                                                        <span><i class="fa-solid fa-pen"></i></span>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="product-removes inbox-data">
-                                            <td><a href="#!">Electrical Repair</a></td>
-                                            <td>
-                                                <p>Electrical</p>
-                                            </td>
-                                            <td>
-                                                <p>$200.00</p>
-                                            </td>
-                                            <td><span class="badge badge-light-success">Active</span></td>
-                                            <td>
-                                                <p>20 Jan 2024, 02:15 PM</p>
-                                            </td>
-                                            <td>
-                                                <div class="common-align gap-2 justify-content-start">
-                                                    <a class="square-white" href="#!">
-                                                        <span><i class="fa-solid fa-eye"></i></span>
-                                                    </a>
-                                                    <a class="square-white" href="#!">
-                                                        <span><i class="fa-solid fa-pen"></i></span>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="product-removes inbox-data">
-                                            <td><a href="#!">HVAC Installation</a></td>
-                                            <td>
-                                                <p>HVAC</p>
-                                            </td>
-                                            <td>
-                                                <p>$500.00</p>
-                                            </td>
-                                            <td><span class="badge badge-light-warning">Pending</span></td>
-                                            <td>
-                                                <p>25 Jan 2024, 11:45 AM</p>
-                                            </td>
-                                            <td>
-                                                <div class="common-align gap-2 justify-content-start">
-                                                    <a class="square-white" href="#!">
-                                                        <span><i class="fa-solid fa-eye"></i></span>
-                                                    </a>
-                                                    <a class="square-white" href="#!">
-                                                        <span><i class="fa-solid fa-pen"></i></span>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        @forelse ($services as $service)
+                                            <tr class="product-removes inbox-data">
+                                                <td><a href="#!">{{ $service->title }}</a></td>
+                                                <td>
+                                                    <p>{{ $service->image }}</p>
+                                                </td>
+                                                <td>
+                                                    <p>{{ $service->serviceCategory->name }}</p>
+                                                </td>
+                                                <td>
+                                                    <p>{{ $service->duration }}</p>
+                                                </td>
+                                                <td><span
+                                                        class="badge badge-light-success">{{ $service->is_active ? 'Active' : 'Inactive' }}</span>
+                                                </td>
+                                                <td>
+                                                    <div class="common-align gap-2 justify-content-start">
+                                                        <a class="square-white" href="#!">
+                                                            <span><i class="fa-solid fa-eye"></i></span>
+                                                        </a>
+                                                        <a class="square-white" href="#!">
+                                                            <span><i class="fa-solid fa-pen"></i></span>
+                                                        </a>
+                                                        <form
+                                                            action="{{ route('services-categories.destroy', $serviceCategory->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="square-white ajax-delete">
+                                                                <span><i class="fa-solid fa-trash"></i></span>
+                                                            </button>
+                                                        </form>
+                                                        
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="6" class="text-center">
+                                                    <h3 class="pt-5">No @yield('title', 'Dashboard') Found</h3>
+                                                </td>
+                                            </tr>
+                                        @endforelse
+
                                     </tbody>
                                 </table>
                             </div>
@@ -118,4 +93,40 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script src="{{ asset('assets/js/crud-modal.js') }}"></script>
+    <script>
+        ajaxDelete('.ajax-delete', 'tr');
+        ajaxUpdate('#crudForm', null, 'tr');
 
+        function updateCategoryRow(category) {
+
+            let row = $('tr[data-id="' + category.id + '"]');
+
+            row.find('td:first p').text(category.name);
+
+            row.find('.btn-edit').attr('data-name', category.name);
+
+        }
+
+
+        $(document).on('click', '.btn-edit', function() {
+
+            let id = $(this).data('id');
+            let name = $(this).attr('data-name');
+
+            openCrudModal({
+                title: "Edit Service Category",
+                button: "Update",
+                url: "/admin/services/categories/" + id,
+                method: "PUT",
+                fields: `
+        <div class="mb-3">
+            <label>Category Name</label>
+            <input type="text" name="name" value="${name}" class="form-control">
+        </div>
+    `,
+            });
+        });
+    </script>
+@endpush

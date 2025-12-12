@@ -21,7 +21,8 @@
                                 Contractors.
                             </div>
                         @elseif(!$company->is_active)
-                            <div class="alert alert-danger" style="background:#1d1d1d; border-color:#0dcaf0; color:#fff;">
+                            <div class="alert alert-danger"
+                                style="background:#1d1d1d; border-color:#0dcaf0; color:#fff;">
                                 <i class="fa-solid fa-hourglass-half"></i>
                                 Your profile Deactivated By Admin. Please contact support to reactivate your profile.
                             </div>

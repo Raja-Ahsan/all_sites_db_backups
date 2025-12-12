@@ -13,21 +13,21 @@ class PackageSeeder extends Seeder
      */
     public function run(): void
     {
-        Package::create([
+        Package::firstOrCreate([
             'name' => 'Basic Member',
             'role_type' => 'individual_contractor',
             'contractor_limit' => null,
             'price' => 20,
         ]);
         
-        Package::create([
+        Package::firstOrCreate([
             'name' => 'Pro Member',
             'role_type' => 'individual_contractor',
             'contractor_limit' => null,
             'price' => 49,
         ]);
         
-        Package::create([
+        Package::firstOrCreate([
             'name' => 'Elite Member',
             'role_type' => 'league_contractor',
             'contractor_limit' => 10,
