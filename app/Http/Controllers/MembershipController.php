@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Membership;
 use Illuminate\Http\Request;
 
 class MembershipController extends Controller
 {
     public function index() {
-        return view('screens.admin.memberships.index');
+        $memberships = Membership::all();
+        return view('screens.admin.memberships.index', compact('memberships'));
     }
 }

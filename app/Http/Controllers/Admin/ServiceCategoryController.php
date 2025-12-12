@@ -47,28 +47,26 @@ class ServiceCategoryController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $serviceCategories = ServiceCategory::findOrFail($id);
+
+        $serviceCategories->update([
+            'name' => $request->name
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'data' => $serviceCategories,
+            'id' => $id,
+            'message' => 'Service category updated successfully',
+        ]);
+
+
     }
 
     /**

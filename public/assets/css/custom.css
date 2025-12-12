@@ -177,3 +177,14 @@ a[aria-disabled="true"] {
     opacity: 0.3;
     cursor: not-allowed;
 }
+body.dark-only .form-control {
+    color: #fff;
+}
+table .square-white,
+form .square-white {
+    all: unset;
+}
+table .square-white:hover,
+form .square-white:hover {
+    color: #fff;
+}

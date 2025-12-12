@@ -1,5 +1,5 @@
 function ajaxUpdate(formSelector, successRedirect = null) {
-    $(document).on('submit', 'form.ajax-form', formSelector, function(e) {
+    $(document).on('submit', formSelector, function(e) {
         e.preventDefault();
         let form = $(this);
         let formData = form.serialize();
@@ -24,11 +24,16 @@ function ajaxUpdate(formSelector, successRedirect = null) {
                     timer: 1500,
                 });
 
+                if (response.data) {
+                    updateCategoryRow(response.data);
+                }
+
                 if (successRedirect) {
                     setTimeout(() => {
                         window.location.href = successRedirect;
                     }, 1600);
                 }
+                $('#crudModal').modal('hide');
             },
             error: function(xhr) {
                 form.find('button[type="submit"]').prop('disabled', false).text('Update');

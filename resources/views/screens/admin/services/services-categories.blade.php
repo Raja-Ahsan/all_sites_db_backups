@@ -21,6 +21,11 @@
                                             <th>
                                                 <span class="c-o-light f-w-600">Category Name</span>
                                             </th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
                                             <th>
                                                 <span class="c-o-light f-w-600">Actions</span>
                                             </th>
@@ -32,14 +37,18 @@
                                                 <td>
                                                     <p>{{ $serviceCategory->name }}</p>
                                                 </td>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
                                                 <td>
                                                     <div class="common-align gap-2 justify-content-start">
-                                                        <a class="square-white" href="#!">
-                                                            <span><i class="fa-solid fa-eye"></i></span>
-                                                        </a>
-                                                        <a class="square-white" href="#!">
+                                                        <button class="square-white btn-edit"
+                                                            data-id="{{ $serviceCategory->id }}"
+                                                            data-name="{{ $serviceCategory->name }}">
                                                             <span><i class="fa-solid fa-pen"></i></span>
-                                                        </a>
+                                                        </button>
                                                         <form
                                                             action="{{ route('services-categories.destroy', $serviceCategory->id) }}"
                                                             method="POST">
@@ -62,9 +71,42 @@
             </div>
         </div>
     </div>
+    <x-modals.crud-modal />
 @endsection
 @push('scripts')
+    <script src="{{ asset('assets/js/crud-modal.js') }}"></script>
     <script>
         ajaxDelete('.ajax-delete', 'tr');
+        ajaxUpdate('#crudForm', null, 'tr');
+
+        function updateCategoryRow(category) {
+
+            let row = $('tr[data-id="' + category.id + '"]');
+
+            row.find('td:first p').text(category.name);
+
+            row.find('.btn-edit').attr('data-name', category.name);
+
+        }
+
+
+        $(document).on('click', '.btn-edit', function() {
+
+            let id = $(this).data('id');
+            let name = $(this).attr('data-name');
+
+            openCrudModal({
+                title: "Edit Service Category",
+                button: "Update",
+                url: "/admin/services/categories/" + id,
+                method: "PUT",
+                fields: `
+        <div class="mb-3">
+            <label>Category Name</label>
+            <input type="text" name="name" value="${name}" class="form-control">
+        </div>
+    `,
+            });
+        });
     </script>
 @endpush

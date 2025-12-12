@@ -50,6 +50,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @forelse ($memberships as $membership)
                                                 <tr>
                                                     <th scope="row">1</th>
                                                     <td>John Doe</td>
@@ -58,7 +59,11 @@
                                                     <td>2024-12-31</td>
                                                     <td>$299.00</td>
                                                     <td><span class="badge bg-success">Active</span></td>
-                                                </tr>
+                                                </tr>    
+                                                @empty
+                                                    no memberships found
+                                                @endforelse
+                                                
                                                 <tr>
                                                     <th scope="row">2</th>
                                                     <td>Jane Smith</td>

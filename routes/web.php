@@ -112,6 +112,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('/services/categories', [AdminServiceCategoryController::class, 'index'])->name('services-categories.index');
         Route::post('/services/categories', [AdminServiceCategoryController::class, 'store'])->name('services-categories.store');
         Route::delete('/services/categories/{id}', [AdminServiceCategoryController::class, 'destroy'])->name('services-categories.destroy');
+        Route::put('/services/categories/{id}', [AdminServiceCategoryController::class, 'update'])->name('services-categories.update');
     });
     Route::get('/referrals', [ReferralController::class, 'index'])->name('referrals.index');
     Route::get('/referrals/create', [ReferralController::class, 'create'])->name('referrals.create');
