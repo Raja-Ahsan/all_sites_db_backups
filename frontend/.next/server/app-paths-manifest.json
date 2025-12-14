@@ -1,0 +1,22 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/test-logo/route": "app/api/test-logo/route.js",
+  "/login/page": "app/login/page.js",
+  "/page": "app/page.js",
+  "/(main)/dashboard/page": "app/(main)/dashboard/page.js",
+  "/(main)/attendance/page": "app/(main)/attendance/page.js",
+  "/(main)/department-management/page": "app/(main)/department-management/page.js",
+  "/(main)/hr-documents/page": "app/(main)/hr-documents/page.js",
+  "/(main)/employee-management/page": "app/(main)/employee-management/page.js",
+  "/(main)/license-tracking/page": "app/(main)/license-tracking/page.js",
+  "/(main)/employee-portal/page": "app/(main)/employee-portal/page.js",
+  "/(main)/leave-management/page": "app/(main)/leave-management/page.js",
+  "/(main)/manager/attendance-review/page": "app/(main)/manager/attendance-review/page.js",
+  "/(main)/my-trainings/page": "app/(main)/my-trainings/page.js",
+  "/(main)/rbac-management/page": "app/(main)/rbac-management/page.js",
+  "/(main)/pharmacy-licenses/page": "app/(main)/pharmacy-licenses/page.js",
+  "/(main)/system-settings/page": "app/(main)/system-settings/page.js",
+  "/(main)/shift-scheduling/page": "app/(main)/shift-scheduling/page.js",
+  "/(main)/user-management/page": "app/(main)/user-management/page.js",
+  "/(main)/training-compliance/page": "app/(main)/training-compliance/page.js"
+}

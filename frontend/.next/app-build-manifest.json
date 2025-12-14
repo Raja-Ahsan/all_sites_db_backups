@@ -1,0 +1,166 @@
+{
+  "pages": {
+    "/_not-found/page": [
+      "static/chunks/webpack-d1a25f8f5d0d459a.js",
+      "static/chunks/vendor-be299153987ccdd5.js",
+      "static/chunks/common-f40f26f4b24f19ee.js",
+      "static/chunks/main-app-38d4584c86d339e2.js",
+      "static/chunks/app/_not-found/page-c20179cdf62ba9d9.js"
+    ],
+    "/not-found": [
+      "static/chunks/webpack-d1a25f8f5d0d459a.js",
+      "static/chunks/vendor-be299153987ccdd5.js",
+      "static/chunks/common-f40f26f4b24f19ee.js",
+      "static/chunks/main-app-38d4584c86d339e2.js",
+      "static/chunks/app/not-found-57de7c57f04a8b76.js"
+    ],
+    "/layout": [
+      "static/chunks/webpack-d1a25f8f5d0d459a.js",
+      "static/chunks/vendor-be299153987ccdd5.js",
+      "static/chunks/common-f40f26f4b24f19ee.js",
+      "static/chunks/main-app-38d4584c86d339e2.js",
+      "static/css/eebecc125ac7b0d3.css",
+      "static/chunks/app/layout-222af7a100cffc56.js"
+    ],
+    "/api/test-logo/route": [
+      "static/chunks/webpack-d1a25f8f5d0d459a.js",
+      "static/chunks/vendor-be299153987ccdd5.js",
+      "static/chunks/common-f40f26f4b24f19ee.js",
+      "static/chunks/main-app-38d4584c86d339e2.js",
+      "static/chunks/app/api/test-logo/route-82fb1f5c42b6975a.js"
+    ],
+    "/login/page": [
+      "static/chunks/webpack-d1a25f8f5d0d459a.js",
+      "static/chunks/vendor-be299153987ccdd5.js",
+      "static/chunks/common-f40f26f4b24f19ee.js",
+      "static/chunks/main-app-38d4584c86d339e2.js",
+      "static/chunks/app/login/page-4f409fe52db346fb.js"
+    ],
+    "/page": [
+      "static/chunks/webpack-d1a25f8f5d0d459a.js",
+      "static/chunks/vendor-be299153987ccdd5.js",
+      "static/chunks/common-f40f26f4b24f19ee.js",
+      "static/chunks/main-app-38d4584c86d339e2.js",
+      "static/chunks/app/page-d71aacb099704373.js"
+    ],
+    "/(main)/layout": [
+      "static/chunks/webpack-d1a25f8f5d0d459a.js",
+      "static/chunks/vendor-be299153987ccdd5.js",
+      "static/chunks/common-f40f26f4b24f19ee.js",
+      "static/chunks/main-app-38d4584c86d339e2.js",
+      "static/chunks/app/(main)/layout-da465e4bae193050.js"
+    ],
+    "/(main)/dashboard/page": [
+      "static/chunks/webpack-d1a25f8f5d0d459a.js",
+      "static/chunks/vendor-be299153987ccdd5.js",
+      "static/chunks/common-f40f26f4b24f19ee.js",
+      "static/chunks/main-app-38d4584c86d339e2.js",
+      "static/chunks/app/(main)/dashboard/page-c7c65de21f49fa83.js"
+    ],
+    "/(main)/attendance/page": [
+      "static/chunks/webpack-d1a25f8f5d0d459a.js",
+      "static/chunks/vendor-be299153987ccdd5.js",
+      "static/chunks/common-f40f26f4b24f19ee.js",
+      "static/chunks/main-app-38d4584c86d339e2.js",
+      "static/chunks/app/(main)/attendance/page-8d5fa45e86815381.js"
+    ],
+    "/(main)/department-management/page": [
+      "static/chunks/webpack-d1a25f8f5d0d459a.js",
+      "static/chunks/vendor-be299153987ccdd5.js",
+      "static/chunks/common-f40f26f4b24f19ee.js",
+      "static/chunks/main-app-38d4584c86d339e2.js",
+      "static/chunks/app/(main)/department-management/page-f8b8b94a4c9efa9d.js"
+    ],
+    "/(main)/hr-documents/page": [
+      "static/chunks/webpack-d1a25f8f5d0d459a.js",
+      "static/chunks/vendor-be299153987ccdd5.js",
+      "static/chunks/common-f40f26f4b24f19ee.js",
+      "static/chunks/main-app-38d4584c86d339e2.js",
+      "static/chunks/app/(main)/hr-documents/page-c8db93a86b237c56.js"
+    ],
+    "/(main)/employee-management/page": [
+      "static/chunks/webpack-d1a25f8f5d0d459a.js",
+      "static/chunks/vendor-be299153987ccdd5.js",
+      "static/chunks/common-f40f26f4b24f19ee.js",
+      "static/chunks/main-app-38d4584c86d339e2.js",
+      "static/chunks/app/(main)/employee-management/page-59b5cbcd1348ee1f.js"
+    ],
+    "/(main)/license-tracking/page": [
+      "static/chunks/webpack-d1a25f8f5d0d459a.js",
+      "static/chunks/vendor-be299153987ccdd5.js",
+      "static/chunks/common-f40f26f4b24f19ee.js",
+      "static/chunks/main-app-38d4584c86d339e2.js",
+      "static/chunks/app/(main)/license-tracking/page-9fe4f9ac86d2b115.js"
+    ],
+    "/(main)/employee-portal/page": [
+      "static/chunks/webpack-d1a25f8f5d0d459a.js",
+      "static/chunks/vendor-be299153987ccdd5.js",
+      "static/chunks/common-f40f26f4b24f19ee.js",
+      "static/chunks/main-app-38d4584c86d339e2.js",
+      "static/chunks/app/(main)/employee-portal/page-103ab6dd2da1727e.js"
+    ],
+    "/(main)/leave-management/page": [
+      "static/chunks/webpack-d1a25f8f5d0d459a.js",
+      "static/chunks/vendor-be299153987ccdd5.js",
+      "static/chunks/common-f40f26f4b24f19ee.js",
+      "static/chunks/main-app-38d4584c86d339e2.js",
+      "static/chunks/app/(main)/leave-management/page-c567938b80ac4b1d.js"
+    ],
+    "/(main)/manager/attendance-review/page": [
+      "static/chunks/webpack-d1a25f8f5d0d459a.js",
+      "static/chunks/vendor-be299153987ccdd5.js",
+      "static/chunks/common-f40f26f4b24f19ee.js",
+      "static/chunks/main-app-38d4584c86d339e2.js",
+      "static/chunks/app/(main)/manager/attendance-review/page-58db2ce8f16d1faf.js"
+    ],
+    "/(main)/my-trainings/page": [
+      "static/chunks/webpack-d1a25f8f5d0d459a.js",
+      "static/chunks/vendor-be299153987ccdd5.js",
+      "static/chunks/common-f40f26f4b24f19ee.js",
+      "static/chunks/main-app-38d4584c86d339e2.js",
+      "static/chunks/app/(main)/my-trainings/page-0f01e24231e5f2c0.js"
+    ],
+    "/(main)/rbac-management/page": [
+      "static/chunks/webpack-d1a25f8f5d0d459a.js",
+      "static/chunks/vendor-be299153987ccdd5.js",
+      "static/chunks/common-f40f26f4b24f19ee.js",
+      "static/chunks/main-app-38d4584c86d339e2.js",
+      "static/chunks/app/(main)/rbac-management/page-1141c29610c35cdc.js"
+    ],
+    "/(main)/pharmacy-licenses/page": [
+      "static/chunks/webpack-d1a25f8f5d0d459a.js",
+      "static/chunks/vendor-be299153987ccdd5.js",
+      "static/chunks/common-f40f26f4b24f19ee.js",
+      "static/chunks/main-app-38d4584c86d339e2.js",
+      "static/chunks/app/(main)/pharmacy-licenses/page-a5fe606eb8068b8c.js"
+    ],
+    "/(main)/system-settings/page": [
+      "static/chunks/webpack-d1a25f8f5d0d459a.js",
+      "static/chunks/vendor-be299153987ccdd5.js",
+      "static/chunks/common-f40f26f4b24f19ee.js",
+      "static/chunks/main-app-38d4584c86d339e2.js",
+      "static/chunks/app/(main)/system-settings/page-1f759258471387ac.js"
+    ],
+    "/(main)/shift-scheduling/page": [
+      "static/chunks/webpack-d1a25f8f5d0d459a.js",
+      "static/chunks/vendor-be299153987ccdd5.js",
+      "static/chunks/common-f40f26f4b24f19ee.js",
+      "static/chunks/main-app-38d4584c86d339e2.js",
+      "static/chunks/app/(main)/shift-scheduling/page-f80a726669b0b067.js"
+    ],
+    "/(main)/user-management/page": [
+      "static/chunks/webpack-d1a25f8f5d0d459a.js",
+      "static/chunks/vendor-be299153987ccdd5.js",
+      "static/chunks/common-f40f26f4b24f19ee.js",
+      "static/chunks/main-app-38d4584c86d339e2.js",
+      "static/chunks/app/(main)/user-management/page-68595b6f9f9dce09.js"
+    ],
+    "/(main)/training-compliance/page": [
+      "static/chunks/webpack-d1a25f8f5d0d459a.js",
+      "static/chunks/vendor-be299153987ccdd5.js",
+      "static/chunks/common-f40f26f4b24f19ee.js",
+      "static/chunks/main-app-38d4584c86d339e2.js",
+      "static/chunks/app/(main)/training-compliance/page-eff666c0785d0080.js"
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/api/test-logo/route": "/api/test-logo",
+  "/login/page": "/login",
+  "/page": "/",
+  "/(main)/dashboard/page": "/dashboard",
+  "/(main)/attendance/page": "/attendance",
+  "/(main)/department-management/page": "/department-management",
+  "/(main)/hr-documents/page": "/hr-documents",
+  "/(main)/employee-management/page": "/employee-management",
+  "/(main)/license-tracking/page": "/license-tracking",
+  "/(main)/employee-portal/page": "/employee-portal",
+  "/(main)/leave-management/page": "/leave-management",
+  "/(main)/manager/attendance-review/page": "/manager/attendance-review",
+  "/(main)/my-trainings/page": "/my-trainings",
+  "/(main)/rbac-management/page": "/rbac-management",
+  "/(main)/pharmacy-licenses/page": "/pharmacy-licenses",
+  "/(main)/system-settings/page": "/system-settings",
+  "/(main)/shift-scheduling/page": "/shift-scheduling",
+  "/(main)/user-management/page": "/user-management",
+  "/(main)/training-compliance/page": "/training-compliance"
+}

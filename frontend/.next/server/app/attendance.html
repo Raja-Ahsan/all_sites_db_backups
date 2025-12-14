@@ -1,0 +1,96 @@
+<!DOCTYPE html><!--qZ05_rYv9f2ws1NRVMaWj--><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/_next/static/css/eebecc125ac7b0d3.css" data-precedence="next"/><link rel="preload" as="script" fetchPriority="low" href="/_next/static/chunks/webpack-d1a25f8f5d0d459a.js"/><script src="/_next/static/chunks/vendor-be299153987ccdd5.js" async=""></script><script src="/_next/static/chunks/common-f40f26f4b24f19ee.js" async=""></script><script src="/_next/static/chunks/main-app-38d4584c86d339e2.js" async=""></script><script src="/_next/static/chunks/app/layout-222af7a100cffc56.js" async=""></script><script src="/_next/static/chunks/app/not-found-57de7c57f04a8b76.js" async=""></script><script src="/_next/static/chunks/app/(main)/layout-da465e4bae193050.js" async=""></script><script src="/_next/static/chunks/app/(main)/attendance/page-8d5fa45e86815381.js" async=""></script><title>EmeraldRx HR Management System</title><meta name="description" content="Comprehensive HR Management System for EmeraldRx Pharmacy"/><script>
+              (function() {
+                try {
+                  var apiUrl = 'http://localhost:5000';
+                  
+                  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                    apiUrl = 'http://localhost:5000';
+                  } else if (window.location.hostname === 'emeraldsrxhr.sitestaginglink.com') {
+                    apiUrl = window.location.origin;
+                  } else {
+                    apiUrl = window.location.origin;
+                  }
+                  
+                  // Apply dark mode early
+                  try {
+                    var ls = null;
+                    try { ls = localStorage.getItem('dark_mode'); } catch (_) {}
+                    var themePref = null;
+                    try { themePref = localStorage.getItem('theme'); } catch (_) {}
+                    var prefersDark = false;
+                    try { prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches; } catch (_) {}
+                    var isDark = (ls === 'true') ? true
+                              : (ls === 'false') ? false
+                              : (themePref === 'dark') ? true
+                              : (themePref === 'light') ? false
+                              : prefersDark;
+                    if (isDark) {
+                      document.documentElement.classList.add('dark');
+                    } else {
+                      document.documentElement.classList.remove('dark');
+                    }
+                  } catch (e) {}
+                  
+                  // Fetch theme synchronously
+                  try {
+                    var themeXhr = new XMLHttpRequest();
+                    themeXhr.open('GET', apiUrl + '/api/settings/sidebar_theme', false);
+                    themeXhr.send();
+                    
+                    if (themeXhr.status === 200) {
+                      var themeData = JSON.parse(themeXhr.responseText);
+                      if (themeData.success && themeData.data) {
+                        window.__SIDEBAR_THEME__ = themeData.data;
+                        window.__SIDEBAR_THEME_LOADED__ = true;
+                      }
+                    }
+                  } catch (e) {
+                    window.__SIDEBAR_THEME_LOADED__ = false;
+                  }
+                  
+                  // Fetch dark mode setting
+                  try {
+                    var darkXhr = new XMLHttpRequest();
+                    darkXhr.open('GET', apiUrl + '/api/settings/dark_mode', false);
+                    darkXhr.send();
+                    if (darkXhr.status === 200) {
+                      var darkData = JSON.parse(darkXhr.responseText);
+                      if (darkData && darkData.success) {
+                        var darkVal = darkData.data;
+                        if (typeof darkVal === 'boolean') {
+                          if (darkVal) {
+                            document.documentElement.classList.add('dark');
+                            try { localStorage.setItem('dark_mode', 'true'); localStorage.setItem('theme', 'dark'); } catch (_) {}
+                          } else {
+                            document.documentElement.classList.remove('dark');
+                            try { localStorage.setItem('dark_mode', 'false'); localStorage.setItem('theme', 'light'); } catch (_) {}
+                          }
+                        }
+                      }
+                    }
+                  } catch (e) {}
+                  
+                  // Fetch logo synchronously
+                  try {
+                    var logoXhr = new XMLHttpRequest();
+                    logoXhr.open('GET', apiUrl + '/api/settings/sidebar_logo', false);
+                    logoXhr.send();
+                    
+                    if (logoXhr.status === 200) {
+                      var logoData = JSON.parse(logoXhr.responseText);
+                      if (logoData.success) {
+                        window.__SIDEBAR_LOGO__ = logoData.data;
+                        window.__SIDEBAR_LOGO_LOADED__ = true;
+                      }
+                    }
+                  } catch (e) {
+                    window.__SIDEBAR_LOGO_LOADED__ = false;
+                  }
+                } catch (e) {
+                  window.__SIDEBAR_THEME__ = null;
+                  window.__SIDEBAR_LOGO__ = null;
+                  window.__SIDEBAR_THEME_LOADED__ = false;
+                  window.__SIDEBAR_LOGO_LOADED__ = false;
+                }
+              })();
+            </script><script src="/_next/static/chunks/polyfills-42372ed130431b0a.js" noModule=""></script></head><body class="__className_f367f3"><div hidden=""><!--$--><!--/$--></div><div class="min-h-screen flex items-center justify-center"><div class="text-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-loader-circle h-8 w-8 animate-spin mx-auto text-emerald-600"><path d="M21 12a9 9 0 1 1-6.219-8.56"></path></svg><p class="mt-4 text-muted-foreground">Loading...</p></div></div><section aria-label="Notifications alt+T" tabindex="-1" aria-live="polite" aria-relevant="additions text" aria-atomic="false"></section><script src="/_next/static/chunks/webpack-d1a25f8f5d0d459a.js" id="_R_" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:\"$Sreact.fragment\"\n8:I[3536,[],\"\"]\n:HL[\"/_next/static/css/eebecc125ac7b0d3.css\",\"style\"]\n2:T11ed,"])</script><script>self.__next_f.push([1,"\n              (function() {\n                try {\n                  var apiUrl = 'http://localhost:5000';\n                  \n                  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {\n                    apiUrl = 'http://localhost:5000';\n                  } else if (window.location.hostname === 'emeraldsrxhr.sitestaginglink.com') {\n                    apiUrl = window.location.origin;\n                  } else {\n                    apiUrl = window.location.origin;\n                  }\n                  \n                  // Apply dark mode early\n                  try {\n                    var ls = null;\n                    try { ls = localStorage.getItem('dark_mode'); } catch (_) {}\n                    var themePref = null;\n                    try { themePref = localStorage.getItem('theme'); } catch (_) {}\n                    var prefersDark = false;\n                    try { prefersDark = window.matchMedia \u0026\u0026 window.matchMedia('(prefers-color-scheme: dark)').matches; } catch (_) {}\n                    var isDark = (ls === 'true') ? true\n                              : (ls === 'false') ? false\n                              : (themePref === 'dark') ? true\n                              : (themePref === 'light') ? false\n                              : prefersDark;\n                    if (isDark) {\n                      document.documentElement.classList.add('dark');\n                    } else {\n                      document.documentElement.classList.remove('dark');\n                    }\n                  } catch (e) {}\n                  \n                  // Fetch theme synchronously\n                  try {\n                    var themeXhr = new XMLHttpRequest();\n                    themeXhr.open('GET', apiUrl + '/api/settings/sidebar_theme', false);\n                    themeXhr.send();\n                    \n                    if (themeXhr.status === 200) {\n                      var themeData = JSON.parse(themeXhr.responseText);\n                      if (themeData.success \u0026\u0026 themeData.data) {\n                        window.__SIDEBAR_THEME__ = themeData.data;\n                        window.__SIDEBAR_THEME_LOADED__ = true;\n                      }\n                    }\n                  } catch (e) {\n                    window.__SIDEBAR_THEME_LOADED__ = false;\n                  }\n                  \n                  // Fetch dark mode setting\n                  try {\n                    var darkXhr = new XMLHttpRequest();\n                    darkXhr.open('GET', apiUrl + '/api/settings/dark_mode', false);\n                    darkXhr.send();\n                    if (darkXhr.status === 200) {\n                      var darkData = JSON.parse(darkXhr.responseText);\n                      if (darkData \u0026\u0026 darkData.success) {\n                        var darkVal = darkData.data;\n                        if (typeof darkVal === 'boolean') {\n                          if (darkVal) {\n                            document.documentElement.classList.add('dark');\n                            try { localStorage.setItem('dark_mode', 'true'); localStorage.setItem('theme', 'dark'); } catch (_) {}\n                          } else {\n                            document.documentElement.classList.remove('dark');\n                            try { localStorage.setItem('dark_mode', 'false'); localStorage.setItem('theme', 'light'); } catch (_) {}\n                          }\n                        }\n                      }\n                    }\n                  } catch (e) {}\n                  \n                  // Fetch logo synchronously\n                  try {\n                    var logoXhr = new XMLHttpRequest();\n                    logoXhr.open('GET', apiUrl + '/api/settings/sidebar_logo', false);\n                    logoXhr.send();\n                    \n                    if (logoXhr.status === 200) {\n                      var logoData = JSON.parse(logoXhr.responseText);\n                      if (logoData.success) {\n                        window.__SIDEBAR_LOGO__ = logoData.data;\n                        window.__SIDEBAR_LOGO_LOADED__ = true;\n                      }\n                    }\n                  } catch (e) {\n                    window.__SIDEBAR_LOGO_LOADED__ = false;\n                  }\n                } catch (e) {\n                  window.__SIDEBAR_THEME__ = null;\n                  window.__SIDEBAR_LOGO__ = null;\n                  window.__SIDEBAR_THEME_LOADED__ = false;\n                  window.__SIDEBAR_LOGO_LOADED__ = false;\n                }\n              })();\n            "])</script><script>self.__next_f.push([1,"0:{\"P\":null,\"b\":\"qZ05_rYv9f2ws1NRVMaWj\",\"p\":\"\",\"c\":[\"\",\"attendance\"],\"i\":false,\"f\":[[[\"\",{\"children\":[\"(main)\",{\"children\":[\"attendance\",{\"children\":[\"__PAGE__\",{}]}]}]},\"$undefined\",\"$undefined\",true],[\"\",[\"$\",\"$1\",\"c\",{\"children\":[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/eebecc125ac7b0d3.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}]],[\"$\",\"html\",null,{\"lang\":\"en\",\"suppressHydrationWarning\":true,\"children\":[[\"$\",\"head\",null,{\"children\":[\"$\",\"script\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$2\"}}]}],\"$L3\"]}]]}],{\"children\":[\"(main)\",\"$L4\",{\"children\":[\"attendance\",\"$L5\",{\"children\":[\"__PAGE__\",\"$L6\",{},null,false]},null,false]},null,false]},null,false],\"$L7\",false]],\"m\":\"$undefined\",\"G\":[\"$8\",[]],\"s\":false,\"S\":true}\n"])</script><script>self.__next_f.push([1,"9:I[9560,[\"177\",\"static/chunks/app/layout-222af7a100cffc56.js\"],\"Providers\"]\na:I[5204,[],\"\"]\nb:I[2642,[],\"\"]\nc:I[578,[\"345\",\"static/chunks/app/not-found-57de7c57f04a8b76.js\"],\"\"]\nd:I[1986,[\"76\",\"static/chunks/app/(main)/layout-da465e4bae193050.js\"],\"ProtectedRoute\"]\ne:I[1088,[\"76\",\"static/chunks/app/(main)/layout-da465e4bae193050.js\"],\"Navigation\"]\nf:I[6402,[\"76\",\"static/chunks/app/(main)/layout-da465e4bae193050.js\"],\"NotificationBell\"]\n10:I[7089,[],\"ClientPageRoot\"]\n11:I[979,[\"683\",\"static/chunks/app/(main)/attendance/page-8d5fa45e86815381.js\"],\"default\"]\n14:I[433,[],\"OutletBoundary\"]\n16:I[9884,[],\"AsyncMetadataOutlet\"]\n18:I[433,[],\"ViewportBoundary\"]\n1a:I[433,[],\"MetadataBoundary\"]\n1b:\"$Sreact.suspense\"\n"])</script><script>self.__next_f.push([1,"3:[\"$\",\"body\",null,{\"className\":\"__className_f367f3\",\"children\":[\"$\",\"$L9\",null,{\"children\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[\"$\",\"div\",null,{\"className\":\"min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900\",\"children\":[\"$\",\"div\",null,{\"className\":\"text-center\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"text-6xl font-bold text-gray-900 dark:text-white mb-4\",\"children\":\"404\"}],[\"$\",\"h2\",null,{\"className\":\"text-2xl font-semibold text-gray-700 dark:text-gray-300 mb-4\",\"children\":\"Page Not Found\"}],[\"$\",\"p\",null,{\"className\":\"text-gray-600 dark:text-gray-400 mb-8\",\"children\":\"The page you're looking for doesn't exist.\"}],[\"$\",\"$Lc\",null,{\"href\":\"/\",\"className\":\"inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors\",\"children\":\"Go Back Home\"}]]}]}],[]],\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]}]}]\n"])</script><script>self.__next_f.push([1,"4:[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$Ld\",null,{\"children\":[\"$\",\"div\",null,{\"className\":\"flex min-h-screen\",\"children\":[[\"$\",\"$Le\",null,{}],[\"$\",\"main\",null,{\"className\":\"flex-1 ml-64 overflow-auto\",\"children\":[[\"$\",\"div\",null,{\"className\":\"sticky top-0 z-10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b\",\"children\":[\"$\",\"div\",null,{\"className\":\"flex items-center justify-end p-4\",\"children\":[\"$\",\"$Lf\",null,{}]}]}],[\"$\",\"div\",null,{\"children\":[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]}]]}]]}]}]]}]\n"])</script><script>self.__next_f.push([1,"5:[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$La\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$Lb\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}]\n6:[\"$\",\"$1\",\"c\",{\"children\":[[\"$\",\"$L10\",null,{\"Component\":\"$11\",\"searchParams\":{},\"params\":{},\"promises\":[\"$@12\",\"$@13\"]}],null,[\"$\",\"$L14\",null,{\"children\":[\"$L15\",[\"$\",\"$L16\",null,{\"promise\":\"$@17\"}]]}]]}]\n7:[\"$\",\"$1\",\"h\",{\"children\":[null,[[\"$\",\"$L18\",null,{\"children\":\"$L19\"}],null],[\"$\",\"$L1a\",null,{\"children\":[\"$\",\"div\",null,{\"hidden\":true,\"children\":[\"$\",\"$1b\",null,{\"fallback\":null,\"children\":\"$L1c\"}]}]}]]}]\n"])</script><script>self.__next_f.push([1,"12:{}\n13:\"$6:props:children:0:props:params\"\n"])</script><script>self.__next_f.push([1,"19:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"meta\",\"1\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]\n15:null\n"])</script><script>self.__next_f.push([1,"17:{\"metadata\":[[\"$\",\"title\",\"0\",{\"children\":\"EmeraldRx HR Management System\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"Comprehensive HR Management System for EmeraldRx Pharmacy\"}]],\"error\":null,\"digest\":\"$undefined\"}\n"])</script><script>self.__next_f.push([1,"1c:\"$17:metadata\"\n"])</script></body></html>
