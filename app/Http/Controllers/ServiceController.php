@@ -21,12 +21,19 @@ class ServiceController extends Controller
 
     public function store(Request $request)
     {
+        dd($request->all(), $request->file('image'));
 
         $request->validate([
             'title' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048'
         ]);
 
         $companyId = auth()->user()->company->id ?? null;
+
+        $mainImagePath = null;
+        if ($request->hasFile('image')) {
+            $mainImagePath = $request->file('image')->store('services/main', 'public');
+        }
 
         $service = Service::create([
             'title' => $request->title,
@@ -35,6 +42,7 @@ class ServiceController extends Controller
             'service_category_id' => $request->service_category_id,
             'duration' => $request->duration ?? 5,
             'description' => $request->description,
+            'image' => $mainImagePath,
         ]);
 
         return response()->json([
@@ -43,4 +51,14 @@ class ServiceController extends Controller
             'redirect' => route('services.index'),
         ]);
     }
+
+    // public function destroy($id)
+    // {
+    //     $service = Service::find($id);
+    //     $service->delete();
+    //     return response()->json([
+    //         'success' => true,
+    //         'message' => 'Service Deleted Successfully',
+    //     ]);
+    // }
 }

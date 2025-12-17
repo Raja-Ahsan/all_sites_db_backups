@@ -62,15 +62,15 @@
                                                         <a class="square-white" href="#!">
                                                             <span><i class="fa-solid fa-pen"></i></span>
                                                         </a>
-                                                        <form
-                                                            action="{{ route('services-categories.destroy', $serviceCategory->id) }}"
+                                                        {{-- <form
+                                                            action="{{ route('services.destroy', $serviceCategory->id) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="square-white ajax-delete">
                                                                 <span><i class="fa-solid fa-trash"></i></span>
                                                             </button>
-                                                        </form>
+                                                        </form> --}}
                                                         
                                                     </div>
                                                 </td>

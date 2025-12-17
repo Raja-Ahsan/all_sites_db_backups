@@ -3,7 +3,7 @@
     @section('content')
         <div class="container-fluid">
             <div class="edit-profile">
-                <form class="card ajax-form" id="createServiceForm" action="{{route('services.store')}}" method="POST">
+                <form class="card ajax-form" id="createServiceForm" action="{{route('services.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card-header">
                         <div class="card-options">
@@ -36,19 +36,26 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-sm-6 col-md-6">
+                            {{-- <div class="col-sm-6 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="price">Price <span
                                             class="text-danger">*</span></label>
                                     <input class="form-control" id="price" type="text" placeholder="Enter Price"
                                         name="price" />
                                 </div>
-                            </div>
-                            <div class="col-sm-6 col-md-6">
+                            </div> --}}
+                            {{-- <div class="col-sm-6 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="duration">Duration</label>
                                     <input class="form-control" id="duration" type="text"
                                         placeholder="Enter Duration (e.g., 2 hours)" name="duration" />
+                                </div>
+                            </div> --}}
+                            <div class="col-sm-6 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="image">Main Image</label>
+                                    <input class="form-control" id="image" type="file" accept="image/*"
+                                        placeholder="Upload Image" name="image" />
                                 </div>
                             </div>
                             <div class="col-12">
