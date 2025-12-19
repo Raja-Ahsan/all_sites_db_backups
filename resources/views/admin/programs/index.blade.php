@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Programs Management')
+@section('title', 'Programs')
 
 @section('content')
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h1 class="h3 mb-0 text-gray-800">Programs Management</h1>
+                <h1 class="h3 mb-0 text-gray-800">Programs</h1>
                 <a href="{{ route('admin.programs.create') }}" class="btn btn-primary">
                     <i class="fas fa-plus me-2"></i>Create New Program
                 </a>
@@ -58,7 +58,7 @@
                                             </td>
                                             <td>
                                                 @if($program->subscription_type)
-                                                    <span class="badge bg-secondary">{{ $program->formatted_subscription_type }}</span>
+                                                    <span class="badge" style="background-color: #0d6dfb;">{{ $program->formatted_subscription_type }}</span>
                                                 @else
                                                     <span class="badge bg-info">General</span>
                                                 @endif
@@ -84,12 +84,12 @@
                                             <td>
                                                 <div>
                                                     @if($program->monthly_sessions)
-                                                        <span class="badge bg-info">{{ $program->monthly_sessions }} sessions/month</span>
+                                                        <span class="badge" style="background-color: #198653;">{{ $program->monthly_sessions }} sessions/month</span>
                                                     @endif
                                                 </div>
                                             </td>
                                             <td>
-                                                <span class="badge bg-info">{{ $program->user_programs_count }}</span>
+                                                <span class="badge" style="background-color: #198653;">{{ $program->user_programs_count }}</span>
                                             </td>
                                             <td>
                                                 <span class="badge bg-success">{{ $program->subscriptions_count }}</span>
@@ -111,7 +111,7 @@
                                                     </a>
                                                     
                                                     <a href="{{ route('admin.programs.applications') }}?program={{ $program->id }}" 
-                                                       class="btn btn-sm btn-outline-info" 
+                                                       class="btn btn-sm btn-outline-info"
                                                        data-bs-toggle="tooltip" 
                                                        title="View Applications">
                                                         <i class="fas fa-users"></i>

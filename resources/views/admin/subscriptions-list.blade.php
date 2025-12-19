@@ -12,15 +12,16 @@
 <!-- Statistics Cards -->
 <div class="row mb-4">
     <div class="col-md-3">
-        <div class="card text-white bg-success">
-            <div class="card-body">
-                <h6 class="card-title text-white-50 mb-2">Active Subscriptions</h6>
-                <h3 class="mb-0">{{ $activeSubscriptions }}</h3>
-            </div>
+    <div class="card text-white" style="background-color: #0d6dfb;">
+        <div class="card-body">
+            <h6 class="card-title text-white-50 mb-2">Active Subscriptions</h6>
+            <h3 class="mb-0">{{ $activeSubscriptions }}</h3>
         </div>
     </div>
+
+    </div>
     <div class="col-md-3">
-        <div class="card text-white bg-info">
+        <div class="card text-white" style="background-color: #0d6dfb;">
             <div class="card-body">
                 <h6 class="card-title text-white-50 mb-2">Monthly</h6>
                 <h3 class="mb-0">{{ $monthlySubscriptions }}</h3>
@@ -28,7 +29,7 @@
         </div>
     </div>
     <div class="col-md-3">
-        <div class="card text-white bg-primary">
+        <div class="card text-white" style="background-color: #0d6dfb;">
             <div class="card-body">
                 <h6 class="card-title text-white-50 mb-2">One-Time</h6>
                 <h3 class="mb-0">{{ $oneTimeSubscriptions }}</h3>
@@ -36,7 +37,7 @@
         </div>
     </div>
     <div class="col-md-3">
-        <div class="card text-white bg-secondary">
+        <div class="card text-white" style="background-color: #0d6dfb;">
             <div class="card-body">
                 <h6 class="card-title text-white-50 mb-2">Total</h6>
                 <h3 class="mb-0">{{ $subscriptions->total() }}</h3>

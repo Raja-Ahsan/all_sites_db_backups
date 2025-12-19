@@ -349,15 +349,51 @@
                         <a href="{{ route('admin.dashboard') }}" class="btn btn-outline-primary">
                             <i class="fas fa-tachometer-alt me-2"></i>Dashboard
                         </a>
-                        <a href="{{ route('admin.clients') }}" class="btn btn-outline-info">
-                            <i class="fas fa-users me-2"></i>Manage Clients
-                        </a>
+<a href="{{ route('admin.clients') }}"
+   class="btn"
+   style="
+        color: #d5a900;
+        border: 1px solid #d5a900;
+        transition: background-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+   "
+   onmouseover="
+        this.style.backgroundColor='#d5a900';
+        this.style.color='#ffffff';
+        this.style.boxShadow='0 6px 15px rgba(213,169,0,0.4)';
+   "
+   onmouseout="
+        this.style.backgroundColor='transparent';
+        this.style.color='#d5a900';
+        this.style.boxShadow='none';
+   "
+>
+    <i class="fas fa-users me-2"></i> Manage Clients
+</a>
+
                         <a href="{{ route('admin.appointments') }}" class="btn btn-outline-success">
                             <i class="fas fa-calendar me-2"></i>View Appointments
                         </a>
-                        <a href="{{ route('admin.messages') }}" class="btn btn-outline-warning">
-                            <i class="fas fa-comments me-2"></i>Messages
-                        </a>
+<a href="{{ route('admin.messages') }}"
+   class="btn"
+   style="
+        color: #dc3545;
+        border: 1px solid #dc3545;
+        transition: background-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+   "
+   onmouseover="
+        this.style.backgroundColor='#dc3545';
+        this.style.color='#ffffff';
+        this.style.boxShadow='0 6px 15px rgba(220,53,69,0.4)';
+   "
+   onmouseout="
+        this.style.backgroundColor='transparent';
+        this.style.color='#dc3545';
+        this.style.boxShadow='none';
+   "
+>
+    <i class="fas fa-comments me-2"></i> Messages
+</a>
+
                     </div>
                 </div>
             </div>

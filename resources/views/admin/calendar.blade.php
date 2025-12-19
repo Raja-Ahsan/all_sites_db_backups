@@ -5,7 +5,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Appointment & Booking Calendar</h1>
+        <h1 class="h3 mb-0 text-gray-800">Appointment Calendar</h1>
         <div class="d-flex gap-2">
             <button class="btn btn-outline-primary" id="addAppointmentBtn">
                 <i class="fas fa-plus me-2"></i>Add Appointment
@@ -117,7 +117,7 @@
                 <div class="card-body">
                     <div class="d-flex flex-column gap-2">
                         <div class="d-flex align-items-center">
-                            <div class="calendar-legend-item bg-primary me-2"></div>
+                            <div class="calendar-legend-item bg-success me-2"></div>
                             <small>Confirmed Appointments</small>
                         </div>
                         <div class="d-flex align-items-center">
@@ -296,7 +296,7 @@
                                         <small class="text-muted">Pending</small>
                                     </div>
                                     <div class="col-md-3">
-                                        <h5 class="text-info" id="confirmedCount">0</h5>
+                                        <h5 class="text-success" id="confirmedCount">0</h5>
                                         <small class="text-muted">Confirmed</small>
                                     </div>
                                 </div>
@@ -437,7 +437,7 @@
 }
 
 .appointment-item {
-    border-left: 4px solid #032a57 !important;
+    border-left: 4px solid #198754 !important;
 }
 
 .booking-item {
@@ -658,8 +658,8 @@ function initializeCalendar() {
                 title: '{{ $appointment->user->name }}',
                 start: '{{ $appointment->appointment_date->format("Y-m-d") }}T{{ $appointment->appointment_time }}:00',
                 end: '{{ $appointment->appointment_date->format("Y-m-d") }}T{{ $appointment->appointment_time }}:00',
-                backgroundColor: '{{ $appointment->status === "confirmed" ? "#032a57" : ($appointment->status === "pending" ? "#730623" : ($appointment->status === "completed" ? "#032a57" : "#730623")) }}',
-                borderColor: '{{ $appointment->status === "confirmed" ? "#032a57" : ($appointment->status === "pending" ? "#730623" : ($appointment->status === "completed" ? "#032a57" : "#730623")) }}',
+                backgroundColor: '{{ $appointment->status === "confirmed" ? "#198754" : ($appointment->status === "pending" ? "#ffc107" : ($appointment->status === "completed" ? "#0dcaf0" : "#dc3545")) }}',
+                borderColor: '{{ $appointment->status === "confirmed" ? "#198754" : ($appointment->status === "pending" ? "#ffc107" : ($appointment->status === "completed" ? "#0dcaf0" : "#dc3545")) }}',
                 textColor: '{{ $appointment->status === "pending" ? "#000" : "#fff" }}',
                 className: 'appointment-event bg-{{ $appointment->status }}',
                 extendedProps: {

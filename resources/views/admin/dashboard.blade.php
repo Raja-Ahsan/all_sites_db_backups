@@ -118,7 +118,16 @@
                                             </div>
                                         </td>
                                         <td class="d-none d-lg-table-cell">
-                                            <span class="badge bg-{{ $appointment->status === 'confirmed' ? 'success' : ($appointment->status === 'pending' ? 'warning' : 'secondary') }}">
+                                            @php
+                                                $statusColor = match($appointment->status) {
+                                                    'confirmed' => 'info',
+                                                    'pending' => 'warning',
+                                                    'completed' => 'success',
+                                                    'cancelled' => 'danger',
+                                                    default => 'secondary',
+                                                };
+                                            @endphp
+                                            <span class="badge bg-{{ $statusColor }}">
                                                 {{ ucfirst($appointment->status) }}
                                             </span>
                                         </td>
@@ -208,7 +217,7 @@
                 <div class="row mt-3 text-center">
                     <div class="col-3">
                         <div class="border-end">
-                            <h6 class="text-success mb-1">{{ $appointmentStatusCounts['confirmed'] }}</h6>
+                            <h6 class="text-info mb-1">{{ $appointmentStatusCounts['confirmed'] }}</h6>
                             <small class="text-muted">Confirmed</small>
                         </div>
                     </div>
@@ -220,7 +229,7 @@
                     </div>
                     <div class="col-3">
                         <div class="border-end">
-                            <h6 class="text-info mb-1">{{ $appointmentStatusCounts['completed'] }}</h6>
+                            <h6 class="text-success mb-1">{{ $appointmentStatusCounts['completed'] }}</h6>
                             <small class="text-muted">Completed</small>
                         </div>
                     </div>
@@ -356,10 +365,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     {{ $appointmentStatusCounts['cancelled'] }}
                 ],
                 backgroundColor: [
-                    '#28a745',
-                    '#ffc107',
-                    '#17a2b8',
-                    '#dc3545'
+                    '#17a2b8', // Blue for Confirmed
+                    '#ffc107', // Yellow for Pending
+                    '#28a745', // Green for Completed
+                    '#dc3545'  // Red for Cancelled
                 ],
                 borderWidth: 2,
                 borderColor: '#fff'

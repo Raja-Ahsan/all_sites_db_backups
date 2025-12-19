@@ -85,3 +85,17 @@ body {
     border-radius: 50%;
     text-transform: uppercase;
 }
+
+/* Statistics Cards */
+.stats-card {
+    background-color: #032a56 !important;
+    color: white !important;
+}
+
+.stats-card h3, .stats-card h4, .stats-card h6, .stats-card p {
+    color: white !important;
+}
+
+.stats-card .card-title {
+    opacity: 0.8;
+}

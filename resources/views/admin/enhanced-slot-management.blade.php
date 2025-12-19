@@ -194,7 +194,7 @@
                             <tr>
                                 <td>{{ \Carbon\Carbon::parse($day['date'])->format('M d, Y') }}</td>
                                 <td>
-                                    <span class="badge bg-primary">{{ $day['day_name'] }}</span>
+                                    <span class="badge" style="background-color: #a80000;">{{ $day['day_name'] }}</span>
                                 </td>
                                 <td>
                                     @if(count($day['virtual_slots']) > 0)
@@ -204,7 +204,7 @@
                                             @if(count($day['virtual_slots']) > 3) ... @endif
                                         </small>
                                     @else
-                                        <span class="badge bg-secondary">No slots</span>
+                                        <span class="badge" style="background-color: #0d6dfb;">No slots</span>
                                     @endif
                                 </td>
                                 <td>
