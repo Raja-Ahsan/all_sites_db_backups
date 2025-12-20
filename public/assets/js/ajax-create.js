@@ -3,12 +3,14 @@ function ajaxCreate(successRedirect = null) {
         e.preventDefault();
 
         let form = $(this);
-        let formData = form.serialize();
+        let formData = new FormData(this);
 
         $.ajax({
             url: form.attr('action'),
             type: 'POST',
             data: formData,
+            processData: false,
+            contentType: false,
             beforeSend: function () {
                 form.find('button[type="submit"]').prop('disabled', true).text('Saving...');
             },

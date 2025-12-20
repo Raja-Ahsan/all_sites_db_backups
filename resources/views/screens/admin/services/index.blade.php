@@ -27,9 +27,9 @@
                                             <th>
                                                 <span class="c-o-light f-w-600">Category</span>
                                             </th>
-                                            <th>
+                                            {{-- <th>
                                                 <span class="c-o-light f-w-600">Duration</span>
-                                            </th>
+                                            </th> --}}
                                             <th>
                                                 <span class="c-o-light f-w-600">Status</span>
                                             </th>
@@ -43,14 +43,14 @@
                                             <tr class="product-removes inbox-data">
                                                 <td><a href="#!">{{ $service->title }}</a></td>
                                                 <td>
-                                                    <p>{{ $service->image }}</p>
+                                                    <img class="dashboard-sm-img" src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->title }}" width="100">
                                                 </td>
                                                 <td>
                                                     <p>{{ $service->serviceCategory->name }}</p>
                                                 </td>
-                                                <td>
+                                                {{-- <td>
                                                     <p>{{ $service->duration }}</p>
-                                                </td>
+                                                </td> --}}
                                                 <td><span
                                                         class="badge badge-light-success">{{ $service->is_active ? 'Active' : 'Inactive' }}</span>
                                                 </td>
@@ -62,15 +62,15 @@
                                                         <a class="square-white" href="#!">
                                                             <span><i class="fa-solid fa-pen"></i></span>
                                                         </a>
-                                                        {{-- <form
-                                                            action="{{ route('services.destroy', $serviceCategory->id) }}"
+                                                        <form
+                                                            action="{{ route('services.destroy', $service->id) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="square-white ajax-delete">
                                                                 <span><i class="fa-solid fa-trash"></i></span>
                                                             </button>
-                                                        </form> --}}
+                                                        </form>
                                                         
                                                     </div>
                                                 </td>

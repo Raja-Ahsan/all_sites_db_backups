@@ -21,12 +21,16 @@ class ServiceController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all(), $request->file('image'));
-
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048'
-        ]);
+        $request->validate(
+            [
+                'title' => 'required|string|max:255',
+                'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+                'service_category_id' => 'required|exists:service_categories,id',
+            ],
+            [
+                'service_category_id.required' => 'The category field is required.',
+            ]
+        );
 
         $companyId = auth()->user()->company->id ?? null;
 
@@ -52,13 +56,19 @@ class ServiceController extends Controller
         ]);
     }
 
-    // public function destroy($id)
-    // {
-    //     $service = Service::find($id);
-    //     $service->delete();
-    //     return response()->json([
-    //         'success' => true,
-    //         'message' => 'Service Deleted Successfully',
-    //     ]);
-    // }
+    public function show($id) {
+        $serviceCategories = ServiceCategory::all();
+        $service = Service::with('serviceCategory')->find($id);
+        return view('screens.admin.services.show', compact('service', 'serviceCategories'));
+    }
+
+    public function destroy($id)
+    {
+        $service = Service::find($id);
+        $service->delete();
+        return response()->json([
+            'success' => true,
+            'message' => 'Service Deleted Successfully',
+        ]);
+    }
 }

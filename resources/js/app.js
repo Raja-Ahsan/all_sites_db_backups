@@ -97,11 +97,5 @@ $(document).ready(function () {
       }
     ]
   });
-
-  // $('.dropdown-menu-btn').hover(function () {
-  //   $(this).parent().find('.dropdown-menu-wrapper').addClass('show');
-  // }, function () {
-  //   $(this).parent().find('.dropdown-menu-wrapper').removeClass('show');
-  // });
 });
 

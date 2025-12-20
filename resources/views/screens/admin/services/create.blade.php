@@ -3,7 +3,8 @@
     @section('content')
         <div class="container-fluid">
             <div class="edit-profile">
-                <form class="card ajax-form" id="createServiceForm" action="{{route('services.store')}}" method="POST" enctype="multipart/form-data">
+                <form class="card ajax-form" id="createServiceForm" action="{{ route('services.store') }}" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
                     <div class="card-header">
                         <div class="card-options">
@@ -26,9 +27,8 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="category">Category <span
                                             class="text-danger">*</span></label>
-                                    {{-- <input class="form-control" id="category" type="text" placeholder="Enter Category"
-                                        name="category" /> --}}
-                                    <select class="form-select btn-square digits custom-scrollbar" name="service_category_id" id="">
+                                    <select class="form-select btn-square digits custom-scrollbar"
+                                        name="service_category_id" id="">
                                         <option value="" selected>Select Category</option>
                                         @foreach ($serviceCategories as $serviceCategory)
                                             <option value="{{ $serviceCategory->id }}">{{ $serviceCategory->name }}</option>
@@ -36,27 +36,25 @@
                                     </select>
                                 </div>
                             </div>
-                            {{-- <div class="col-sm-6 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="price">Price <span
-                                            class="text-danger">*</span></label>
-                                    <input class="form-control" id="price" type="text" placeholder="Enter Price"
-                                        name="price" />
-                                </div>
-                            </div> --}}
-                            {{-- <div class="col-sm-6 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="duration">Duration</label>
-                                    <input class="form-control" id="duration" type="text"
-                                        placeholder="Enter Duration (e.g., 2 hours)" name="duration" />
-                                </div>
-                            </div> --}}
                             <div class="col-sm-6 col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="image">Main Image</label>
+                                    <label class="form-label" for="image">Main Image <span
+                                            class="text-danger">*</span></label>
                                     <input class="form-control" id="image" type="file" accept="image/*"
                                         placeholder="Upload Image" name="image" />
+                                    <div class="mt-3">
+                                        <img id="imagePreview" class="image-preview" src="" alt="Preview"
+                                            style="">
+                                    </div>
                                 </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Gallery Images (Optional)</label>
+                                    <input class="form-control"  type="file" name="images[]" id="gallery_images"
+                                        multiple accept="image/*" maxfiles="5" />
+                                </div>
+                                <div class="d-flex flex-wrap gap-2 mt-2" id="galleryPreview"></div>
                             </div>
                             <div class="col-12">
                                 <div class="mb-3">
