@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="edit-profile">
-        <form class="card" id="createContractorForm" action={{ route('contractors.store') }} method="POST">
+        <form class="card ajax-form" id="createContractorForm" action={{ route('contractors.store') }} method="POST">
             @csrf
             <div class="card-header">
                 <div class="card-options">

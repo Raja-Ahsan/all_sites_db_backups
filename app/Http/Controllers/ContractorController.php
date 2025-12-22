@@ -12,9 +12,21 @@ class ContractorController extends Controller
 {
     public function index()
     {
-        $contractors = User::whereHas('company', function ($q) {
+        $user = auth()->user();
+
+        $query = User::whereHas('company', function ($q) {
             $q->where('is_profile_approved', true);
-        })->get();
+        });    
+
+        if (! $user->hasRole('super_admin')) {
+            $query->whereHas('companyContractor', function ($q) use ($user) {
+                $q->where('company_id', $user->company->id);
+            })
+            ->where('id', '!=', $user->id);
+        }
+    
+        $contractors = $query->get();
+
         return view('screens.admin.contractors.index', compact('contractors'));
     }
     public function create()
