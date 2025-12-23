@@ -38,10 +38,6 @@
                         <h6>Pinned</h6>
                     </div>
                 </li>
-                @php
-                    $panel = auth()->user()->is_admin ? 'admin' : 'user';
-                    $modules = dynamic_sidebar($panel);
-                @endphp
                 @foreach ($modules as $module)
                     @php
                         $hasChildren = $module->children && $module->children->count() > 0;
@@ -49,7 +45,6 @@
 
                     <li class="sidebar-list">
                         <i class="fa-solid fa-thumbtack"></i>
-
                         <a href="{{ $hasChildren ? 'javascript:void(0)' : (Route::has($module->route_name) ? route($module->route_name) : '#') }}"
                             class="sidebar-link sidebar-title {{ $hasChildren ? '' : 'link-nav' }}">
                             <span class="theme-icons">

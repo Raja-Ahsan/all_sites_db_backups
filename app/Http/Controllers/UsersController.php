@@ -28,6 +28,7 @@ class UsersController extends Controller
         ]);
 
         $user = User::create($request->all());
+        $user->assignRole('customer');
         return redirect()->route('users.index')->with('success', 'User created successfully');
     }
 }

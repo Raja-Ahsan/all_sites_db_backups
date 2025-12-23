@@ -16,8 +16,8 @@ class RolesAndUsersSeeder extends Seeder
     public function run(): void
     {
         $superAdminRole = Role::firstOrCreate(['name' => 'super_admin']);
-        $contractorRole = Role::firstOrCreate(['name' => 'contractor']);
         $customerRole = Role::firstOrCreate(['name' => 'customer']);
+        $contractorRole = Role::firstOrCreate(['name' => 'contractor']);
         $leagueContractorRole = Role::firstOrCreate(['name' => 'league_contractor']);
         $individualContractorRole = Role::firstOrCreate(['name' => 'individual_contractor']);
 
@@ -30,6 +30,15 @@ class RolesAndUsersSeeder extends Seeder
         );
         $superAdmin->assignRole($superAdminRole);
 
+        $customer = User::firstOrCreate(
+            ['email' => 'customer@gmail.com'],
+            [
+                'name' => 'Customer',
+                'password' => Hash::make('Customer@123'),
+            ]
+        );
+        $customer->assignRole($customerRole);
+
         $contractor = User::firstOrCreate(
             ['email' => 'contractor@gmail.com'],
             [
@@ -39,14 +48,7 @@ class RolesAndUsersSeeder extends Seeder
         );
         $contractor->assignRole($contractorRole);
 
-        $customer = User::firstOrCreate(
-            ['email' => 'customer@gmail.com'],
-            [
-                'name' => 'Customer',
-                'password' => Hash::make('Customer@123'),
-            ]
-        );
-        $customer->assignRole($customerRole);
+        
 
         $leagueContractor = User::firstOrCreate(
             ['email' => 'leaguecontractor@gmail.com'],
