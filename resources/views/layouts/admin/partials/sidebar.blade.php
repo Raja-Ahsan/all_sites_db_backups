@@ -1,6 +1,6 @@
-{{-- @php
-    $userRoleId = checkUser()->roles->first()->id;
-@endphp --}}
+@php
+    $modules = dynamic_sidebar();
+@endphp
 
 <div class="sidebar-wrapper" data-sidebar-layout="stroke-svg">
     <div class="logo-wrapper">
@@ -39,40 +39,38 @@
                     </div>
                 </li>
                 @php
-                    $user = Auth::user();
-                    $rolesById = $user->roles->first()->id;
-                    $userRole = Auth::user()->roles->first();
-                    $modules = $userRole ? dynamic_sidebar($userRole->id) : [];
-                    $companyApproved = auth()->user()->company?->is_profile_approved ?? false;
-                    $companyActive = auth()->user()->company?->is_active ?? false;
-                    $rolesById == 4;
-
-                    $protectedRoutes = ['contractors.index', 'contractors.create', 'services.index', 'services.create'];
+                    $panel = auth()->user()->is_admin ? 'admin' : 'user';
+                    $modules = dynamic_sidebar($panel);
                 @endphp
-
                 @foreach ($modules as $module)
+                    @php
+                        $hasChildren = $module->children && $module->children->count() > 0;
+                    @endphp
+
                     <li class="sidebar-list">
                         <i class="fa-solid fa-thumbtack"></i>
-                        <a href="{{ Route::has($module->route_name) ? route($module->route_name) : 'javascript:void(0)' }}"
-                            class="sidebar-link sidebar-title {{ !empty($module->children) ? '' : 'link-nav' }}">
-                            <span class="theme-icons"><i class="{{ $module->icon }}"></i></span>
+
+                        <a href="{{ $hasChildren ? 'javascript:void(0)' : (Route::has($module->route_name) ? route($module->route_name) : '#') }}"
+                            class="sidebar-link sidebar-title {{ $hasChildren ? '' : 'link-nav' }}">
+                            <span class="theme-icons">
+                                <i class="{{ $module->icon }}"></i>
+                            </span>
+
                             <span>{{ $module->name }}</span>
-                            <div class="according-menu"><i class="fa-solid fa-angle-right"></i></div>
+
+                            @if ($hasChildren)
+                                <div class="according-menu">
+                                    <i class="fa-solid fa-angle-right"></i>
+                                </div>
+                            @endif
                         </a>
-                        @if (!empty($module->children))
+
+                        @if ($hasChildren)
                             <ul class="sidebar-submenu">
                                 @foreach ($module->children as $child)
-                                    @php
-                                        $isDisabled =
-                                            $rolesById == 4 && // league contractor
-                                            (!$companyApproved || 
-                                            !$companyActive
-                                            ) &&  
-                                            in_array($child->route_name, $protectedRoutes); // protected route
-                                    @endphp
                                     <li>
-                                        <a href="{{ $isDisabled ? 'javascript:void(0)' : route($child->route_name) }}"
-                                            aria-disabled="{{ $isDisabled ? 'true' : 'false' }}">
+                                        <a
+                                            href="{{ Route::has($child->route_name) ? route($child->route_name) : '#' }}">
                                             {{ $child->name }}
                                         </a>
                                     </li>
@@ -81,6 +79,7 @@
                         @endif
                     </li>
                 @endforeach
+
             </ul>
         </div>
         <div class="right-arrow" id="right-arrow">

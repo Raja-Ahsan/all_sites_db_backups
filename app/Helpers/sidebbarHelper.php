@@ -6,8 +6,13 @@ use Illuminate\Support\Facades\Auth;
 
 
 if (!function_exists('dynamic_sidebar')) {
-    function dynamic_sidebar($role_id) {
+    function dynamic_sidebar(string $panel = 'user') {
 
-        return CmsModule::getModules($role_id);
+        return CmsModule::with('children')
+        ->where('parent_id',0)
+            ->where('status', 'active')
+            ->where('panel', $panel)
+            ->orderBy('sort_order')
+            ->get();
     }
 }
