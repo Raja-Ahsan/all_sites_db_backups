@@ -36,12 +36,19 @@ class CheckoutPurchaseController extends Controller
         // Assign correct spatie role
         $user->syncRoles([]);
         $user->assignRole($package->role_type);
-
-        // If league contractor create company row
+        
+        $user->is_league_contractor = $package->role_type === 'league_contractor';
+        $user->save();
+    
+        // THEN: company logic
         if ($package->role_type === 'league_contractor') {
-            $user->company()->create([
-                'contractor_limit' => $package->contractor_limit
-            ]);
+            $company = $user->company;
+    
+            if ($company) {
+                $company->contractor_limit = $package->contractor_limit;
+                $company->save();
+            }
+            // agar company nahi hai to yahan create bhi kar sakte ho (optional)
         }
 
         session()->forget('selected_package');

@@ -42,7 +42,8 @@
                                                 <td>
                                                     <p>{{ $user->email }}</p>
                                                 </td>
-                                                <td><span
+                                                <td>
+                                                    <span
                                                         class="badge badge-light-success">{{ $user->roles->first()->name }}</span>
                                                 </td>
                                                 <td>

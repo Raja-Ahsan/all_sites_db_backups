@@ -7,20 +7,23 @@ use App\Models\User;
 
 class UsersController extends Controller
 {
-        public function index() {
-            $authUser = auth()->user();
+    public function index()
+    {
+        $authUser = current_user();
 
-            $users = User::with('roles')
+        $users = User::with('roles')
             ->where('id', '!=', $authUser->id)
             ->paginate(10);
-            return view('screens.admin.users.index', compact('users'));
-        }
+        return view('screens.admin.users.index', compact('users'));
+    }
 
-    public function create() {
+    public function create()
+    {
         return view('screens.admin.users.create');
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users',
@@ -28,7 +31,8 @@ class UsersController extends Controller
         ]);
 
         $user = User::create($request->all());
-        $user->assignRole('customer');
-        return redirect()->route('users.index')->with('success', 'User created successfully');
+        if ($user->hasRole(config('roles.user'))) {
+            return redirect()->route('users.index')->with('success', 'User created successfully');
+        }
     }
 }

@@ -55,3 +55,9 @@ if (!function_exists('userHasRole')) {
         return auth()->check() && auth()->user()->hasRole($roleName);
     }
 }
+
+if (!function_exists('current_user')) {
+    function current_user() {
+        return \Illuminate\Support\Facades\Auth::user();
+    }
+}

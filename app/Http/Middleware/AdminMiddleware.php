@@ -16,12 +16,12 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next): Response
     {
 
-        if (userRoleId() != 1) {
+        if (!userHasRole(config('roles.admin'))) {
             return redirect()->route('login');
         }
 
         // check role
-        if (userRoleId() != 1) {
+        if (!userHasRole(config('roles.admin'))) {
             return abort(403, 'You are not authorized to access this page.');
         }
 

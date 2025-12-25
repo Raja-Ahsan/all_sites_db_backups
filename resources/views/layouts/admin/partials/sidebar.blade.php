@@ -1,5 +1,21 @@
 @php
     $modules = dynamic_sidebar();
+    $user = auth()->user();
+
+    $isAdmin = $user->hasRole('admin');
+
+    $company = $user->company;
+
+    $isAdmin = $user->hasRole(['admin']);
+
+    $isProfileLocked =
+        !$isAdmin && (
+            !$company
+            || (int) $company->is_profile_completed !== 1
+            || (int) $company->is_profile_approved !== 1
+        );
+
+    $lockedModules = ['services.index', 'services.create', 'contractors.index', 'contractors.create'];
 @endphp
 
 <div class="sidebar-wrapper" data-sidebar-layout="stroke-svg">
@@ -41,12 +57,14 @@
                 @foreach ($modules as $module)
                     @php
                         $hasChildren = $module->children && $module->children->count() > 0;
+                        $isLocked = $isProfileLocked && in_array($module->route_name, $lockedModules);
                     @endphp
 
                     <li class="sidebar-list">
                         <i class="fa-solid fa-thumbtack"></i>
-                        <a href="{{ $hasChildren ? 'javascript:void(0)' : (Route::has($module->route_name) ? route($module->route_name) : '#') }}"
-                            class="sidebar-link sidebar-title {{ $hasChildren ? '' : 'link-nav' }}">
+                        <a aria-disabled="{{ $isLocked ? 'true' : 'false' }}"
+                            href="{{ $isLocked ? 'javascript:void(0)' : (Route::has($module->route_name) ? route($module->route_name) : '#') }}"
+                            class="sidebar-link sidebar-title {{ $isLocked ? 'sidebar-disabled' : '' }} {{$hasChildren ? '' : 'link-nav'}}">
                             <span class="theme-icons">
                                 <i class="{{ $module->icon }}"></i>
                             </span>
@@ -63,9 +81,14 @@
                         @if ($hasChildren)
                             <ul class="sidebar-submenu">
                                 @foreach ($module->children as $child)
+                                    @php
+                                        $childLocked = $isProfileLocked && in_array($child->route_name, $lockedModules);
+                                    @endphp
+
                                     <li>
-                                        <a
-                                            href="{{ Route::has($child->route_name) ? route($child->route_name) : '#' }}">
+                                        <a aria-disabled="{{ $childLocked ? 'true' : 'false' }}"
+                                            href="{{ $childLocked ? 'javascript:void(0)' : (Route::has($child->route_name) ? route($child->route_name) : '#') }}"
+                                            class="{{ $childLocked ? 'sidebar-disabled' : '' }}">
                                             {{ $child->name }}
                                         </a>
                                     </li>

@@ -3,8 +3,8 @@
     @section('content')
         <div class="container-fluid">
             <div class="edit-profile">
-                <form class="card ajax-form" id="createServiceForm" action="{{ route('services.store') }}" method="POST"
-                    enctype="multipart/form-data">
+                <form class="card ajax-form dropzone" id="createServiceForm" action="{{ route('services.store') }}"
+                    method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card-header">
                         <div class="card-options">
@@ -44,15 +44,14 @@
                                         placeholder="Upload Image" name="image" />
                                     <div class="mt-3">
                                         <img id="imagePreview" class="image-preview" src="" alt="Preview"
-                                            style="">
+                                            style="width: 100px; height: 100px;">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label class="form-label">Gallery Images (Optional)</label>
-                                    <input class="form-control"  type="file" name="images[]" id="gallery_images"
-                                        multiple accept="image/*" maxfiles="5" />
+                                    <div id="gallery_images" class="dropzone"></div> <!-- Dropzone.js container -->
                                 </div>
                                 <div class="d-flex flex-wrap gap-2 mt-2" id="galleryPreview"></div>
                             </div>
@@ -77,5 +76,49 @@
     @push('scripts')
         <script>
             ajaxCreate("{{ route('services.index') }}");
+
+            Dropzone.autoDiscover = false; // Disable auto discover
+
+            $(document).ready(function() {
+                // Initialize Dropzone for gallery images
+                let myDropzone = new Dropzone("#gallery_images", {
+                    autoProcessQueue: false,
+                    url: "{{ route('services.store') }}", // Form action URL
+                    paramName: "images[]", // The name of the file input field
+                    // maxFiles: 5, // Limit to 5 files
+                    // maxFilesize: 2, // Max file size in MB
+                    acceptedFiles: 'image/*', // Accept only image files
+                    addRemoveLinks: true, // Allow removal of uploaded files
+                    dictDefaultMessage: "Drag and drop files here or click to upload",
+                    dictMaxFilesExceeded: "You can upload a maximum of 5 images", // Show error message for max files
+                    dictInvalidFileType: "Only image files are allowed", // Show error message for invalid file types
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+                            'content') // Add CSRF token to headers
+                    },
+                    // Success callback
+                    success: function(file, response) {
+                        console.log("File uploaded successfully");
+                        // Optionally, add logic here to update image paths in your database if needed
+                    },
+
+                    // Handle removing files
+                    removedfile: function(file) {
+                        console.log("File removed", file);
+                        // You can delete the image from the database if needed
+                    },
+
+                    // // Custom validation to prevent more than 5 files
+                     removedfile: function(file) {
+                        console.log("File removed", file);
+
+                        // Remove the file preview from Dropzone's UI
+                        var filePreview = file.previewElement;
+                        if (filePreview) {
+                            filePreview.parentNode.removeChild(filePreview);
+                        }
+                    }
+                });
+            });
         </script>
     @endpush

@@ -59,7 +59,7 @@
                                                         <a class="square-white" href="#!">
                                                             <span><i class="fa-solid fa-eye"></i></span>
                                                         </a>
-                                                        <a class="square-white" href="#!">
+                                                        <a class="square-white" href="{{ route('services.edit', $service->id) }}">
                                                             <span><i class="fa-solid fa-pen"></i></span>
                                                         </a>
                                                         <form

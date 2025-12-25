@@ -95,8 +95,7 @@ Route::post('/fake-payment', [CheckoutPurchaseController::class, 'fakePayment'])
 // admin routes
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
-    Route::get('/users', [UsersController::class, 'index'])->name('users.index');
-    Route::get('/users/create', [UsersController::class, 'create'])->name('users.create');
+   
     Route::post('/users', [UsersController::class, 'store'])->name('users.store');
     Route::get('/memberships', [MembershipController::class, 'index'])->name('memberships.index');
     Route::middleware(['auth', 'company.approved'])->group(function () {
@@ -105,11 +104,16 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::post('/contractors', [ContractorController::class, 'store'])->name('contractors.store');
         Route::get('/services/create', [ServiceController::class, 'create'])->name('services.create');
         Route::post('/services', [ServiceController::class, 'store'])->name('services.store');
+        Route::get('/services/edit/{id}', [ServiceController::class, 'edit'])->name('services.edit');
+        Route::put('/services/update/{id}', [ServiceController::class, 'update'])->name('services.update');
         Route::delete('/services/{id}', [ServiceController::class, 'destroy'])->name('services.destroy');
     });
     Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
 
     Route::middleware(['auth', 'admin.middleware'])->group(function () {
+        Route::get('/users', [UsersController::class, 'index'])->name('users.index');
+        Route::get('/users/create', [UsersController::class, 'create'])->name('users.create');
+       
         Route::get('/services/categories/create', [AdminServiceCategoryController::class, 'create'])->name('services-categories.create');
         Route::get('/services/categories', [AdminServiceCategoryController::class, 'index'])->name('services-categories.index');
         Route::post('/services/categories', [AdminServiceCategoryController::class, 'store'])->name('services-categories.store');

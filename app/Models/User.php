@@ -20,11 +20,7 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $guarded = ['id'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -57,11 +53,22 @@ class User extends Authenticatable
 
     public function company()
     {
-        return $this->hasOne(Company::class);
+        return $this->hasOne(Company::class, 'user_id', 'id');
     }
 
     public function companyContractor()
     {
         return $this->hasOne(CompanyContractor::class);
+    }
+
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function createdUsers()
+    {
+        return $this->hasMany(User::class, 'created_by');
     }
 }

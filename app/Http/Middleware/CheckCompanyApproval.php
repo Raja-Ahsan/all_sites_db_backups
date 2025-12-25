@@ -16,8 +16,7 @@ class CheckCompanyApproval
     public function handle(Request $request, Closure $next): Response
     {
 
-        if (userRoleId() == 4) {
-
+        if (userHasRole(config('roles.league_contractor'))) {
             $company = auth()->user()->company;
 
             if (!$company || !$company->is_profile_completed) {

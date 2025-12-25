@@ -12,20 +12,35 @@ class ContractorController extends Controller
 {
     public function index()
     {
-        $user = auth()->user();
+        $user = current_user();
 
-        $query = User::whereHas('company', function ($q) {
-            $q->where('is_profile_approved', true);
-        });    
-
-        if (! $user->hasRole('super_admin')) {
-            $query->whereHas('companyContractor', function ($q) use ($user) {
-                $q->where('company_id', $user->company->id);
-            })
-            ->where('id', '!=', $user->id);
+        // $query = User::whereHas('company', function ($q) {
+        //     $q->where('is_profile_approved', true);
+        // });
+        // $query = User::query()->with('company'); 
+        // if ($user->hasRole(config('roles.admin'))) { 
+        //     $query->whereHas('roles', function ($q) { 
+        //         $q->where('name', config('roles.contractor')); 
+        //     }); 
+        // } else { 
+        //     $query->where('created_by', $user->id);
+        // }
+        if ($user->hasRole(config('roles.admin'))) {
+            $contractors = User::with(['roles', 'company'])
+                ->where('id', '!=', $user->id)
+                ->whereHas('roles', function ($q) {
+                    $q->whereIn('name', [
+                        config('roles.contractor'),
+                        config('roles.league_contractor'),
+                    ]);
+                })
+                ->paginate(10);
+        } else {
+            $contractors = User::with(['roles', 'company'])
+                ->where('id', '!=', $user->id)
+                ->where('created_by', $user->id)
+                ->paginate(10);
         }
-    
-        $contractors = $query->get();
 
         return view('screens.admin.contractors.index', compact('contractors'));
     }
@@ -38,7 +53,7 @@ class ContractorController extends Controller
     {
         $request->validate([
             'name'  => 'required|string|max:255',
-            'email' => 'required|email|unique:contractors,email',
+            'email' => 'required|email|unique:users,email',
             'phone' => 'nullable|string',
         ]);
 
@@ -50,6 +65,7 @@ class ContractorController extends Controller
             'name'     => $request->name,
             'email'    => $request->email,
             'phone'    => $request->phone,
+            'created_by' => auth()->user()->id,
             'password' => bcrypt($plainPassword),
         ]);
 

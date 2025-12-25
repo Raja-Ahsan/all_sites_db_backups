@@ -19,16 +19,13 @@ class LoginResponse implements LoginResponseContract
         //     return redirect()->to('/admin/dashboard');
         // }
 
-        if ($user->hasRole('super_admin')) {
+        if ($user->hasRole(config('roles.admin'))) {
             return redirect('/admin');
         }
-        if ($user->hasRole('contractor')) {
-            return redirect('/admin');
+        if ($user->hasRole(config('roles.user'))) {
+            return redirect('/');
         }
-        if ($user->hasRole('customer')) {
-            return redirect('/admin');
-        }
-        if ($user->hasRole('league_contractor')) {
+        if ($user->hasRole(config('roles.league_contractor'))) {
             return redirect('/admin');
         }
 

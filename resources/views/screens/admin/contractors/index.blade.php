@@ -49,14 +49,14 @@
                                                     <p>{{ $contractor->email }}</p>
                                                 </td>
                                                 <td>
-                                                    <p>{{ $contractor->company->business_name }}</p>
+                                                    <p>{{ ($contractor->company) ? $contractor->company->business_name : 'N/A' }}</p>
                                                 </td>
                                                 <td>
-                                                    <p>{{ $contractor->company->phone }}</p>
+                                                    <p>{{ ($contractor->company) ? $contractor->company->phone : 'N/A' }}</p>
                                                 </td>
-                                                <td><span id="status-badge-{{ $contractor->company->id }}"
-                                                        class="badge {{ $contractor->company->is_active ? 'badge-light-success' : 'badge-light-warning' }}">
-                                                        {{ $contractor->company->is_active ? 'Active' : 'Inactive' }}
+                                                <td><span id="status-badge-{{ ($contractor->company) ? $contractor->company->id : 'N/A' }}"
+                                                        class="badge {{ ($contractor->company) ? $contractor->company->is_active ? 'badge-light-success' : 'badge-light-warning' : 'badge-light-warning' }}">
+                                                        {{ ($contractor->company) ? $contractor->company->is_active ? 'Active' : 'Inactive' : 'N/A' }}
                                                     </span></td>
                                                 <td>
                                                     <p>{{ $contractor->created_at->format('d M Y') }}</p>
@@ -66,8 +66,8 @@
                                                         <input
                                                             class="form-check-input switch-primary check-size approve-toggle"
                                                             type="checkbox" role="switch"
-                                                            data-id="{{ $contractor->company->id }}"
-                                                            {{ $contractor->company->is_active ? 'checked' : '' }}>
+                                                            data-id="{{ ($contractor->company) ? $contractor->company->id : 'N/A' }}"
+                                                            {{ ($contractor->company) ? $contractor->company->is_active ? 'checked' : '' : '' }}>
                                                     </div>
                                                 </td>
                                             </tr>

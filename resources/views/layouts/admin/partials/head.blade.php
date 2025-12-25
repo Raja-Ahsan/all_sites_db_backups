@@ -26,6 +26,7 @@
 <link rel="stylesheet" href="{{ asset('assets/libs/css/vendors/scrollbar.css') }}" />
 <link rel="preload" as="script" href="{{ asset('assets/libs/js/scrollbar/simplebar.min.js') }}">
 <script src="{{ asset('assets/libs/js/scrollbar/simplebar.min.js') }}"></script>
+<link href="https://cdn.jsdelivr.net/npm/dropzone@5.9.2/dist/min/dropzone.min.css" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('assets/libs/css/vendors/animate.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/libs/css/vendors/bootstrap.css') }}" />
 <!-- Main CSS -->

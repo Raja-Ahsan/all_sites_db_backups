@@ -279,8 +279,9 @@
                                                 <td>
                                                     <p>{{ $user->email }}</p>
                                                 </td>
-                                                <td><span
-                                                        class="badge badge-light-success">{{ $user->roles->first()->name }}</span>
+                                                <td>
+                                                    {{-- <span
+                                                        class="badge badge-light-success">{{ $user->roles->first()->name }}</span> --}}
                                                 </td>
                                                 <td>
                                                     <p>{{ $user->created_at->format('d M Y, H:i A') }}</p>

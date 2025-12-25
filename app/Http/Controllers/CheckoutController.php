@@ -35,7 +35,7 @@ class CheckoutController extends Controller
         $user->assignRole($package->role_type);
 
         // If league contractor, create company record
-        if ($package->role_type == 'league_contractor') {
+        if ($package->role_type == config('roles.league_contractor')) {
             $user->company()->create([
                 'contractor_limit' => $package->contractor_limit,
             ]);

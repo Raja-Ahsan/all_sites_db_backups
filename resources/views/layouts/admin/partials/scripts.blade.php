@@ -39,5 +39,6 @@
 <script src="{{ asset('assets/js/ajax-create.js') }}"></script>
 <script src="{{ asset('assets/js/ajax-update.js') }}"></script>
 <script src="{{ asset('assets/js/ajax-delete.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/dropzone@5.9.2/dist/min/dropzone.min.js"></script>
 <script src="{{ asset('assets/js/custom.js') }}"></script>
 @stack('scripts')
