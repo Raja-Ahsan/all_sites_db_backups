@@ -19,6 +19,7 @@ class CompanyController extends Controller
             'insurance' => 'required|string|max:255',
             'phone' => 'required|string|max:255',
             'location' => 'required|string',
+            'store_name' => 'required|string|max:255',
         ]);
 
         $company = Company::where('user_id', auth()->id())->first();
@@ -33,6 +34,7 @@ class CompanyController extends Controller
         $company->insurance = $request->insurance;
         $company->phone = $request->phone;
         $company->location = $request->location;
+        $company->store_name = $request->store_name;
         $company->is_profile_completed = true;
         $company->is_profile_approved = false;
         $company->is_active = true;

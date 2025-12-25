@@ -141,8 +141,9 @@
                            @include('components.web.service-card', [
                                     'image' => asset('storage/' . $service->image),
                                     'contractorImage' => asset('images/resources-04.png'),
-                                    'contractorName' => $service->title,
-                                    'serviceName' => $service->serviceCategory->name,
+                                    'contractorName' => $service->company->store_name,
+                                    'serviceName' => $service->title,
+                                    'serviceCategoryName' => $service->serviceCategory->name,
                                     'location' => $service->company->location,
                                     'serviceDetailUrl' => route('service-detail'),
                                     'bookNowUrl' => route('book-now'),

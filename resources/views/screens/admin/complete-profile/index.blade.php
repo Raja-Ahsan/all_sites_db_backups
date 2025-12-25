@@ -66,6 +66,16 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label class="form-label" for="store_name">Store Name</label>
+                                <input class="form-control @error('store_name') is-invalid @enderror" id="store_name"
+                                    type="text" placeholder="Enter Store Name" name="store_name" />
+                                @error('store_name')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
                     <div class="card-footer text-end">
                         <button class="btn btn-primary" type="submit">

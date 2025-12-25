@@ -6,6 +6,7 @@ use App\Models\Service;
 use App\Models\ServiceCategory;
 use Illuminate\Http\Request;
 use App\Models\ServiceImage;
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -14,7 +15,7 @@ class ServiceController extends Controller
     
     public function userIndex()
     {
-        $services = Service::with('serviceCategory')->take(5)->get(); // Limit or modify based on user needs
+        $services = Service::with('serviceCategory', 'user')->get();
         return view('screens.web.services.index', compact('services'));
     }
 

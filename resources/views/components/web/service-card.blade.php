@@ -3,6 +3,7 @@
     'contractorImage' => null,
     'contractorName' => null,
     'serviceName' => null,
+    'serviceCategoryName' => null,
     'location' => 'Midland,Texas-79701',
     'serviceDetailUrl' => route('service-detail'),
     'bookNowUrl' => route('book-now'),
@@ -31,7 +32,10 @@
                 </a>
                 @endif
                 @if($serviceName)
-                <h4 class="fs-14 fw-300 text-secondry-theme mb-20">{{ $serviceName }}</h4>
+                <h4 class="fs-20 fw-300 text-white mb-20">{{ $serviceName }}</h4>
+                @endif
+                @if($serviceCategoryName)
+                <h4 class="fs-14 fw-300 text-secondry-theme mb-20">{{ $serviceCategoryName }}</h4>
                 @endif
                 <h4 class="fs-14 fw-300 text-white mb-20">
                     <span><i class="fa-solid fa-location-dot"></i></span> {{ $location }}
