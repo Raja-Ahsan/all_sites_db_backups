@@ -6,9 +6,18 @@ use App\Models\Service;
 use App\Models\ServiceCategory;
 use Illuminate\Http\Request;
 use App\Models\ServiceImage;
+use Illuminate\Support\Facades\Storage;
+
 
 class ServiceController extends Controller
 {
+    
+    public function userIndex()
+    {
+        $services = Service::with('serviceCategory')->take(5)->get(); // Limit or modify based on user needs
+        return view('screens.web.services.index', compact('services'));
+    }
+
     public function index()
     {
         $services = Service::with('serviceCategory')->get();
@@ -97,7 +106,7 @@ class ServiceController extends Controller
         $service->update($request->only(['title', 'service_category_id', 'description']));
 
         // If there are new images, delete old ones and store the new ones
-        if ($request->hasFile('images')) {
+        if ($request->has('images')) {
             foreach ($request->file('images') as $image) {
                 $path = $image->store('services/gallery', 'public');
                 ServiceImage::create([
@@ -106,8 +115,28 @@ class ServiceController extends Controller
                 ]);
             }
         }
-
         return redirect()->route('services.index')->with('success', 'Service Updated Successfully');
+    }
+
+    public function deleteImage(Request $request)
+    {
+        $request->validate([
+            'image_id' => 'required|exists:service_images,id',
+        ]);
+
+        // Find the image by ID
+        $image = ServiceImage::findOrFail($request->image_id);
+
+        // Delete the image file from storage
+        Storage::disk('public')->delete($image->images);
+
+        // Delete the record from the database
+        $image->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Image deleted successfully.',
+        ]);
     }
 
     public function show($id)

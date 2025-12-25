@@ -30,10 +30,7 @@ Route::get(
     fn() => view('screens.web.contact.index')
 )->name('contact');
 
-Route::get(
-    '/services',
-    fn() => view('screens.web.services.index')
-)->name('services');
+Route::get('/services', [ServiceController::class, 'userIndex'])->name('services');
 
 Route::get(
     '/services/show',
@@ -109,7 +106,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::delete('/services/{id}', [ServiceController::class, 'destroy'])->name('services.destroy');
     });
     Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
-
+    Route::post('/services/delete-image', [ServiceController::class, 'deleteImage'])->name('services.deleteImage');
     Route::middleware(['auth', 'admin.middleware'])->group(function () {
         Route::get('/users', [UsersController::class, 'index'])->name('users.index');
         Route::get('/users/create', [UsersController::class, 'create'])->name('users.create');

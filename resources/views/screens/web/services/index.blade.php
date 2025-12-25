@@ -136,107 +136,23 @@
                 </div>
                 <div class="col-lg-9">
                     <div class="row row-gap-40">
-                        @php
-                            // Sample services data - Replace this with actual data from controller
-                            $services = [
-                                [
-                                    'image' => asset('images/hero-bg.png'),
+                        @foreach ($services as $service )
+                           <div class="col-lg-4">
+                           @include('components.web.service-card', [
+                                    'image' => asset('storage/' . $service->image),
                                     'contractorImage' => asset('images/resources-04.png'),
-                                    'contractorName' => 'H&D MASONRY',
-                                    'serviceName' => 'MASONRY',
-                                    'location' => 'Midland, Texas - 79701',
-                                    'serviceDetailUrl' => route('service-detail'),
-                                    'bookNowUrl' => route('book-now'),
-                                    'showOnlineBadge' => true,
-                                ],
-                                [
-                                    'image' => asset('images/hero-bg.png'),
-                                    'contractorImage' => asset('images/resources-04.png'),
-                                    'contractorName' => 'ABC Construction',
-                                    'serviceName' => 'PLUMBING',
-                                    'location' => 'Dallas, Texas - 75201',
-                                    'serviceDetailUrl' => route('service-detail'),
-                                    'bookNowUrl' => route('book-now'),
-                                    'showOnlineBadge' => true,
-                                ],
-                                [
-                                    'image' => asset('images/hero-bg.png'),
-                                    'contractorImage' => asset('images/resources-04.png'),
-                                    'contractorName' => 'XYZ Builders',
-                                    'serviceName' => 'ELECTRICAL',
-                                    'location' => 'Houston, Texas - 77001',
+                                    'contractorName' => $service->title,
+                                    'serviceName' => $service->serviceCategory->name,
+                                    'location' => $service->company->location,
                                     'serviceDetailUrl' => route('service-detail'),
                                     'bookNowUrl' => route('book-now'),
                                     'showOnlineBadge' => false,
-                                ],
-                                [
-                                    'image' => asset('images/hero-bg.png'),
-                                    'contractorImage' => asset('images/resources-04.png'),
-                                    'contractorName' => 'XYZ Builders',
-                                    'serviceName' => 'ELECTRICAL',
-                                    'location' => 'Houston, Texas - 77001',
-                                    'serviceDetailUrl' => route('service-detail'),
-                                    'bookNowUrl' => route('book-now'),
-                                    'showOnlineBadge' => false,
-                                ],
-                                [
-                                    'image' => asset('images/hero-bg.png'),
-                                    'contractorImage' => asset('images/resources-04.png'),
-                                    'contractorName' => 'XYZ Builders',
-                                    'serviceName' => 'ELECTRICAL',
-                                    'location' => 'Houston, Texas - 77001',
-                                    'serviceDetailUrl' => route('service-detail'),
-                                    'bookNowUrl' => route('book-now'),
-                                    'showOnlineBadge' => false,
-                                ],
-                                [
-                                    'image' => asset('images/hero-bg.png'),
-                                    'contractorImage' => asset('images/resources-04.png'),
-                                    'contractorName' => 'XYZ Builders',
-                                    'serviceName' => 'ELECTRICAL',
-                                    'location' => 'Houston, Texas - 77001',
-                                    'serviceDetailUrl' => route('service-detail'),
-                                    'bookNowUrl' => route('book-now'),
-                                    'showOnlineBadge' => false,
-                                ],
-                                [
-                                    'image' => asset('images/hero-bg.png'),
-                                    'contractorImage' => asset('images/resources-04.png'),
-                                    'contractorName' => 'XYZ Builders',
-                                    'serviceName' => 'ELECTRICAL',
-                                    'location' => 'Houston, Texas - 77001',
-                                    'serviceDetailUrl' => route('service-detail'),
-                                    'bookNowUrl' => route('book-now'),
-                                    'showOnlineBadge' => false,
-                                ],
-                                [
-                                    'image' => asset('images/hero-bg.png'),
-                                    'contractorImage' => asset('images/resources-04.png'),
-                                    'contractorName' => 'XYZ Builders',
-                                    'serviceName' => 'ELECTRICAL',
-                                    'location' => 'Houston, Texas - 77001',
-                                    'serviceDetailUrl' => route('service-detail'),
-                                    'bookNowUrl' => route('book-now'),
-                                    'showOnlineBadge' => false,
-                                ],
-                                [
-                                    'image' => asset('images/hero-bg.png'),
-                                    'contractorImage' => asset('images/resources-04.png'),
-                                    'contractorName' => 'XYZ Builders',
-                                    'serviceName' => 'ELECTRICAL',
-                                    'location' => 'Houston, Texas - 77001',
-                                    'serviceDetailUrl' => route('service-detail'),
-                                    'bookNowUrl' => route('book-now'),
-                                    'showOnlineBadge' => false,
-                                ],
-                            ];
-                        @endphp
-                        
-                        @foreach($services as $service)
-                        <div class="col-lg-4">
-                            @include('components.web.service-card', $service)
-                        </div>
+                           ])
+                           </div>
                         @endforeach
+                        {{-- <div class="col-lg-4">
+                            @include('components.web.service-card', $service)
+                        </div> --}}
                         <div class="col-12">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination d-flex align-items-center justify-content-center gap-10">

@@ -101,18 +101,8 @@
                         console.log("File uploaded successfully");
                         // Optionally, add logic here to update image paths in your database if needed
                     },
-
-                    // Handle removing files
-                    removedfile: function(file) {
-                        console.log("File removed", file);
-                        // You can delete the image from the database if needed
-                    },
-
                     // // Custom validation to prevent more than 5 files
                      removedfile: function(file) {
-                        console.log("File removed", file);
-
-                        // Remove the file preview from Dropzone's UI
                         var filePreview = file.previewElement;
                         if (filePreview) {
                             filePreview.parentNode.removeChild(filePreview);

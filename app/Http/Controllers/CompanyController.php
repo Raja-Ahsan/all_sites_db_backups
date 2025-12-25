@@ -18,6 +18,7 @@ class CompanyController extends Controller
             'license' => 'required|string|max:255',
             'insurance' => 'required|string|max:255',
             'phone' => 'required|string|max:255',
+            'location' => 'required|string',
         ]);
 
         $company = Company::where('user_id', auth()->id())->first();
@@ -31,6 +32,7 @@ class CompanyController extends Controller
         $company->license = $request->license;
         $company->insurance = $request->insurance;
         $company->phone = $request->phone;
+        $company->location = $request->location;
         $company->is_profile_completed = true;
         $company->is_profile_approved = false;
         $company->is_active = true;

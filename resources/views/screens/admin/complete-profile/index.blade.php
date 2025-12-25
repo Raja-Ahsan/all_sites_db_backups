@@ -56,6 +56,16 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label class="form-label" for="location">Location</label>
+                                <input class="form-control @error('location') is-invalid @enderror" id="location"
+                                    type="text" placeholder="Enter Location" name="location" />
+                                @error('location')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
                     <div class="card-footer text-end">
                         <button class="btn btn-primary" type="submit">

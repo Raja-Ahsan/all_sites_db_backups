@@ -14,6 +14,21 @@ function ajaxUpdate(formSelector, successRedirect = null) {
             });
         }
 
+        // Calculate the total image count (already existing + new files)
+        let totalImages = $("#galleryPreview .image-preview-wrapper").length + Dropzone.instances[0].files.length;
+
+        // Check image limit
+        let maxImages = 5;
+        if (totalImages > maxImages) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'You can only upload up to 5 images!',
+            });
+            return false; // Prevent form submission
+        }
+
+        // Proceed with AJAX request to update
         $.ajax({
             url: form.attr('action'),
             type: 'POST', // Always POST when using FormData with _method spoofing

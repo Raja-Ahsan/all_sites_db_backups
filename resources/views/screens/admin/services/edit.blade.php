@@ -60,8 +60,16 @@
                             </div>
                             <div class="d-flex flex-wrap gap-2 mt-2" id="galleryPreview">
                                 @foreach ($service->serviceImages as $image)
-                                    <img src="{{ asset('storage/' . $image->images) }}" alt="Preview"
-                                        style="width: 100px; height: 100px;">
+                                    <div class="image-preview-wrapper" style="position: relative;">
+                                        <!-- Image preview -->
+                                        <img src="{{ asset('storage/' . $image->images) }}" alt="Preview"
+                                            style="width: 100px; height: 100px;">
+                                        <!-- Cross button to delete image -->
+                                        <button type="button" class="delete-image-btn" data-image-id="{{ $image->id }}"
+                                            style="position: absolute; top: 0; right: 0; background: red; color: white; border: none; cursor: pointer;">
+                                            X
+                                        </button>
+                                    </div>
                                 @endforeach
                             </div>
                         </div>
@@ -108,12 +116,37 @@
 
                 // Handle removing files
                 removedfile: function(file) {
-                    console.log("File removed", file);
-                    // You can delete the image from the database if needed
-                },
+                    var filePreview = file.previewElement;
+                    if (filePreview) {
+                        filePreview.parentNode.removeChild(filePreview);
+                    }
+                }
 
             });
-            
+
+            $(".delete-image-btn").on('click', function() {
+                var imageId = $(this).data('image-id');
+                var imageWrapper = $(this).closest('.image-preview-wrapper');
+                $.ajax({
+                    url: "{{ route('services.deleteImage') }}", // Define route for deleting image
+                    method: 'POST',
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        image_id: imageId
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            imageWrapper.remove();
+                        } else {
+                            alert("Error deleting image.");
+                        }
+                    },
+                    error: function() {
+                        alert("Error deleting image.");
+                    }
+                });
+            });
+
         });
     </script>
 @endpush

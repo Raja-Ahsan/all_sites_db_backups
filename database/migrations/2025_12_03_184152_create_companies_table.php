@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('license')->nullable();
             $table->string('insurance')->nullable();
             $table->string('phone')->nullable();
+            $table->string('location')->nullable();
             $table->integer('contractor_limit')->default(0);
             $table->boolean('is_profile_completed')->default(false);
             $table->boolean('is_profile_approved')->default(false);
