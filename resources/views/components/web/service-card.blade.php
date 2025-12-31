@@ -32,7 +32,7 @@
                 </a>
                 @endif
                 @if($serviceName)
-                <h4 class="fs-20 fw-300 text-white mb-20">{{ $serviceName }}</h4>
+                <h4 class="fs-20 fw-300 text-white mb-20 word-break">{{ $serviceName }}</h4>
                 @endif
                 @if($serviceCategoryName)
                 <h4 class="fs-14 fw-300 text-secondry-theme mb-20">{{ $serviceCategoryName }}</h4>

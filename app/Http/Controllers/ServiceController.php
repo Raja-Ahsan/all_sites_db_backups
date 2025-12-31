@@ -13,11 +13,7 @@ use Illuminate\Support\Facades\Storage;
 class ServiceController extends Controller
 {
     
-    public function userIndex()
-    {
-        $services = Service::with('serviceCategory', 'user')->get();
-        return view('screens.web.services.index', compact('services'));
-    }
+  
 
     public function index()
     {

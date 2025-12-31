@@ -14,6 +14,8 @@ use App\Http\Controllers\CheckoutPurchaseController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\Admin\ContractorApprovalController as AdminContractorApprovalController;
 use App\Http\Controllers\Admin\ServiceCategoryController as AdminServiceCategoryController;
+use App\Http\Controllers\WebController;
+
 // Web Routes
 Route::get(
     '/',
@@ -30,7 +32,7 @@ Route::get(
     fn() => view('screens.web.contact.index')
 )->name('contact');
 
-Route::get('/services', [ServiceController::class, 'userIndex'])->name('services');
+Route::get('/services', [WebController::class, 'servicesIndex'])->name('services');
 
 Route::get(
     '/services/show',

@@ -313,9 +313,11 @@ img {
     max-width: 17rem;
     transition: all 0.3s ease-in-out;
 }
+
 .join-now-btn:hover {
     background-color: var(--secondry-theme);
 }
+
 .join-now-btn:hover .header-btn {
     color: var(--default-color);
 }
@@ -647,6 +649,7 @@ img {
 .btn-black {
     background-color: var(--black);
 }
+
 .btn-black:hover {
     background-color: var(--primary-theme);
     color: var(--default-color);
@@ -825,6 +828,10 @@ img {
 
 .services-card-wrapper .img-wrapper img {
     border-radius: var(--text-10) var(--text-10) 0 0;
+    width: 100%;
+    max-height: 20rem;
+    object-fit: cover;
+
 }
 
 /* Membership Tabs Styling */
@@ -870,9 +877,11 @@ img {
     color: var(--default-color);
     font-size: var(--text-20);
 }
+
 .con-place-card-wrapper .img-wrapper {
     background-color: var(--default-color);
 }
+
 .resources-card-wrapper .img-wrapper,
 .con-place-card-wrapper .img-wrapper {
     border-radius: var(--text-30);
@@ -1046,6 +1055,7 @@ img {
 .slick-prev:before {
     content: '';
 }
+
 .dropdown-menu-wrapper {
     background-color: var(--primary-theme);
     padding: var(--text-10);
@@ -1101,7 +1111,7 @@ img {
 }
 
 /* Also show when dropdown button is hovered */
-.dropdown-menu-btn:hover + .dropdown-menu-wrapper {
+.dropdown-menu-btn:hover+.dropdown-menu-wrapper {
     display: block;
     opacity: 1;
     visibility: visible;
@@ -1131,10 +1141,12 @@ img {
 .primary-navs li.position-relative:hover .dropdown-menu-btn i {
     transform: rotate(180deg);
 }
+
 .cart-icon i {
     font-size: var(--text-20);
     color: var(--default-color);
 }
+
 .quantity-count {
     background-color: #fff;
     width: var(--text-40);
@@ -1147,11 +1159,13 @@ img {
     font-weight: 500;
     color: var(--secondry-theme);
 }
+
 .input-field:focus,
 .form-select:focus {
     border-color: var(--secondry-theme);
     box-shadow: none;
 }
+
 .hiw-card .circle-md {
     transition: all 0.4s ease;
 }
@@ -1166,10 +1180,12 @@ img {
     transform: scale(1.05);
     border-color: var(--secondry-theme);
 }
+
 .resources-card-wrapper .img-wrapper {
     max-width: 28.2rem;
-    
+
 }
+
 .social-links li {
     display: flex;
     align-items: center;
@@ -1182,12 +1198,15 @@ img {
     border-radius: 50%;
     transition: all 0.3s ease-in-out;
 }
+
 .social-links li i {
     color: var(--default-color);
 }
+
 .social-links li:hover {
     background-color: var(--secondry-theme);
 }
+
 .pagination-item {
     background-color: var(--primary-theme);
     width: var(--text-40);
@@ -1200,28 +1219,35 @@ img {
     border-left: 1px solid var(--dark-primary-theme);
     transition: all 0.3s ease-in-out;
 }
+
 .pagination-item:hover {
     background-color: var(--secondry-theme);
 }
+
 .pagination-item:last-child,
 .pagination-item:first-child {
     border-radius: var(--text-5) 0 0 var(--text-5);
     width: var(--text-70);
     height: var(--text-40);
 }
+
 .pagination-item:first-child {
     border-left: none;
 }
+
 .pagination-item:last-child {
-    border-radius:  0 var(--text-5) var(--text-5) 0;
+    border-radius: 0 var(--text-5) var(--text-5) 0;
 }
+
 .pagination-link {
     color: var(--default-color);
 }
+
 .partners-card-wrapper:hover {
     box-shadow: 0 10px 30px rgba(252, 113, 0, 0.2);
     border: 1px solid rgba(252, 113, 0, 0.3);
 }
+
 .cart-count {
     position: absolute;
     bottom: 13px;
@@ -1238,6 +1264,7 @@ img {
     font-weight: 500;
 
 }
+
 .profile-dropdown-menu {
     background-color: var(--primary-theme);
     position: absolute;
@@ -1250,26 +1277,37 @@ img {
     padding: var(--text-10) 0;
     border-radius: var(--text-10);
 }
+
 .profile-dropdown-menu .dropdown-item {
     padding: var(--text-10) var(--text-20);
 }
-.profile-dropdown-wrapper:hover .profile-dropdown-menu  {
+
+.profile-dropdown-wrapper:hover .profile-dropdown-menu {
     display: block;
 }
+
 /* .profile-dropdown-menu ul {
     padding: 20px;
 } */
 .profile-dropdown-menu .dropdown-link {
     color: var(--default-color);
 }
+
 .profile-dropdown-menu .dropdown-link:hover {
     color: var(--dark-primary-theme);
 }
+
 .profile-dropdown-btn {
     background-color: transparent;
     color: var(--default-color);
     box-shadow: none;
     border: none;
+}
+
+.word-break {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
 }
 
 /* responsive */
@@ -1619,6 +1657,7 @@ img {
 }
 
 @media (max-width: 768px) {
+
     .login-sec .form-wrapper,
     .join-sec .form-wrapper,
     .forgot-password-sec .form-wrapper {
