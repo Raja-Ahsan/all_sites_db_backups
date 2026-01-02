@@ -14,10 +14,10 @@
                             </div>
                         </div>
                         <div class="store-owner-info">
-                            <h1 class="hd-lg text-white secondry-font mb-10">H&D MASONRY</h1>
+                            <h1 class="hd-lg text-white secondry-font mb-10">{{$storeDetail->company->business_name}}</h1>
                             <p class="text-white fs-16 mb-10">
                                 <i class="fa-solid fa-location-dot text-secondry-theme me-10"></i>
-                                Midland, Texas - 79701
+                                {{-- {{$storeDetail->company->location}} --}} location will be there
                             </p>
                             <div class="d-flex align-items-center gap-15 mb-10">
                                 <div class="rating-stars text-secondry-theme">
@@ -157,7 +157,7 @@
                                                         class="fa-solid fa-location-dot"></i></span> Midland,Texas-79701
                                             </h4>
                                             <div class="d-flex align-items-center gap-10">
-                                                <a href="{{ route('service-detail') }}"
+                                                <a href=""
                                                     class="bootstrap btn btn-outline btn-sm">View Detail</a>
                                                 <a href="{{ route('book-now') }}"
                                                     class="bootstrap btn btn-outline btn-sm">Book Now</a>
@@ -192,7 +192,7 @@
                                                         class="fa-solid fa-location-dot"></i></span> Midland,Texas-79701
                                             </h4>
                                             <div class="d-flex align-items-center gap-10">
-                                                <a href="{{ route('service-detail') }}"
+                                                <a href=""
                                                     class="bootstrap btn btn-outline btn-sm">View Detail</a>
                                                 <a href="{{ route('book-now') }}"
                                                     class="bootstrap btn btn-outline btn-sm">Book Now</a>
@@ -227,7 +227,7 @@
                                                         class="fa-solid fa-location-dot"></i></span> Midland,Texas-79701
                                             </h4>
                                             <div class="d-flex align-items-center gap-10">
-                                                <a href="{{ route('service-detail') }}"
+                                                <a href=""
                                                     class="bootstrap btn btn-outline btn-sm">View Detail</a>
                                                 <a href="{{ route('book-now') }}"
                                                     class="bootstrap btn btn-outline btn-sm">Book Now</a>
@@ -262,7 +262,7 @@
                                                         class="fa-solid fa-location-dot"></i></span> Midland,Texas-79701
                                             </h4>
                                             <div class="d-flex align-items-center gap-10">
-                                                <a href="{{ route('service-detail') }}"
+                                                <a href=""
                                                     class="bootstrap btn btn-outline btn-sm">View Detail</a>
                                                 <a href="{{ route('book-now') }}"
                                                     class="bootstrap btn btn-outline btn-sm">Book Now</a>

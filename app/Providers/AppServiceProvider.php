@@ -18,6 +18,8 @@ use App\Http\Responses\RegisterResponse as CustomRegisterResponse;
 
 use Laravel\Fortify\Contracts\RequestPasswordResetLinkViewResponse;
 use App\Http\Responses\ForgotPasswordViewResponse;
+use Illuminate\Pagination\Paginator;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -41,6 +43,6 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        //
+        Paginator::useBootstrap();
     }
 }

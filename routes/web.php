@@ -32,12 +32,9 @@ Route::get(
     fn() => view('screens.web.contact.index')
 )->name('contact');
 
-Route::get('/services', [WebController::class, 'servicesIndex'])->name('services');
+Route::get('/services', [WebController::class, 'servicesIndex'])->name('services.index');
 
-Route::get(
-    '/services/show',
-    fn() => view('screens.web.services.show')
-)->name('service-detail');
+Route::get('/services/show/{id}',[WebController::class, 'servicesDetail'])->name('services.detail');
 
 Route::get(
     '/referrals',
@@ -49,10 +46,12 @@ Route::get(
     fn() => view('screens.web.marketplace.index')
 )->name('marketplace');
 
-Route::get(
-    '/store',
-    fn() => view('screens.web.store.index')
-)->name('store');
+// Route::get(
+//     '/store',
+//     fn() => view('screens.web.store.index')
+// )->name('store');
+Route::get('/store/{company}', [WebController::class, 'storeIndex'])->name('store.index');
+
 
 Route::get(
     '/products',

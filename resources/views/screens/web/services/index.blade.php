@@ -135,39 +135,12 @@
                     </div>
                 </div>
                 <div class="col-lg-9">
-                    <div class="row row-gap-40">
-                        @foreach ($services as $service )
-                           <div class="col-lg-4">
-                           @include('components.web.service-card', [
-                                    'image' => asset('storage/' . $service->image),
-                                    'contractorImage' => asset('images/resources-04.png'),
-                                    'contractorName' => $service->company->store_name,
-                                    'serviceName' => $service->title,
-                                    'serviceCategoryName' => $service->serviceCategory->name,
-                                    'location' => $service->company->location,
-                                    'serviceDetailUrl' => route('service-detail'),
-                                    'bookNowUrl' => route('book-now'),
-                                    'showOnlineBadge' => false,
-                           ])
-                           </div>
-                        @endforeach
-                        {{-- <div class="col-lg-4">
-                            @include('components.web.service-card', $service)
-                        </div> --}}
-                        <div class="col-12">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination d-flex align-items-center justify-content-center gap-10">
-                                    <li class="pagination-item"><a href="#" class="pagination-link">Prev</a></li>
-                                    <li class="pagination-item"><a href="#" class="pagination-link">1</a></li>
-                                    <li class="pagination-item"><a href="#" class="pagination-link">2</a></li>
-                                    <li class="pagination-item"><a href="#" class="pagination-link">3</a></li>
-                                    <li class="pagination-item"><a href="#" class="pagination-link">Next</a></li>
-                                </ul>
-                            </nav>
-                        </div>
+                    <div id="services-wrapper">
+                        @include('screens.web.services.list', ['services' => $services])
                     </div>
                 </div>
             </div>
         </div>
     </section>
 @endsection
+

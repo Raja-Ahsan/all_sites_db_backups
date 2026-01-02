@@ -12,7 +12,7 @@ Reusable components for web pages.
     'contractorName' => 'H&D MASONRY',
     'serviceName' => 'MASONRY',
     'location' => 'Midland, Texas - 79701',
-    'serviceDetailUrl' => route('service-detail'),
+    'serviceDetailUrl' => route('services.detail'),
     'bookNowUrl' => route('book-now'),
     'showOnlineBadge' => true,
 ])

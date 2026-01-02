@@ -5,7 +5,7 @@
     'serviceName' => null,
     'serviceCategoryName' => null,
     'location' => 'Midland,Texas-79701',
-    'serviceDetailUrl' => route('service-detail'),
+    'serviceDetailUrl' => route('services.detail', $service->id),
     'bookNowUrl' => route('book-now'),
     'showOnlineBadge' => true,
     'showContractorInfo' => true,
@@ -19,7 +19,7 @@
         <div class="services-content py-20 px-20">
             <div class="services-content-top">
                 @if($showContractorInfo && $contractorImage && $contractorName)
-                <a href="{{ route('store') }}" class="d-flex align-items-center mb-20 gap-20 store-link-wrapper">
+                <a href="{{ route('store.index', $service->company_id) }}" class="d-flex align-items-center mb-20 gap-20 store-link-wrapper">
                     <div class="services-profile-img position-relative">
                         <img src="{{ $contractorImage }}" alt="profile picture">
                         @if($showOnlineBadge)
@@ -48,4 +48,3 @@
         </div>
     </div>
 </div>
-
