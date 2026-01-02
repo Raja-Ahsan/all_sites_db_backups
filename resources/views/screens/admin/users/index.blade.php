@@ -6,11 +6,11 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header card-no-border text-end">
-                        <div class="card-header-right-icon">
+                        {{-- <div class="card-header-right-icon">
                             <a class="btn btn-primary f-w-500" href="{{ route('users.create') }}"><i
                                     class="fa-solid fa-plus pe-2"></i>Add
                                 User</a>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="card-body pt-0 px-0">
                         <div class="list-product user-list-table">

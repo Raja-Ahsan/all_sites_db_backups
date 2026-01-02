@@ -89,6 +89,135 @@
                     </div>
                 </div>
             </div>
+            <div class="col-12 box-ord-2 mb-5">
+                <div class="card h-100">
+                    <div class="card-header card-no-border">
+                        <div class="header-top">
+                            <h5>Revenue Statistical Overview</h5>
+                            <div class="card-header-right-icon">
+                                <div class="dropdown custom-dropdown">
+                                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        Year
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#!">Day</a></li>
+                                        <li><a class="dropdown-item" href="#!">Month</a></li>
+                                        <li><a class="dropdown-item" href="#!">Year</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body pt-0">
+                        <div class="row m-0 overall-card">
+                            <div class="col-12 p-0">
+                                <div class="chart-right">
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <div class="card-body p-0 statistical-card">
+                                                <ul class="d-flex m-b-15">
+                                                    {{-- <li>
+                                                        <h5 class="counter" data-target="19897">0</h5>
+                                                        <span class="f-light">Total Cost</span>
+                                                    </li> --}}
+                                                    <li>
+                                                        <h5>
+                                                            $
+                                                            <span class="counter" data-target="849058">0</span>
+                                                        </h5>
+                                                        <span class="f-light">Total Revenue</span>
+                                                    </li>
+                                                </ul>
+                                                <div class="current-sale-container">
+                                                    <div id="chart-currently"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 box-ord-2">
+                <div class="card h-100 user-list-wrapper">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="card-header card-no-border">
+                                <h5>All Users</h5>
+                            </div>
+                        </div>
+                        {{-- <div class="col-lg-6">
+                            <div class="card-header card-no-border text-end">
+                                <div class="card-header-right-icon">
+                                    <a class="btn btn-primary f-w-500" href="{{ route('users.create') }}"><i
+                                            class="fa-solid fa-plus pe-2"></i>Add
+                                        User</a>
+                                </div>
+                            </div>
+                        </div> --}}
+                    </div>
+                    <div class="card-body pt-0 px-0">
+                        <div class="list-product user-list-table h-100">
+                            <div class="table-responsive custom-scrollbar h-100">
+                                <table class="table" id="users-table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <span class="c-o-light f-w-600">Name</span>
+                                            </th>
+                                            <th>
+                                                <span class="c-o-light f-w-600">Email</span>
+                                            </th>
+                                            <th>
+                                                <span class="c-o-light f-w-600">Role</span>
+                                            </th>
+                                            <th>
+                                                <span class="c-o-light f-w-600">Creation Date</span>
+                                            </th>
+                                            <th>
+                                                <span class="c-o-light f-w-600">Actions</span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($users as $user)
+                                            <tr class="product-removes inbox-data">
+                                                <td><a href="user-profile.html">{{ $user->name }}</a></td>
+                                                <td>
+                                                    <p>{{ $user->email }}</p>
+                                                </td>
+                                                <td>
+                                                    {{-- <span
+                                                        class="badge badge-light-success">{{ $user->roles->first()->name }}</span> --}}
+                                                </td>
+                                                <td>
+                                                    <p>{{ $user->created_at->format('d M Y, H:i A') }}</p>
+                                                </td>
+                                                <td>
+                                                    <div class="common-align gap-2 justify-content-start">
+                                                        {{-- <a class="square-white" href="add-user.html">
+                                                            <span><i class="fa-solid fa-pen"></i></span>
+                                                        </a>
+                                                        <a class="square-white trash-7" href="#!">
+                                                            <span><i class="fa-solid fa-trash"></i></span>
+                                                        </a> --}}
+                                                        <a class="square-white" href="#!">
+                                                            <span><i class="fa-solid fa-eye"></i></span>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

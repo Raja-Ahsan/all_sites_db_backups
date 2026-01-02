@@ -35,6 +35,15 @@ class CmsModuleSeeder extends Seeder
             'status' => 'active',
             'parent_id' => 0,
         ]);
+        $hosts = CmsModule::firstOrCreate([
+            'route_name' => 'hosts-module'
+        ], [
+            'name' => 'Hosts',
+            'icon' => 'fa-solid fa-users',
+            'sort_order' => 3,
+            'status' => 'active',
+            'parent_id' => 0,
+        ]);
        
 
         // submenus 
@@ -59,5 +68,23 @@ class CmsModuleSeeder extends Seeder
         ]);
 
         // users submenu end
+        CmsModule::firstOrCreate([
+            'route_name' => 'hosts.index'
+        ], [
+            'name' => 'All Hosts',
+            'icon' => 'fa-solid fa-list-ul',
+            'sort_order' => 1,
+            'status' => 'active',
+            'parent_id' => $hosts->id,
+        ]);
+        CmsModule::firstOrCreate([
+            'route_name' => 'hosts.create'
+        ], [
+            'name' => 'Add Host',
+            'icon' => 'fa-solid fa-circle-plus',
+            'sort_order' => 2,
+            'status' => 'active',
+            'parent_id' => $hosts->id,
+        ]);
     }
 }

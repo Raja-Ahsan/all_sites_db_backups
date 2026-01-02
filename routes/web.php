@@ -94,6 +94,10 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
    
     Route::post('/users', [UsersController::class, 'store'])->name('users.store');
+    Route::post('/hosts', [UsersController::class, 'index'])->name('hosts.index');
+    Route::get('/hosts', function() {
+        return view('screens.admin.hosts.index');
+    })->name('hosts.index');
     Route::get('/memberships', [MembershipController::class, 'index'])->name('memberships.index');
     Route::middleware(['auth', 'company.approved'])->group(function () {
         Route::get('/contractors', [ContractorController::class, 'index'])->name('contractors.index');

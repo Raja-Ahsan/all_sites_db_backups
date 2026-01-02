@@ -2,90 +2,71 @@
 @section('title', 'Profile')
 @section('content')
 
-<!-- Banner Section -->
-<section class="inner-banner about-banner">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h1 class="hd-lg">Profile</h1>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="profile-sec sec-dark-bg sec-gap-y">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8 col-md-10">
-                <div class="form-wrapper glass">
-                    <form id="profileForm" action="{{ route('user-profile-information.update') }}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="d-flex align-items-center justify-content-between mb-30">
-                                    <div>
-                                        <h4 class="secondry-font fs-60 text-white fw-700 mb-10">Update Profile</h4>
-                                        <p class="para">
-                                            Update your account profile information
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <div class="img-wrapper">
-                                            <img src="{{ asset('images/logo-02.png') }}" style="max-width: 40px;" alt="Logo">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                @if (session('status') === 'profile-information-updated')
-                                    <div class="alert alert-success mb-20" role="alert">
-                                        Profile updated successfully!
-                                    </div>
-                                @endif
-
-                                @if ($errors->updateProfileInformation->any())
-                                    <div class="alert alert-danger mb-20" role="alert">
-                                        <ul class="mb-0">
-                                            @foreach ($errors->updateProfileInformation->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
-
-                                <div class="field-wrapper mb-20">
-                                    <label for="name" class="text-white fs-14 mb-10 d-block">Full Name</label>
-                                    <input type="text" id="name" name="name" class="glass input-field" 
-                                        value="{{ old('name', auth()->user()->name) }}" 
-                                        placeholder="Enter your full name" required>
-                                </div>
-
-                                <div class="field-wrapper mb-20">
-                                    <label for="email" class="text-white fs-14 mb-10 d-block">Email Address</label>
-                                    <input type="email" id="email" name="email" class="glass input-field" 
-                                        value="{{ old('email', auth()->user()->email) }}" 
-                                        placeholder="your.email@example.com" required>
-                                </div>
-
-                                <div class="field-wrapper mb-20">
-                                    <button type="submit" class="bootstrap btn btn-primary w-100 submit-btn">
-                                        <i class="fa-solid fa-save me-10"></i> Update Profile
-                                    </button>
-                                </div>
-
-                                <div class="text-center">
-                                    <p class="text-white fs-14 mb-10">
-                                        <a href="{{ route('home') }}" class="text-secondry-theme fw-600">Back to Home</a>
-                                    </p>
-                                </div>
+<main class="spotmee-main">
+    <div class="px-5">
+        <section class="hero-banner" style="background-image: url('{{ asset('images/banner-img.png') }}'); min-height: 85vh; padding-bottom: 100px;">
+            <div class="absolute inset-0 bg-black/10"></div>
+            
+            <div class="auth-container-new">
+                <div class="w-full max-w-[550px]" data-aos="fade-up">
+                    <div class="form-wrapper !mt-0">
+                        <form id="profileForm" action="{{ route('user-profile-information.update') }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            
+                            <div class="mb-10 text-center">
+                                <h1 class="auth-title">Update Profile</h1>
+                                <p class="auth-subtitle">
+                                    Update your account profile information
+                                </p>
                             </div>
-                        </div>
-                    </form>
+
+                            @if (session('status') === 'profile-information-updated')
+                                <div class="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-800" role="alert">
+                                    Profile updated successfully!
+                                </div>
+                            @endif
+
+                            @if ($errors->updateProfileInformation->any())
+                                <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg" role="alert">
+                                    <ul class="mb-0 list-disc list-inside text-red-800">
+                                        @foreach ($errors->updateProfileInformation->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
+                            <div class="mb-6">
+                                <label for="name" class="auth-label">Full Name</label>
+                                <input type="text" id="name" name="name" class="auth-input" 
+                                    value="{{ old('name', auth()->user()->name) }}" 
+                                    placeholder="Enter your full name" required>
+                            </div>
+
+                            <div class="mb-6">
+                                <label for="email" class="auth-label">Email Address</label>
+                                <input type="email" id="email" name="email" class="auth-input" 
+                                    value="{{ old('email', auth()->user()->email) }}" 
+                                    placeholder="your.email@example.com" required>
+                            </div>
+
+                            <button type="submit" class="cta-btn w-full mb-8 py-4">
+                                <i class="fa-solid fa-save mr-2"></i> Update Profile
+                            </button>
+
+                            <div class="text-center">
+                                <p class="auth-subtitle">
+                                    <a href="{{ route('home') }}" class="auth-link">Back to Home</a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
-</section>
+</main>
 
 @endsection
 
