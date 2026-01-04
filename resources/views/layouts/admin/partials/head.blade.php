@@ -33,6 +33,7 @@
 <link rel="stylesheet" href="{{ asset('assets/libs/css/style.css') }}" />
 <link id="color" rel="stylesheet" href="{{ asset('assets/libs/css/color-1.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/libs/css/responsive.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/libs/css/vendors/jquery.dataTables.css') }}" />
 <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}" />
 @stack('styles')
 

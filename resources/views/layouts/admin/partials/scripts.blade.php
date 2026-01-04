@@ -40,5 +40,11 @@
 <script src="{{ asset('assets/js/ajax-update.js') }}"></script>
 <script src="{{ asset('assets/js/ajax-delete.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/dropzone@5.9.2/dist/min/dropzone.min.js"></script>
+<script src="{{ asset('assets/libs/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/libs/js/datatable/datatables/dataTables.js') }}"></script>
+<script src="{{ asset('assets/libs/js/datatable/datatables/dataTables.select.js') }}"></script>
+<script src="{{ asset('assets/libs/js/datatable/datatables/select.bootstrap5.js') }}"></script>
+<script src="{{ asset('assets/libs/js/datatable/datatables/datatable.custom.js') }}"></script>
 <script src="{{ asset('assets/js/custom.js') }}"></script>
 @stack('scripts')
+ v
