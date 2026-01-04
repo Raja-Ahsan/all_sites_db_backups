@@ -196,3 +196,7 @@ form .square-white:hover {
     border-radius: 8px;
     border: 1px solid #ddd;
 }
+/* responsive */
+.user-list-wrapper .user-list-table div.dt-container .dt-layout-row .dt-search {
+    right: 215px; 
+}

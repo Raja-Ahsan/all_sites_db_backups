@@ -8,17 +8,55 @@ use Illuminate\Http\Request;
 use App\Models\ServiceImage;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
+use Yajra\DataTables\DataTables;
+
 
 
 class ServiceController extends Controller
 {
-    
-  
 
     public function index()
     {
         $services = Service::with('serviceCategory')->get();
         return view('screens.admin.services.index', compact('services'));
+    }
+
+    public function getServicesData()
+    {
+        $query = Service::with('serviceCategory', 'user');
+
+        return DataTables::of($query)
+            ->addColumn('category', function ($row) {
+                return $row->serviceCategory->name ?? '-';
+            })
+            ->addColumn('user', function ($row) {
+                return $row->user->name ?? '-';
+            })
+            ->addColumn('action', function ($row) {
+
+                $viewUrl   = route('services.index', $row->id);
+                $editUrl   = route('services.edit', $row->id);
+                $deleteUrl = route('services.destroy', $row->id);
+                return '
+                <a class="square-white" href="' . $viewUrl . '">
+                    <span><i class="fa-solid fa-eye"></i></span>
+                </a>
+
+                <a class="square-white" href="' . $editUrl . '">
+                    <span><i class="fa-solid fa-pen"></i></span>
+                </a>
+
+                <form action="' . $deleteUrl . '" method="POST" style="display:inline">
+                    <input type="hidden" name="_token" value="' . csrf_token() . '">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="square-white ajax-delete">
+                        <span><i class="fa-solid fa-trash"></i></span>
+                    </button>
+                </form>
+            ';
+            })
+            ->rawColumns(['action'])
+            ->make(true);
     }
     public function create()
     {

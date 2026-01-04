@@ -1143,7 +1143,7 @@
     });
 
     // Order history
-    $("#order-history-table").DataTable({
+    $("#datatable").DataTable({
       columnDefs: [
         {
           orderable: false,

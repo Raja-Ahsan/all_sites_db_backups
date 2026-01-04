@@ -38,52 +38,6 @@
                                             </th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        @forelse ($services as $service)
-                                            <tr class="product-removes inbox-data">
-                                                <td><a href="#!">{{ $service->title }}</a></td>
-                                                <td>
-                                                    <img class="dashboard-sm-img" src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->title }}" width="100">
-                                                </td>
-                                                <td>
-                                                    <p>{{ $service->serviceCategory->name }}</p>
-                                                </td>
-                                                {{-- <td>
-                                                    <p>{{ $service->duration }}</p>
-                                                </td> --}}
-                                                <td><span
-                                                        class="badge badge-light-success">{{ $service->is_active ? 'Active' : 'Inactive' }}</span>
-                                                </td>
-                                                <td>
-                                                    <div class="common-align gap-2 justify-content-start">
-                                                        <a class="square-white" href="#!">
-                                                            <span><i class="fa-solid fa-eye"></i></span>
-                                                        </a>
-                                                        <a class="square-white" href="{{ route('services.edit', $service->id) }}">
-                                                            <span><i class="fa-solid fa-pen"></i></span>
-                                                        </a>
-                                                        <form
-                                                            action="{{ route('services.destroy', $service->id) }}"
-                                                            method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="square-white ajax-delete">
-                                                                <span><i class="fa-solid fa-trash"></i></span>
-                                                            </button>
-                                                        </form>
-                                                        
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @empty
-                                            <tr>
-                                                <td colspan="6" class="text-center">
-                                                    <h3 class="pt-5">No @yield('title', 'Dashboard') Found</h3>
-                                                </td>
-                                            </tr>
-                                        @endforelse
-
-                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -126,6 +80,34 @@
             <input type="text" name="name" value="${name}" class="form-control">
         </div>
     `,
+            });
+        });
+
+        $(function() {
+            $('#services-table').DataTable({
+                processing: true,
+                serverSide: true,
+                order: [],
+                ajax: "{{ route('admin.services.getServicesData') }}",
+                columns: [
+                    {data: 'id', visible: false, searchable: false},
+                    {
+                        data: 'title'
+                    },
+                    {
+                        data: 'category',
+                        orderable: false
+                    },
+                    {
+                        data: 'user',
+                        orderable: false
+                    },
+                    {
+                        data: 'action',
+                        orderable: false,
+                        searchable: false
+                    },
+                ]
             });
         });
     </script>

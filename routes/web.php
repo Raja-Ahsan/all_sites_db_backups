@@ -103,6 +103,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::post('/contractors', [ContractorController::class, 'store'])->name('contractors.store');
         Route::get('/services/create', [ServiceController::class, 'create'])->name('services.create');
         Route::post('/services', [ServiceController::class, 'store'])->name('services.store');
+        Route::get('/admin/services/data', [ServiceController::class, 'getServicesData'])->name('admin.services.getServicesData');
         Route::get('/services/edit/{id}', [ServiceController::class, 'edit'])->name('services.edit');
         Route::put('/services/update/{id}', [ServiceController::class, 'update'])->name('services.update');
         Route::delete('/services/{id}', [ServiceController::class, 'destroy'])->name('services.destroy');
