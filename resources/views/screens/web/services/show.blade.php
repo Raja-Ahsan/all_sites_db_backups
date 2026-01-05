@@ -40,7 +40,7 @@
                 <!-- Right Side - Service Details Box -->
                 <div class="col-lg-4">
                     <div class="service-details-box sec-bg-light radius-10 py-30 px-20">
-                        <div class="service-details-item mb-20 d-flex align-items-center gap-15">
+                        {{-- <div class="service-details-item mb-20 d-flex align-items-center gap-15">
                             <div class="service-detail-icon circle-md bg-primary-theme">
                                 <i class="fa-solid fa-clock text-white"></i>
                             </div>
@@ -55,13 +55,13 @@
                             <div>
                                 <span class="text-white fs-16 fw-400">Revisions: <strong>0</strong></span>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="service-details-item mb-30 d-flex align-items-center gap-15">
                             <div class="service-detail-icon circle-md bg-primary-theme">
                                 <i class="fa-solid fa-check text-white"></i>
                             </div>
                             <div>
-                                <span class="text-white fs-18 fw-600 secondry-font">MASONRY</span>
+                                <span class="text-white fs-18 fw-600 secondry-font">{{$serviceDetail->title}}</span>
                             </div>
                         </div>
                         <div class="service-details-actions d-flex flex-column gap-15">
