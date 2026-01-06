@@ -40,6 +40,14 @@
                         </div>
                         <div class="col-sm-6 col-md-6">
                             <div class="mb-3">
+                                <label class="form-label" for="name">Service Tagline <span
+                                        class="text-danger">*</span></label>
+                                <input class="form-control" id="tagline" type="text"
+                                    placeholder="Enter Service Tagline" name="tagline" value="{{ $service->tagline }}" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="mb-3">
                                 <label class="form-label" for="image">Main Image <span
                                         class="text-danger">*</span></label>
                                 <input class="form-control" id="image" type="file" accept="image/*"
@@ -53,7 +61,7 @@
                         </div>
 
                         <!-- Gallery Images (Dropzone) -->
-                        <div class="col-6">
+                        <div class="col-12">
                             <div class="mb-3">
                                 <label class="form-label">Gallery Images (Optional)</label>
                                 <div id="gallery_images" class="dropzone"></div> <!-- Dropzone.js container -->

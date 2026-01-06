@@ -17,7 +17,7 @@
                         <li data-aos="fade-down" data-aos-duration="600" data-aos-delay="150"><a
                                 href="{{ route('about') }}">About</a></li>
                         <li data-aos="fade-down" data-aos-duration="600" data-aos-delay="200"><a
-                                href="{{ route('services.index') }}">Services</a></li>
+                                href="{{ route('web.services.index') }}">Services</a></li>
                         <li data-aos="fade-down" data-aos-duration="600" data-aos-delay="250"><a
                                 href="{{ route('packages.index') }}">Membership</a></li>
                         <li class="position-relative" data-aos="fade-down" data-aos-duration="600" data-aos-delay="300">

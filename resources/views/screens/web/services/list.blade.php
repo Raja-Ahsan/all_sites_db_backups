@@ -8,7 +8,7 @@
                 'serviceName' => $service->title,
                 'serviceCategoryName' => $service->serviceCategory->name ?? '-',
                 'location' => $service->user->location ?? '-',
-                'serviceDetailUrl' => route('services.detail', $service->id),
+                'serviceDetailUrl' => route('services.detail', [$service->company->slug, $service->slug]),
                 'bookNowUrl' => route('book-now'),
                 'showOnlineBadge' => false,
             ])

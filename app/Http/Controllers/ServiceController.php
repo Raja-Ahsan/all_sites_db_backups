@@ -19,6 +19,7 @@ class ServiceController extends Controller
     {
         $services = Service::with('serviceCategory')->get();
         return view('screens.admin.services.index', compact('services'));
+        
     }
 
     public function getServicesData()
@@ -26,11 +27,19 @@ class ServiceController extends Controller
         $query = Service::with('serviceCategory', 'user');
 
         return DataTables::of($query)
+            ->addColumn('image', function ($row) {
+                if ($row->image) {
+                    return '<img src="' . asset('storage/' . $row->image) . '" width="50">';
+                }
+                return '-';
+            })
             ->addColumn('category', function ($row) {
                 return $row->serviceCategory->name ?? '-';
             })
-            ->addColumn('user', function ($row) {
-                return $row->user->name ?? '-';
+            ->addColumn('is_active', function ($row) {
+                return $row->is_active
+                    ? '<span class="badge bg-success">Active</span>'
+                    : '<span class="badge bg-secondary">Inactive</span>';
             })
             ->addColumn('action', function ($row) {
 
@@ -55,7 +64,7 @@ class ServiceController extends Controller
                 </form>
             ';
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['image', 'action', 'is_active'])
             ->make(true);
     }
     public function create()
@@ -68,6 +77,15 @@ class ServiceController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
+            'tagline' => [
+                'required',
+                'string',
+                function ($attribute, $value, $fail) {
+                    if (str_word_count($value) > 5) {
+                        $fail('Tagline may not contain more than 5 words.');
+                    }
+                },
+            ],
             'images' => 'nullable|array|max:5',
             'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
             'service_category_id' => 'required|exists:service_categories,id',
@@ -91,6 +109,7 @@ class ServiceController extends Controller
         // Create the service
         $service = Service::create([
             'title' => $request->title,
+            'tagline' => $request->tagline,
             'user_id' => auth()->user()->id,
             'company_id' => $companyId,
             'service_category_id' => $request->service_category_id,
@@ -130,6 +149,15 @@ class ServiceController extends Controller
         // Validate input
         $request->validate([
             'title' => 'required|string|max:255',
+            'tagline' => [
+                'required',
+                'string',
+                function ($attribute, $value, $fail) {
+                    if (str_word_count($value) > 5) {
+                        $fail('Tagline may not contain more than 5 words.');
+                    }
+                },
+            ],
             'service_category_id' => 'required|exists:service_categories,id',
             'images' => 'nullable|array|max:5',
             'images.*' => 'image|mimes:jpg,jpeg,png,webp|max:2048', // Validate image types and sizes
@@ -138,7 +166,7 @@ class ServiceController extends Controller
         $service = Service::findOrFail($id);
 
         // Update the service
-        $service->update($request->only(['title', 'service_category_id', 'description']));
+        $service->update($request->only(['title', 'tagline', 'service_category_id', 'description']));
 
         // If there are new images, delete old ones and store the new ones
         if ($request->has('images')) {

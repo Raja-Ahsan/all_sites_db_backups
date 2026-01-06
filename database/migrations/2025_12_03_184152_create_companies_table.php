@@ -15,10 +15,16 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('business_name')->nullable();
+            $table->string('slug')->unique();
             $table->string('license')->nullable();
             $table->string('insurance')->nullable();
             $table->string('phone')->nullable();
             $table->string('location')->nullable();
+            $table->string('country')->nullable();
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('zip_code')->nullable();
+            $table->string('street_address')->nullable();
             $table->string('store_name')->nullable();
             $table->integer('contractor_limit')->default(0);
             $table->boolean('is_profile_completed')->default(false);

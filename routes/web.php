@@ -32,9 +32,9 @@ Route::get(
     fn() => view('screens.web.contact.index')
 )->name('contact');
 
-Route::get('/services', [WebController::class, 'servicesIndex'])->name('services.index');
+Route::get('/services', [WebController::class, 'servicesIndex'])->name('web.services.index');
 
-Route::get('/services/show/{id}',[WebController::class, 'servicesDetail'])->name('services.detail');
+Route::get('/services/{company:slug}/{service:slug}' ,[WebController::class, 'servicesDetail'])->name('services.detail');
 
 Route::get(
     '/referrals',

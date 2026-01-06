@@ -23,6 +23,7 @@ class DashboardController extends Controller
         return view('screens.admin.dashboard.user');
       }
       if ($user->hasRole(config('roles.league_contractor'))) {
+        // $contractor = 
         return view('screens.admin.dashboard.league-contractor');
       }
 

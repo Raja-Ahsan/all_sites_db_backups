@@ -29,7 +29,6 @@
                                 </div>
                                 <span class="text-white fs-14">(4.8) 24 Reviews</span>
                             </div>
-                            <p class="text-white fs-14 opacity-75">Professional Masonry Services</p>
                         </div>
                     </div>
                 </div>

@@ -56,12 +56,52 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-12">
+                        <div class="col-3">
                             <div class="mb-3">
-                                <label class="form-label" for="location">Location</label>
-                                <input class="form-control @error('location') is-invalid @enderror" id="location"
-                                    type="text" placeholder="Enter Location" name="location" />
-                                @error('location')
+                                <label class="form-label" for="country">country</label>
+                                <input class="form-control @error('country') is-invalid @enderror" id="country"
+                                    type="text" placeholder="Enter Your Country" name="country" />
+                                @error('country')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="mb-3">
+                                <label class="form-label" for="state">state</label>
+                                <input class="form-control @error('state') is-invalid @enderror" id="state"
+                                    type="text" placeholder="Enter Your State" name="state" />
+                                @error('state')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="mb-3">
+                                <label class="form-label" for="city">city</label>
+                                <input class="form-control @error('city') is-invalid @enderror" id="city"
+                                    type="text" placeholder="Enter Your City" name="city" />
+                                @error('city')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="mb-3">
+                                <label class="form-label" for="zipcode">zipcode</label>
+                                <input class="form-control @error('zipcode') is-invalid @enderror" id="zipcode"
+                                    type="text" placeholder="Enter Your Zipcode" name="zip_code" />
+                                @error('zipcode')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="mb-3">
+                                <label class="form-label" for="street_address">street_address</label>
+                                <input class="form-control @error('street_address') is-invalid @enderror" id="street_address"
+                                    type="text" placeholder="Enter Your Street Address" name="street_address" />
+                                @error('street_address')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>

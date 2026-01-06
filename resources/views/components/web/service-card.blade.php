@@ -5,7 +5,7 @@
     'serviceName' => null,
     'serviceCategoryName' => null,
     'location' => 'Midland,Texas-79701',
-    'serviceDetailUrl' => route('services.detail', $service->id),
+    'serviceDetailUrl' => route('services.detail', [$service->company->slug, $service->slug]),
     'bookNowUrl' => route('book-now'),
     'showOnlineBadge' => true,
     'showContractorInfo' => true,
@@ -18,24 +18,25 @@
         </div>
         <div class="services-content py-20 px-20">
             <div class="services-content-top">
-                @if($showContractorInfo && $contractorImage && $contractorName)
-                <a href="{{ route('store.index', $service->company_id) }}" class="d-flex align-items-center mb-20 gap-20 store-link-wrapper">
-                    <div class="services-profile-img position-relative">
-                        <img src="{{ $contractorImage }}" alt="profile picture">
-                        @if($showOnlineBadge)
-                        <div class="online-badge-wrapper position-absolute"></div>
-                        @endif
-                    </div>
-                    <div class="services-content-top-right">
-                        <h4 class="text-white secondry-font">{{ $contractorName }}</h4>
-                    </div>
-                </a>
+                @if ($showContractorInfo && $contractorImage && $contractorName)
+                    <a href="{{ route('store.index', $service->company_id) }}"
+                        class="d-flex align-items-center mb-20 gap-20 store-link-wrapper">
+                        <div class="services-profile-img position-relative">
+                            <img src="{{ $contractorImage }}" alt="profile picture">
+                            @if ($showOnlineBadge)
+                                <div class="online-badge-wrapper position-absolute"></div>
+                            @endif
+                        </div>
+                        <div class="services-content-top-right">
+                            <h4 class="text-white secondry-font">{{ $contractorName }}</h4>
+                        </div>
+                    </a>
                 @endif
-                @if($serviceName)
-                <h4 class="fs-20 fw-300 text-white mb-20 word-break">{{ $serviceName }}</h4>
+                @if ($serviceName)
+                    <h4 class="fs-20 fw-300 text-white mb-20 word-break">{{ $serviceName }}</h4>
                 @endif
-                @if($serviceCategoryName)
-                <h4 class="fs-14 fw-300 text-secondry-theme mb-20">{{ $serviceCategoryName }}</h4>
+                @if ($serviceCategoryName)
+                    <h4 class="fs-14 fw-300 text-secondry-theme mb-20">{{ $serviceCategoryName }}</h4>
                 @endif
                 <h4 class="fs-14 fw-300 text-white mb-20">
                     <span><i class="fa-solid fa-location-dot"></i></span> {{ $location }}

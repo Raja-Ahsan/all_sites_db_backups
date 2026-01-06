@@ -89,17 +89,21 @@
                 serverSide: true,
                 order: [],
                 ajax: "{{ route('admin.services.getServicesData') }}",
-                columns: [
-                    {data: 'id', visible: false, searchable: false},
+                columns: [{
+                        data: 'title',
+                        name: 'title'
+                    },
                     {
-                        data: 'title'
+                        data: 'image',
+                        orderable: false,
+                        searchable: false
                     },
                     {
                         data: 'category',
                         orderable: false
                     },
                     {
-                        data: 'user',
+                        data: 'is_active',
                         orderable: false
                     },
                     {

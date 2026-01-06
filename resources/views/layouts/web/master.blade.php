@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"
         integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    @livewireStyles
+    {{-- @livewireStyles --}}
     @vite(['resources/css/utilities.css', 'resources/css/style.css'])
     <title>@yield('title')</title>
 </head>
@@ -43,7 +43,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
     @vite('resources/js/app.js')
-    @livewireScripts
+    {{-- @livewireScripts --}}
     @stack('scripts')
 </body>
 

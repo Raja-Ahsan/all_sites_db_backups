@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
+
 
 class Service extends Model
 {
@@ -26,5 +28,12 @@ class Service extends Model
     public function company()
     {
         return $this->belongsTo(Company::class, 'company_id');
+    }
+
+    protected static function booted()
+    {
+        static::creating(function ($service) {
+            $service->slug = Str::slug($service->title);
+        });
     }
 }

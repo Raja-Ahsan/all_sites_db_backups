@@ -61,7 +61,7 @@
                                 <i class="fa-solid fa-check text-white"></i>
                             </div>
                             <div>
-                                <span class="text-white fs-18 fw-600 secondry-font">{{$serviceDetail->title}}</span>
+                                <span class="text-white fs-18 fw-600 secondry-font">{{ $serviceDetail->title }}</span>
                             </div>
                         </div>
                         <div class="service-details-actions d-flex flex-column gap-15">
@@ -89,9 +89,9 @@
                                 </div>
                             </div>
                             <div>
-                                <h3 class="text-white secondry-font fs-32 mb-5">{{ $serviceDetail->company->business_name }}
+                                <h3 class="text-white secondry-font fs-32 mb-5">{{ $serviceDetail->title }}
                                 </h3>
-                                <p class="text-white fs-14 opacity-75">Professional Masonry Services</p>
+                                <p class="text-white fs-14 opacity-75">{{ $serviceDetail->tagline }}</p>
                             </div>
                         </div>
 
@@ -109,12 +109,12 @@
                                     Other Services
                                 </button>
                             </li>
-                            <li class="nav-item" role="presentation">
+                            {{-- <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="about-tab" data-bs-toggle="tab" data-bs-target="#about"
                                     type="button" role="tab">
                                     About Seller
                                 </button>
-                            </li>
+                            </li> --}}
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="review-tab" data-bs-toggle="tab" data-bs-target="#review"
                                     type="button" role="tab">
@@ -128,7 +128,6 @@
                             <!-- Overview Tab -->
                             <div class="tab-pane fade show active" id="overview" role="tabpanel">
                                 <div class="overview-content">
-                                    <h4 class="text-white secondry-font fs-24 mb-20">Service Overview</h4>
                                     <p class="text-white fs-16 mb-20 para">
                                         {{ $serviceDetail->description }}
                                     </p>
@@ -138,66 +137,17 @@
                             <!-- Other Services Tab -->
                             <div class="tab-pane fade" id="other-services" role="tabpanel">
                                 <div class="other-services-content">
-                                    <h4 class="text-white secondry-font fs-24 mb-20">Other Services</h4>
                                     <div class="row row-gap-40">
                                         <div id="services-wrapper">
-                                            @include('screens.web.services.list', ['services' => $services])
+                                            @if ($services->isNotEmpty())
+                                                @include('screens.web.services.list', [
+                                                    'services' => $services,
+                                                ])
+                                            @else
+                                                <x-empty-state message="This contractor has no other services yet."
+                                                    subMessage="Please check back later." />
+                                            @endif
                                         </div>
-                                        {{-- @php
-                                        // Sample other services data - Replace this with actual data from controller
-                                        $otherServices = [
-                                            [
-                                                'image' => asset('images/hero-bg.png'),
-                                                'contractorImage' => asset('images/resources-04.png'),
-                                                'contractorName' => 'H&D MASONRY',
-                                                'serviceName' => 'STONEWORK',
-                                                'location' => 'Midland, Texas - 79701',
-                                                // 'serviceDetailUrl' => route('services.detail'),
-                                                'bookNowUrl' => route('book-now'),
-                                                'showOnlineBadge' => true,
-                                                'showContractorInfo' => false,
-                                            ],
-                                            [
-                                                'image' => asset('images/hero-bg.png'),
-                                                'contractorImage' => asset('images/resources-04.png'),
-                                                'contractorName' => 'H&D MASONRY',
-                                                'serviceName' => 'STUCCO',
-                                                'location' => 'Midland, Texas - 79701',
-                                                // 'serviceDetailUrl' => route('services.detail'),
-                                                'bookNowUrl' => route('book-now'),
-                                                'showOnlineBadge' => true,
-                                                'showContractorInfo' => false,
-                                            ],
-                                            [
-                                                'image' => asset('images/hero-bg.png'),
-                                                'contractorImage' => asset('images/resources-04.png'),
-                                                'contractorName' => 'H&D MASONRY',
-                                                'serviceName' => 'PAVERS',
-                                                'location' => 'Midland, Texas - 79701',
-                                                // 'serviceDetailUrl' => route('services.detail'),
-                                                'bookNowUrl' => route('book-now'),
-                                                'showOnlineBadge' => true,
-                                                'showContractorInfo' => false,
-                                            ],
-                                            [
-                                                'image' => asset('images/hero-bg.png'),
-                                                'contractorImage' => asset('images/resources-04.png'),
-                                                'contractorName' => 'H&D MASONRY',
-                                                'serviceName' => 'CONCRETE',
-                                                'location' => 'Midland, Texas - 79701',
-                                                // 'serviceDetailUrl' => route('services.detail'),
-                                                'bookNowUrl' => route('book-now'),
-                                                'showOnlineBadge' => true,
-                                                'showContractorInfo' => false,
-                                            ],
-                                        ];
-                                    @endphp --}}
-                                        {{--                                     
-                                    @foreach ($otherServices as $service)
-                                    <div class="col-lg-4">
-                                        @include('components.web.service-card', $service)
-                                    </div>
-                                    @endforeach --}}
                                     </div>
                                 </div>
                             </div>
@@ -205,7 +155,8 @@
                             <!-- About Seller Tab -->
                             <div class="tab-pane fade" id="about" role="tabpanel">
                                 <div class="about-seller-content">
-                                    <h4 class="text-white secondry-font fs-24 mb-20">About {{$serviceDetail->company->business_name}}</h4>
+                                    <h4 class="text-white secondry-font fs-24 mb-20">About
+                                        {{ $serviceDetail->company->business_name }}</h4>
                                     <p class="text-white fs-16 mb-20 para">
                                         H&D MASONRY is a professional masonry contractor with years of experience in
                                         providing high-quality masonry services. We specialize in stone, stucco, pavers,
