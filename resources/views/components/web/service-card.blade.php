@@ -1,7 +1,7 @@
 @props([
     'image' => asset('images/hero-bg.png'),
     'contractorImage' => null,
-    'contractorName' => null,
+    'storeName' => null,
     'serviceName' => null,
     'serviceCategoryName' => null,
     'location' => 'Midland,Texas-79701',
@@ -18,8 +18,8 @@
         </div>
         <div class="services-content py-20 px-20">
             <div class="services-content-top">
-                @if ($showContractorInfo && $contractorImage && $contractorName)
-                    <a href="{{ route('store.index', $service->company_id) }}"
+                @if ($showContractorInfo && $contractorImage && $storeName)
+                    <a href="{{ route('store.index', $service->company->slug) }}"
                         class="d-flex align-items-center mb-20 gap-20 store-link-wrapper">
                         <div class="services-profile-img position-relative">
                             <img src="{{ $contractorImage }}" alt="profile picture">
@@ -28,7 +28,7 @@
                             @endif
                         </div>
                         <div class="services-content-top-right">
-                            <h4 class="text-white secondry-font">{{ $contractorName }}</h4>
+                            <h4 class="text-white secondry-font">{{ $storeName }}</h4>
                         </div>
                     </a>
                 @endif

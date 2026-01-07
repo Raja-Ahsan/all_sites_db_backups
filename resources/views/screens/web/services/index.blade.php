@@ -138,9 +138,17 @@
                         </div>
                     </div>
                     <div class="col-lg-9">
-                        <div id="services-wrapper">
+                        <div id="services-wrapper" class="row row-gap-40">
                             @include('screens.web.services.list', ['services' => $services])
                         </div>
+                        @if ($services->hasMorePages())
+                            <div class="text-center mt-40">
+                                <button id="load-more" class="btn btn-primary load-more-btn"
+                                    data-page="{{ $services->currentPage() + 1 }}">load more
+                                </button>
+                                    
+                            </div>
+                        @endif
                     </div>
                 @else
                     <x-empty-state message="No Services Available Yet" subMessage="Please check back later." />
@@ -149,3 +157,6 @@
         </div>
     </section>
 @endsection
+@push('scripts')
+@include('includes.ajax-requests.load-more');
+@endpush

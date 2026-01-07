@@ -6,272 +6,150 @@
     <div class="container-fluid default-dashboard">
         <div class="row widget-grid">
             <div class="col-xxl-auto col-xl-3 col-sm-6 box-col-3">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="card widget-1">
-                            <div class="card-body">
-                                <div class="widget-content">
-                                    <div class="widget-round secondary">
-                                        <div class="bg-round">
-                                            <svg>
-                                                <use href="{{ asset('/assets/libs/svg/icon-sprite.svg#c-revenue') }}"></use>
-                                            </svg><svg class="half-circle svg-fill">
-                                                <use href="{{ asset('/assets/libs/svg/icon-sprite.svg#halfcircle') }}">
-                                                </use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <span class="f-light">Total Contractors</span>
-                                        <h4>
-                                            <span class="">
-                                                {{-- {{ $totalContractors }} --}}
-                                            </span>
-                                        </h4>
-                                    </div>
+                <div class="card widget-1">
+                    <div class="card-body">
+                        <div class="widget-content">
+                            <div class="widget-round secondary">
+                                <div class="bg-round">
+                                    <svg>
+                                        <use href="{{ asset('/assets/libs/svg/icon-sprite.svg#c-revenue') }}"></use>
+                                    </svg><svg class="half-circle svg-fill">
+                                        <use href="{{ asset('/assets/libs/svg/icon-sprite.svg#halfcircle') }}">
+                                        </use>
+                                    </svg>
                                 </div>
-                                <div class="font-success f-w-500">
-                                    <i class="bookmark-search me-1"></i><span class="txt-success">+50%</span>
-                                </div>
+                            </div>
+                            <div>
+                                <span class="f-light">Total Revenue</span>
+                                <h4>
+                                    <span class="">
+                                        <span class="" data-target="">0</span>
+                                    </span>
+                                </h4>
                             </div>
                         </div>
-                        <div class="col-xl-12">
-                            <div class="card widget-1">
-                                <div class="card-body">
-                                    <div class="widget-content">
-                                        <div class="widget-round success">
-                                            <div class="bg-round">
-                                                <svg>
-                                                    <use href="{{ asset('/assets/libs/svg/icon-sprite.svg#c-customer') }}">
-                                                    </use>
-                                                </svg><svg class="half-circle svg-fill">
-                                                    <use href="{{ asset('/assets/libs/svg/icon-sprite.svg#halfcircle') }}">
-                                                    </use>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <span class="f-light">Total Submittals</span>
-                                            <h4>
-                                                <span class="counter" data-target="845">0</span>+
-                                            </h4>
-                                        </div>
-                                    </div>
-                                    <div class="font-danger f-w-500">
-                                        <i class="bookmark-search me-1" data-feather="trending-down"></i><span
-                                            class="txt-danger">-40%</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xxl-auto col-xl-3 col-sm-6 box-col-3">
-                <div class="row">
-                    <div class="col-xl-12">
-                        {{-- <div class="card widget-1">
-                            <div class="card-body">
-                                <div class="widget-content">
-                                    <div class="widget-round warning">
-                                        <div class="bg-round">
-                                            <svg>
-                                                <use href="{{ asset('/assets/libs/svg/icon-sprite.svg#c-profit') }}"></use>
-                                            </svg><svg class="half-circle svg-fill">
-                                                <use href="{{ asset('/assets/libs/svg/icon-sprite.svg#halfcircle') }}">
-                                                </use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <span class="f-light">Total Users</span>
-                                        <h4>
-                                            <span class="counter" data-target="80">0</span>%
-                                        </h4>
-                                    </div>
-                                </div>
-                                <div class="font-danger f-w-500">
-                                    <i class="bookmark-search me-1" data-feather="trending-down"></i><span
-                                        class="txt-danger">-20%</span>
-                                </div>
-                            </div>
-                        </div> --}}
-                        <div class="card widget-1">
-                            <div class="card-body">
-                                <div class="widget-content">
-                                    <div class="widget-round primary">
-                                        <div class="bg-round">
-                                            <svg class="fill-primary">
-                                                <use href="{{ asset('/assets/libs/svg/icon-sprite.svg#c-invoice') }}">
-                                                </use>
-                                            </svg><svg class="half-circle svg-fill">
-                                                <use href="{{ asset('/assets/libs/svg/icon-sprite.svg#halfcircle') }}">
-                                                </use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <span class="f-light">System Alerts</span>
-                                        <h4 class="counter" data-target="10905">0</h4>
-                                    </div>
-                                </div>
-                                <div class="font-success f-w-500">
-                                    <i class="bookmark-search me-1" data-feather="trending-up"></i><span
-                                        class="txt-success">+50%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-12">
-                            <div class="card widget-1">
-                                <div class="card-body">
-                                    <div class="widget-content">
-                                        <div class="widget-round primary">
-                                            <div class="bg-round">
-                                                <svg class="fill-primary">
-                                                    <use href="{{ asset('/assets/libs/svg/icon-sprite.svg#c-invoice') }}">
-                                                    </use>
-                                                </svg><svg class="half-circle svg-fill">
-                                                    <use href="{{ asset('/assets/libs/svg/icon-sprite.svg#halfcircle') }}">
-                                                    </use>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <span class="f-light">Pending Submittals</span>
-                                            <h4 class="counter" data-target="10905">0</h4>
-                                        </div>
-                                    </div>
-                                    <div class="font-success f-w-500">
-                                        <i class="bookmark-search me-1" data-feather="trending-up"></i><span
-                                            class="txt-success">+50%</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xxl-auto col-xl-3 col-sm-6 box-col-3">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="card widget-1">
-                            <div class="card-body">
-                                <div class="widget-content">
-                                    <div class="widget-round warning">
-                                        <div class="bg-round">
-                                            <svg>
-                                                <use href="{{ asset('/assets/libs/svg/icon-sprite.svg#c-profit') }}"></use>
-                                            </svg><svg class="half-circle svg-fill">
-                                                <use href="{{ asset('/assets/libs/svg/icon-sprite.svg#halfcircle') }}">
-                                                </use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <span class="f-light">Total Services</span>
-                                        <h4>
-                                            <span class="counter" data-target="80">0</span>%
-                                        </h4>
-                                    </div>
-                                </div>
-                                <div class="font-danger f-w-500">
-                                    <i class="bookmark-search me-1" data-feather="trending-down"></i><span
-                                        class="txt-danger">-20%</span>
-                                </div>
-                            </div>
-                        </div>
-                        {{-- <div class="col-xl-12">
-                            
+                        {{-- <div class="font-success f-w-500">
+                            <i class="bookmark-search me-1"></i><span class="txt-success">+50%</span>
                         </div> --}}
                     </div>
                 </div>
             </div>
             <div class="col-xxl-auto col-xl-3 col-sm-6 box-col-3">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="card widget-1">
-                            <div class="card-body">
-                                <div class="widget-content">
-                                    <div class="widget-round warning">
-                                        <div class="bg-round">
-                                            <svg>
-                                                <use href="{{ asset('/assets/libs/svg/icon-sprite.svg#c-profit') }}">
-                                                </use>
-                                            </svg><svg class="half-circle svg-fill">
-                                                <use href="{{ asset('/assets/libs/svg/icon-sprite.svg#halfcircle') }}">
-                                                </use>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <span class="f-light">Total Revenue</span>
-                                        <h4>
-                                            <span class="">$0</span>
-                                        </h4>
-                                    </div>
-                                </div>
-                                <div class="font-danger f-w-500">
-                                    <i class="bookmark-search me-1" data-feather="trending-down"></i><span
-                                        class="txt-danger">-20%</span>
+                <div class="card widget-1">
+                    <div class="card-body">
+                        <div class="widget-content">
+                            <div class="widget-round secondary">
+                                <div class="bg-round">
+                                    <svg>
+                                        <use href="{{ asset('/assets/libs/svg/icon-sprite.svg#c-revenue') }}"></use>
+                                    </svg><svg class="half-circle svg-fill">
+                                        <use href="{{ asset('/assets/libs/svg/icon-sprite.svg#halfcircle') }}">
+                                        </use>
+                                    </svg>
                                 </div>
                             </div>
+                            <div>
+                                <span class="f-light">Total Contractors</span>
+                                <h4>
+                                    <span class="">
+                                        <span class="">{{$totalContractors}}</span>
+                                    </span>
+                                </h4>
+                            </div>
                         </div>
+                        {{-- <div class="font-success f-w-500">
+                            <i class="bookmark-search me-1"></i><span class="txt-success">+50%</span>
+                        </div> --}}
                     </div>
                 </div>
             </div>
-            <div class="col-12 box-ord-2 mb-5">
-                <div class="card h-100">
-                    <div class="card-header card-no-border">
-                        <div class="header-top">
-                            <h5>Sales Statistical Overview</h5>
-                            <div class="card-header-right-icon">
-                                <div class="dropdown custom-dropdown">
-                                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
-                                        Year
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#!">Day</a></li>
-                                        <li><a class="dropdown-item" href="#!">Month</a></li>
-                                        <li><a class="dropdown-item" href="#!">Year</a></li>
-                                    </ul>
+            <div class="col-xxl-auto col-xl-3 col-sm-6 box-col-3">
+                <div class="card widget-1">
+                    <div class="card-body">
+                        <div class="widget-content">
+                            <div class="widget-round secondary">
+                                <div class="bg-round">
+                                    <svg>
+                                        <use href="{{ asset('/assets/libs/svg/icon-sprite.svg#c-revenue') }}"></use>
+                                    </svg><svg class="half-circle svg-fill">
+                                        <use href="{{ asset('/assets/libs/svg/icon-sprite.svg#halfcircle') }}">
+                                        </use>
+                                    </svg>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="card-body pt-0">
-                        <div class="row m-0 overall-card">
-                            <div class="col-12 p-0">
-                                <div class="chart-right">
-                                    <div class="row">
-                                        <div class="col-xl-12">
-                                            <div class="card-body p-0 statistical-card">
-                                                <ul class="d-flex m-b-15">
-                                                    {{-- <li>
-                                                        <h5 class="counter" data-target="19897">0</h5>
-                                                        <span class="f-light">Total Cost</span>
-                                                    </li> --}}
-                                                    <li>
-                                                        <h5>
-                                                            $
-                                                            <span class="counter" data-target="849058">0</span>
-                                                        </h5>
-                                                        <span class="f-light">Total Revenue</span>
-                                                    </li>
-                                                </ul>
-                                                <div class="current-sale-container">
-                                                    <div id="chart-currently"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div>
+                                <span class="f-light">Total Services</span>
+                                <h4>
+                                    <span class="">
+                                        <span class="">{{$totalServices}}</span>
+                                    </span>
+                                </h4>
                             </div>
                         </div>
+                        {{-- <div class="font-success f-w-500">
+                            <i class="bookmark-search me-1"></i><span class="txt-success">+50%</span>
+                        </div> --}}
                     </div>
                 </div>
             </div>
-            
+            <div class="col-xxl-auto col-xl-3 col-sm-6 box-col-3">
+                <div class="card widget-1">
+                    <div class="card-body">
+                        <div class="widget-content">
+                            <div class="widget-round secondary">
+                                <div class="bg-round">
+                                    <svg>
+                                        <use href="{{ asset('/assets/libs/svg/icon-sprite.svg#c-revenue') }}"></use>
+                                    </svg><svg class="half-circle svg-fill">
+                                        <use href="{{ asset('/assets/libs/svg/icon-sprite.svg#halfcircle') }}">
+                                        </use>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div>
+                                <span class="f-light">Total Products</span>
+                                <h4>
+                                    <span class="">
+                                        <span class=""></span>
+                                    </span>
+                                </h4>
+                            </div>
+                        </div>
+                        {{-- <div class="font-success f-w-500">
+                            <i class="bookmark-search me-1"></i><span class="txt-success">+50%</span>
+                        </div> --}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-xxl-auto col-xl-3 col-sm-6 box-col-3">
+                <div class="card widget-1">
+                    <div class="card-body">
+                        <div class="widget-content">
+                            <div class="widget-round secondary">
+                                <div class="bg-round">
+                                    <svg>
+                                        <use href="{{ asset('/assets/libs/svg/icon-sprite.svg#c-revenue') }}"></use>
+                                    </svg><svg class="half-circle svg-fill">
+                                        <use href="{{ asset('/assets/libs/svg/icon-sprite.svg#halfcircle') }}">
+                                        </use>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div>
+                                <span class="f-light">Total Referrals</span>
+                                <h4>
+                                    <span class="">
+                                        <span class="" data-target="">0</span>
+                                    </span>
+                                </h4>
+                            </div>
+                        </div>
+                        {{-- <div class="font-success f-w-500">
+                            <i class="bookmark-search me-1"></i><span class="txt-success">+50%</span>
+                        </div> --}}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

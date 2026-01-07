@@ -14,10 +14,10 @@
                             </div>
                         </div>
                         <div class="store-owner-info">
-                            <h1 class="hd-lg text-white secondry-font mb-10">{{$storeDetail->company->business_name}}</h1>
+                            <h1 class="hd-lg text-white secondry-font mb-10">{{$storeDetail->company->store_name}}</h1>
                             <p class="text-white fs-16 mb-10">
                                 <i class="fa-solid fa-location-dot text-secondry-theme me-10"></i>
-                                {{-- {{$storeDetail->company->location}} --}} location will be there
+                                {{$storeDetail->user->company->city}} {{$storeDetail->company->street_address}} 
                             </p>
                             <div class="d-flex align-items-center gap-15 mb-10">
                                 <div class="rating-stars text-secondry-theme">
@@ -78,51 +78,9 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="overview-content">
-                                <h4 class="text-white secondry-font fs-24 mb-20">About H&D MASONRY</h4>
                                 <p class="text-white fs-16 mb-20 para">
-                                    H&D MASONRY is a professional masonry contractor with years of experience in providing
-                                    high-quality masonry services. We specialize in stone, stucco, pavers, concrete,
-                                    flagstone, cinderblock, brick, and fence installation.
+                                    {{ $storeDetail->description }}
                                 </p>
-                                <p class="text-white fs-16 mb-30 para">
-                                    Our team of skilled professionals is committed to delivering exceptional results that
-                                    exceed our clients' expectations. We take pride in our craftsmanship and attention to
-                                    detail.
-                                </p>
-                                <div class="row row-gap-20">
-                                    <div class="col-lg-3 col-md-4 col-sm-6">
-                                        <div class="info-card sec-bg-light radius-10 py-20 px-20 text-center">
-                                            <i class="fa-solid fa-calendar-check text-secondry-theme mb-10"
-                                                style="font-size: 2.5rem;"></i>
-                                            <h5 class="text-white fs-16 fw-500 mb-5">5+ Years</h5>
-                                            <p class="text-white fs-14 opacity-75">Experience</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-4 col-sm-6">
-                                        <div class="info-card sec-bg-light radius-10 py-20 px-20 text-center">
-                                            <i class="fa-solid fa-check-circle text-secondry-theme mb-10"
-                                                style="font-size: 2.5rem;"></i>
-                                            <h5 class="text-white fs-16 fw-500 mb-5">150+</h5>
-                                            <p class="text-white fs-14 opacity-75">Projects Completed</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-4 col-sm-6">
-                                        <div class="info-card sec-bg-light radius-10 py-20 px-20 text-center">
-                                            <i class="fa-solid fa-users text-secondry-theme mb-10"
-                                                style="font-size: 2.5rem;"></i>
-                                            <h5 class="text-white fs-16 fw-500 mb-5">24</h5>
-                                            <p class="text-white fs-14 opacity-75">Happy Clients</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-4 col-sm-6">
-                                        <div class="info-card sec-bg-light radius-10 py-20 px-20 text-center">
-                                            <i class="fa-solid fa-award text-secondry-theme mb-10"
-                                                style="font-size: 2.5rem;"></i>
-                                            <h5 class="text-white fs-16 fw-500 mb-5">Verified</h5>
-                                            <p class="text-white fs-14 opacity-75">Contractor</p>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

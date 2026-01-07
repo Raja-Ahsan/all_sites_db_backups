@@ -102,43 +102,44 @@ $(document).ready(function () {
     const wrapperId = 'services-wrapper';
 
     function loadPage(url) {
-        const wrapper = document.getElementById(wrapperId);
-        if (!wrapper) return;
+      const wrapper = document.getElementById(wrapperId);
+      if (!wrapper) return;
 
-        fetch(url, {
-            headers: { 'X-Requested-With': 'XMLHttpRequest' }
-        })
+      fetch(url, {
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+      })
         .then(res => res.text())
         .then(html => {
-            wrapper.innerHTML = html;
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+          wrapper.innerHTML = html;
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
 
     // 🔥 INITIAL STATE (VERY IMPORTANT)
     history.replaceState(
-        { page: window.location.href },
-        '',
-        window.location.href
+      { page: window.location.href },
+      '',
+      window.location.href
     );
 
     // Pagination click
     document.addEventListener('click', function (e) {
-        const link = e.target.closest('.pagination a');
-        if (!link) return;
+      const link = e.target.closest('.pagination a');
+      if (!link) return;
 
-        e.preventDefault();
-
-        const url = link.href;
-        history.pushState({ page: url }, '', url);
-        loadPage(url);
+      e.preventDefault();
+      const url = link.href;
+      history.pushState({ page: url }, '', url);
+      loadPage(url);
     });
 
     // 🔥 Back / Forward button (FINAL FIX)
     window.addEventListener('popstate', function () {
-        loadPage(window.location.href);
+      loadPage(window.location.href);
     });
 
-})();
+  })();
+
+  
 });
 

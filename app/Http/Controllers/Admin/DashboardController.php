@@ -14,7 +14,7 @@ class DashboardController extends Controller
 {
     public function index()
    {
-      $user = auth()->user();
+      $user = current_user();
       if ($user->hasRole(config('roles.admin'))) {
          $users = User::where('id', '!=', $user->id)->with('roles')->get();
         return view('screens.admin.dashboard.admin', compact('users'));
@@ -23,8 +23,9 @@ class DashboardController extends Controller
         return view('screens.admin.dashboard.user');
       }
       if ($user->hasRole(config('roles.league_contractor'))) {
-        // $contractor = 
-        return view('screens.admin.dashboard.league-contractor');
+        $totalContractors = $user->createdUsers->count();
+        $totalServices = $user->company->services->count();
+        return view('screens.admin.dashboard.league-contractor', compact('totalContractors', 'totalServices'));
       }
 
       abort(403, 'No dashboard assigned to this role');

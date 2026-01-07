@@ -15,6 +15,9 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\Admin\ContractorApprovalController as AdminContractorApprovalController;
 use App\Http\Controllers\Admin\ServiceCategoryController as AdminServiceCategoryController;
 use App\Http\Controllers\WebController;
+use App\Http\Controllers\Web\ServiceController as WebServiceController;
+use App\Http\Controllers\Web\StoreController as WebStoreController;
+use App\Http\Controllers\Web\MarketPlaceController as WebMarketPlaceController;
 
 // Web Routes
 Route::get(
@@ -32,25 +35,18 @@ Route::get(
     fn() => view('screens.web.contact.index')
 )->name('contact');
 
-Route::get('/services', [WebController::class, 'servicesIndex'])->name('web.services.index');
-
-Route::get('/services/{company:slug}/{service:slug}' ,[WebController::class, 'servicesDetail'])->name('services.detail');
+Route::get('/services', [WebServiceController::class, 'index'])->name('web.services.index');
+Route::get('/load-more-services', [WebStoreController::class, 'loadMoreServices']);
+Route::get('/services/{company:slug}/{service:slug}' ,[WebServiceController::class, 'show'])->name('services.detail');
+Route::get('/marketplace', [WebMarketPlaceController::class, 'index'])->name('marketplace');
 
 Route::get(
     '/referrals',
     fn() => view('screens.web.referrals.index')
 )->name('referrals');
 
-Route::get(
-    '/marketplace',
-    fn() => view('screens.web.marketplace.index')
-)->name('marketplace');
 
-// Route::get(
-//     '/store',
-//     fn() => view('screens.web.store.index')
-// )->name('store');
-Route::get('/store/{company}', [WebController::class, 'storeIndex'])->name('store.index');
+Route::get('/store/{company:slug}', [WebStoreController::class, 'index'])->name('store.index');
 
 
 Route::get(
