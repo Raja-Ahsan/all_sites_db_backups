@@ -24,7 +24,7 @@ class CompanyController extends Controller
             'city'    => 'required|string|max:100',
             'zip_code' => 'required|string|max:20',
             'street_address' => 'required|string|max:250',
-            'store_img' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'store_img' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
         ]);
 
         $company = Company::where('user_id', auth()->id())->first();

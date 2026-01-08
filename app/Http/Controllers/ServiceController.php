@@ -159,8 +159,8 @@ class ServiceController extends Controller
                 },
             ],
             'service_category_id' => 'required|exists:service_categories,id',
-            'images' => 'nullable|array|max:5',
-            'images.*' => 'image|mimes:jpg,jpeg,png,webp|max:2048', // Validate image types and sizes
+            'images' => 'nullable|array|max:5120',
+            'images.*' => 'image|mimes:jpg,jpeg,png,webp|max:5120', // Validate image types and sizes
         ]);
 
         $service = Service::findOrFail($id);
