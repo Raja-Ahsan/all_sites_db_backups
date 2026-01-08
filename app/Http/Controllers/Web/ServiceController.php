@@ -42,10 +42,6 @@ class ServiceController extends Controller
             ->paginate(6);
         if ($request->ajax()) {
             return view('screens.web.services.list', compact('services'))->render();
-            // return response()->json([
-            //     'stores' => view('screens.web.services.list', compact('services'))->render(),
-            //     'next_page' => $services->currentPage() + 1
-            // ]);
         }
         return view('screens.web.services.show', compact('serviceDetail', 'services'));
     }
