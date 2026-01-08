@@ -27,15 +27,24 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'max:255',
                 Rule::unique('users')->ignore($user->id),
             ],
+            'profile_img' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:2048'],
         ])->validateWithBag('updateProfileInformation');
+        
+        $profile_img = null;
+        if (isset($input['profile_img']) && $input['profile_img'] instanceof \Illuminate\Http\UploadedFile) {
+            $profile_img = $input['profile_img']->store('profiles', 'public');
+        }
 
-        if ($input['email'] !== $user->email &&
-            $user instanceof MustVerifyEmail) {
+        if (
+            $input['email'] !== $user->email &&
+            $user instanceof MustVerifyEmail
+        ) {
             $this->updateVerifiedUser($user, $input);
         } else {
             $user->forceFill([
                 'name' => $input['name'],
                 'email' => $input['email'],
+                'profile_img' => $profile_img ? $profile_img : $user->profile_img,
             ])->save();
         }
     }

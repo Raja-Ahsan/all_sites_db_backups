@@ -29,12 +29,19 @@ class CreateNewUser implements CreatesNewUsers
                 Rule::unique(User::class),
             ],
             'password' => $this->passwordRules(),
+            'profile_img' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:2048'],
         ])->validate();
+
+        $profile_img = null;
+        if (isset($input['profile_img']) && $input['profile_img'] instanceof \Illuminate\Http\UploadedFile) {
+            $profile_img = $input['profile_img']->store('profiles', 'public');
+        }
 
         $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
+            'profile_img' => $profile_img,
         ]);
         $user->assignRole(config('roles.user'));
         return $user;

@@ -18,7 +18,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-8 col-md-10">
                 <div class="form-wrapper glass">
-                    <form id="profileForm" action="{{ route('user-profile-information.update') }}" method="POST">
+                    <form id="profileForm" action="{{ route('user-profile-information.update') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="row">
@@ -52,7 +52,22 @@
                                         </ul>
                                     </div>
                                 @endif
+                                <div class="col-12 mb-20">
+                                    <label for="firstName" class="text-white fs-14 mb-10 d-block">Update Profile Picture</label>
+                                    <div class="profile-img-wrapper position-relative">
+                                        <div class="small-12 medium-2 large-2 columns">
+                                            <div class="circle">
+                                                <img class="profile-pic"
+                                                    src="{{asset('storage/' . auth()->user()->profile_img)}}">
 
+                                            </div>
+                                            <div class="p-image">
+                                                <i class="fa fa-camera upload-button"></i>
+                                                <input class="file-upload" name="profile_img" type="file" accept="image/*" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="field-wrapper mb-20">
                                     <label for="name" class="text-white fs-14 mb-10 d-block">Full Name</label>
                                     <input type="text" id="name" name="name" class="glass input-field" 

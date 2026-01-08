@@ -24,7 +24,7 @@ class DashboardController extends Controller
       }
       if ($user->hasRole(config('roles.league_contractor'))) {
         $totalContractors = $user->createdUsers->count();
-        $totalServices = $user->company->services->count();
+        $totalServices = $user->company ? $user->company->services->count() : 0;
         return view('screens.admin.dashboard.league-contractor', compact('totalContractors', 'totalServices'));
       }
 

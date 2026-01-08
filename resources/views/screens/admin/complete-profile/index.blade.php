@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="edit-profile">
-            <form class="card ajax-form" action={{ route('company-profile.store') }} method="POST">
+            <form class="card ajax-form" action={{ route('company-profile.store') }} method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card-header">
                     <div class="card-options">
@@ -96,12 +96,22 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-3">
+                        <div class="col-6">
                             <div class="mb-3">
                                 <label class="form-label" for="street_address">street_address</label>
                                 <input class="form-control @error('street_address') is-invalid @enderror" id="street_address"
                                     type="text" placeholder="Enter Your Street Address" name="street_address" />
                                 @error('street_address')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="store_img">Store Img</label>
+                                <input class="form-control @error('store_img') is-invalid @enderror" id="store_img"
+                                    type="file" name="store_img" accept="image/*" />
+                                @error('store_img')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>

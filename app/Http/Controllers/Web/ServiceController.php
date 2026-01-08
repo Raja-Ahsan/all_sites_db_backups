@@ -21,7 +21,6 @@ class ServiceController extends Controller
                 'last_page' => $services->lastPage()
             ]);
         }
-
         return view('screens.web.services.index', compact('services'));
     }
 

@@ -1,6 +1,7 @@
 @props([
     'image' => asset('images/hero-bg.png'),
     'contractorImage' => null,
+    'contractorName' => null,
     'storeName' => null,
     'serviceName' => null,
     'serviceCategoryName' => null,
@@ -11,26 +12,36 @@
     'showContractorInfo' => true,
 ])
 
-<div class="services-list-wrapper">
-    <div class="services-card-wrapper sec-bg-light radius-10">
+<div class="services-list-wrapper h-100">
+    <div class="services-card-wrapper sec-bg-light radius-10 h-100">
         <div class="img-wrapper">
             <img src="{{ $image }}" alt="service-image">
         </div>
         <div class="services-content py-20 px-20">
             <div class="services-content-top">
-                @if ($showContractorInfo && $contractorImage && $storeName)
+                @if ($showContractorInfo && $storeName)
                     <a href="{{ route('store.index', $service->company->slug) }}"
                         class="d-flex align-items-center mb-20 gap-20 store-link-wrapper">
-                        <div class="services-profile-img position-relative">
+                        <div class="services-content-top-right">
+                            <h4 class="hd-lg hd-sm ">{{ $storeName }}</h4>
+                        </div>
+                    </a>
+                @endif
+                @if ($showContractorInfo && $contractorImage && $contractorName)
+                    <div class="services-profile-img position-relative">
+                        <a class="d-flex align-items-center gap-20 mb-20" href="{{ route('store.index', $service->company->slug) }}">
                             <img src="{{ $contractorImage }}" alt="profile picture">
                             @if ($showOnlineBadge)
                                 <div class="online-badge-wrapper position-absolute"></div>
                             @endif
-                        </div>
-                        <div class="services-content-top-right">
-                            <h4 class="text-white secondry-font">{{ $storeName }}</h4>
-                        </div>
-                    </a>
+                            @if ($contractorName)
+                                <h4 class="text-white secondry-font">
+                                    {{ $contractorName }}
+                                </h4>
+                            @endif
+
+                        </a>
+                    </div>
                 @endif
                 @if ($serviceName)
                     <h4 class="fs-20 fw-300 text-white mb-20 word-break">{{ $serviceName }}</h4>

@@ -24,6 +24,7 @@ class CompanyController extends Controller
             'city'    => 'required|string|max:100',
             'zip_code' => 'required|string|max:20',
             'street_address' => 'required|string|max:250',
+            'store_img' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
 
         $company = Company::where('user_id', auth()->id())->first();
@@ -33,12 +34,18 @@ class CompanyController extends Controller
             $company->user_id = auth()->id();
         }
 
+        $storeImage = null;
+        if ($request->hasFile('store_img')) {
+            $storeImage = $request->file('store_img')->store('stores', 'public');
+        }
+
         $company->business_name = $request->business_name;
         $company->license = $request->license;
         $company->insurance = $request->insurance;
         $company->phone = $request->phone;
         $company->location = $request->location;
         $company->store_name = $request->store_name;
+        $company->store_img = $storeImage;
         $company->country = $request->country;
         $company->state = $request->state;
         $company->city = $request->city;

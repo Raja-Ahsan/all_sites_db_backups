@@ -1,7 +1,6 @@
 @extends('layouts.web.master')
 @section('title', 'Store')
 @section('content')
-
     <section class="inner-banner about-banner">
         <div class="container">
             <div class="row">
@@ -9,15 +8,17 @@
                     <div class="d-flex align-items-center gap-20">
                         <div class="store-owner-profile position-relative">
                             <div class="store-profile-img circle-lg">
-                                <img src="{{ asset('images/resources-04.png') }}" alt="Store Owner" class="img-fluid"
-                                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                                    <img class="img-fluid" src="{{ $storeDetail->user->profile_img ? asset('storage/' . $storeDetail->user->profile_img) : asset('images/placeholders/profile.png') }}" alt="profile picture"
+                                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"
+                                    alt="Store Owner"
+                                    >
                             </div>
                         </div>
                         <div class="store-owner-info">
-                            <h1 class="hd-lg text-white secondry-font mb-10">{{$storeDetail->company->store_name}}</h1>
+                            <h1 class="hd-lg text-white secondry-font mb-10">{{ $storeDetail->company->store_name }}</h1>
                             <p class="text-white fs-16 mb-10">
                                 <i class="fa-solid fa-location-dot text-secondry-theme me-10"></i>
-                                {{$storeDetail->user->company->city}} {{$storeDetail->company->street_address}} 
+                                {{ $storeDetail->user->company->city }} {{ $storeDetail->company->street_address }}
                             </p>
                             <div class="d-flex align-items-center gap-15 mb-10">
                                 <div class="rating-stars text-secondry-theme">
@@ -114,8 +115,7 @@
                                                         class="fa-solid fa-location-dot"></i></span> Midland,Texas-79701
                                             </h4>
                                             <div class="d-flex align-items-center gap-10">
-                                                <a href=""
-                                                    class="bootstrap btn btn-outline btn-sm">View Detail</a>
+                                                <a href="" class="bootstrap btn btn-outline btn-sm">View Detail</a>
                                                 <a href="{{ route('book-now') }}"
                                                     class="bootstrap btn btn-outline btn-sm">Book Now</a>
                                             </div>
@@ -149,8 +149,7 @@
                                                         class="fa-solid fa-location-dot"></i></span> Midland,Texas-79701
                                             </h4>
                                             <div class="d-flex align-items-center gap-10">
-                                                <a href=""
-                                                    class="bootstrap btn btn-outline btn-sm">View Detail</a>
+                                                <a href="" class="bootstrap btn btn-outline btn-sm">View Detail</a>
                                                 <a href="{{ route('book-now') }}"
                                                     class="bootstrap btn btn-outline btn-sm">Book Now</a>
                                             </div>
@@ -184,8 +183,7 @@
                                                         class="fa-solid fa-location-dot"></i></span> Midland,Texas-79701
                                             </h4>
                                             <div class="d-flex align-items-center gap-10">
-                                                <a href=""
-                                                    class="bootstrap btn btn-outline btn-sm">View Detail</a>
+                                                <a href="" class="bootstrap btn btn-outline btn-sm">View Detail</a>
                                                 <a href="{{ route('book-now') }}"
                                                     class="bootstrap btn btn-outline btn-sm">Book Now</a>
                                             </div>
@@ -219,8 +217,7 @@
                                                         class="fa-solid fa-location-dot"></i></span> Midland,Texas-79701
                                             </h4>
                                             <div class="d-flex align-items-center gap-10">
-                                                <a href=""
-                                                    class="bootstrap btn btn-outline btn-sm">View Detail</a>
+                                                <a href="" class="bootstrap btn btn-outline btn-sm">View Detail</a>
                                                 <a href="{{ route('book-now') }}"
                                                     class="bootstrap btn btn-outline btn-sm">Book Now</a>
                                             </div>

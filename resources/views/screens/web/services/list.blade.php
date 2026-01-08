@@ -2,7 +2,10 @@
     <div class="col-lg-4">
         @include('components.web.service-card', [
             'image' => asset('storage/' . $service->image),
-            'contractorImage' => asset('images/resources-04.png'),
+            'contractorImage' => $service->user->profile_img 
+            ? asset('storage/' . $service->user->profile_img) 
+            : asset('images/placeholders/profile.png'),
+            'contractorName' => $service->user->name ?? '-',
             'storeName' => $service->company->store_name ?? '-',
             'serviceName' => $service->title,
             'serviceCategoryName' => $service->serviceCategory->name ?? '-',
@@ -13,6 +16,3 @@
         ])
     </div>
 @endforeach
-{{-- <div class="mt-4 text-center">
-    {{ $services->links() }}
-</div> --}}
