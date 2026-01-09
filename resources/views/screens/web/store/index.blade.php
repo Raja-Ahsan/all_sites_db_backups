@@ -240,8 +240,8 @@
                                 <div class="row row-gap-40">
                                     <div class="col-lg-3 col-md-4 col-sm-6">
                                         <div class="con-place-card-wrapper marketplace-card-wrapper">
-                                            <div class="img-wrapper">
-                                                <img src="https://media.istockphoto.com/id/1351998505/photo/tools-put-up-for-sale-in-a-hardware-store.webp?a=1&b=1&s=612x612&w=0&k=20&c=EeIcRlUbMV8WctjRTr8fXH6RqLsh0qZ_lRV_KVfLuxo=" alt="Product Image">
+                                            <div class="img-wrapper store-imges-wrapper">
+                                                <img src="{{asset('images/placeholders/download.webp')}}" alt="Product Image">
                                             </div>
                                             <div class="content-wrapper">
                                                 <h4 class="hd-lg hd-sm mb-10">Power Drill Set</h4>
@@ -264,8 +264,8 @@
                                     </div>
                                     <div class="col-lg-3 col-md-4 col-sm-6">
                                         <div class="con-place-card-wrapper marketplace-card-wrapper">
-                                            <div class="img-wrapper">
-                                                <img src="{{ asset('images/con-place-02.png') }}" alt="Product Image">
+                                            <div class="img-wrapper store-imges-wrapper">
+                                                <img src="{{asset('images/placeholders/download.webp')}}" alt="Product Image">
                                             </div>
                                             <div class="content-wrapper">
                                                 <h4 class="hd-lg hd-sm mb-10">Safety Helmet</h4>
@@ -288,8 +288,8 @@
                                     </div>
                                     <div class="col-lg-3 col-md-4 col-sm-6">
                                         <div class="con-place-card-wrapper marketplace-card-wrapper">
-                                            <div class="img-wrapper">
-                                                <img src="{{ asset('images/con-place-03.png') }}" alt="Product Image">
+                                            <div class="img-wrapper store-imges-wrapper">
+                                                <img src="{{asset('images/placeholders/download.webp')}}" alt="Product Image">
                                             </div>
                                             <div class="content-wrapper">
                                                 <h4 class="hd-lg hd-sm mb-10">Measuring Tools</h4>
@@ -312,8 +312,8 @@
                                     </div>
                                     <div class="col-lg-3 col-md-4 col-sm-6">
                                         <div class="con-place-card-wrapper marketplace-card-wrapper">
-                                            <div class="img-wrapper">
-                                                <img src="{{ asset('images/con-place-04.png') }}" alt="Product Image">
+                                            <div class="img-wrapper store-imges-wrapper">
+                                                <img src="{{asset('images/placeholders/download.webp')}}" alt="Product Image">
                                             </div>
                                             <div class="content-wrapper">
                                                 <h4 class="hd-lg hd-sm mb-10">Work Gloves</h4>

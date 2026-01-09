@@ -1460,6 +1460,12 @@ img {
 .seller-avatar img {
     border-radius: 50%;
 }
+.store-imges-wrapper img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: var(--text-30);
+    height: 27.9rem;
+}
 /* responsive */
 @media (min-width: 576px) {
     .featured-slider {
