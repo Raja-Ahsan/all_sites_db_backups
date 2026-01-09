@@ -2,7 +2,9 @@
 @section('title', 'Service Detail')
 @section('content')
 
-    <section class="inner-banner about-banner">
+    <section class="inner-banner about-banner"
+    style="background: linear-gradient(180deg, #000000b3 0%, #000000b3 100%),  url('{{ asset('storage/'.$serviceDetail->image) }}')"
+    >
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -156,7 +158,9 @@
                                     <div class="d-flex align-items-center gap-20 mb-30">
                                         <div
                                             class="seller-avatar circle-lg bg-primary-theme d-flex align-items-center justify-content-center">
-                                            <span class="text-white fs-24 fw-600">DF</span>
+                                            {{-- <span class="text-white fs-24 fw-600">DF</span> --}}
+                                            <img src="{{ asset('storage/'.$serviceDetail->user->profile_img) }}" alt="">
+                                            
                                         </div>
                                         <div>
                                             <a href="{{ route('store.index', $serviceDetail->company_id) }}"

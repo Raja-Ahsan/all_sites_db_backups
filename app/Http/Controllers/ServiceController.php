@@ -17,14 +17,20 @@ class ServiceController extends Controller
 
     public function index()
     {
-        $services = Service::with('serviceCategory')->get();
+        $companyId = auth()->user()->company->id;
+        $services = Service::with('serviceCategory')
+        ->where('company_id', $companyId)
+        ->get();
         return view('screens.admin.services.index', compact('services'));
         
     }
 
     public function getServicesData()
     {
-        $query = Service::with('serviceCategory', 'user');
+        $companyId = auth()->user()->company->id;
+        $query = Service::with('serviceCategory', 'user')
+        ->where('company_id', $companyId)
+        ;
 
         return DataTables::of($query)
             ->addColumn('image', function ($row) {
@@ -86,8 +92,8 @@ class ServiceController extends Controller
                     }
                 },
             ],
-            'images' => 'nullable|array|max:5',
-            'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'images' => 'nullable|array|max:5120',
+            'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:5120',
             'service_category_id' => 'required|exists:service_categories,id',
         ]);
 

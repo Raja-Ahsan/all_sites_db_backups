@@ -26,8 +26,10 @@ class Company extends Model
 
     protected static function booted()
     {
-        static::creating(function ($company) {
-            $company->slug = Str::slug($company->store_name);
+        static::saving(function ($company) {
+            if ($company->isDirty('store_name')) {
+                $company->slug = Str::slug($company->store_name);
+            }
         });
     }
 }

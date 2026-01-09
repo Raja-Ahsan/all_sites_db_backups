@@ -1,7 +1,9 @@
 @extends('layouts.web.master')
 @section('title', 'Store')
 @section('content')
-    <section class="inner-banner about-banner">
+    <section class="inner-banner about-banner dynamic-banner"
+    style="background: linear-gradient(180deg, #000000b3 0%, #000000b3 100%),  url('{{ asset('storage/'.$storeDetail->company->store_img) }}')"
+    >
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -239,7 +241,7 @@
                                     <div class="col-lg-3 col-md-4 col-sm-6">
                                         <div class="con-place-card-wrapper marketplace-card-wrapper">
                                             <div class="img-wrapper">
-                                                <img src="{{ asset('images/con-place-01.png') }}" alt="Product Image">
+                                                <img src="https://media.istockphoto.com/id/1351998505/photo/tools-put-up-for-sale-in-a-hardware-store.webp?a=1&b=1&s=612x612&w=0&k=20&c=EeIcRlUbMV8WctjRTr8fXH6RqLsh0qZ_lRV_KVfLuxo=" alt="Product Image">
                                             </div>
                                             <div class="content-wrapper">
                                                 <h4 class="hd-lg hd-sm mb-10">Power Drill Set</h4>

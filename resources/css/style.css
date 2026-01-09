@@ -1451,10 +1451,14 @@ img {
 .store-image-wrapper img {
     width: 100%;
     object-fit: cover;
-    max-height: 30rem;
+    height: 27rem;
     border-radius: var(--text-30);
-
-
+}
+.dynamic-banner {
+    background-size: cover !important;   
+}
+.seller-avatar img {
+    border-radius: 50%;
 }
 /* responsive */
 @media (min-width: 576px) {

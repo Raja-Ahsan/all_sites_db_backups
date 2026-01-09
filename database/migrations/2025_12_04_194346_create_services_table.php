@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('slug')->unique();
+            $table->string('slug');
             $table->string('tagline')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('company_id')->nullable();
@@ -26,6 +26,7 @@ return new class extends Migration
             $table->foreign('service_category_id')->references('id')->on('service_categories')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->boolean('is_active')->default(true);
+            $table->unique(['company_id', 'slug']);
             $table->timestamps();
         });
     }
