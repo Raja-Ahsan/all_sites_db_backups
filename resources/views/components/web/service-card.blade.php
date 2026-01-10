@@ -7,7 +7,6 @@
     'serviceCategoryName' => null,
     'location' => 'Midland,Texas-79701',
     'serviceDetailUrl' => route('services.detail', [$service->company->slug, $service->slug]),
-    'bookNowUrl' => route('book-now'),
     'showOnlineBadge' => true,
     'showContractorInfo' => true,
 ])

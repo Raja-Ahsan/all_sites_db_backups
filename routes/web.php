@@ -18,6 +18,7 @@ use App\Http\Controllers\WebController;
 use App\Http\Controllers\Web\ServiceController as WebServiceController;
 use App\Http\Controllers\Web\StoreController as WebStoreController;
 use App\Http\Controllers\Web\MarketPlaceController as WebMarketPlaceController;
+use App\Http\Controllers\Web\ServiceBookingController as WebServiceBookingController;
 
 // Web Routes
 Route::get(
@@ -59,10 +60,8 @@ Route::get(
     fn() => view('screens.web.products.show')
 )->name('product-detail');
 
-Route::get(
-    '/book-now',
-    fn() => view('screens.web.book-now.index')
-)->name('book-now');
+Route::get('/book-now/{company:slug}/{service:slug}', [WebServiceBookingController::class, 'create'])->name('book-now.create');
+Route::post('/book-now/{company:slug}/{service:slug}', [WebServiceBookingController::class, 'store'])->name('book-now.store');
 
 Route::get(
     '/cart',

@@ -11,7 +11,7 @@
             'serviceCategoryName' => $service->serviceCategory->name ?? '-',
             'location' => $service->company->city . ' ' . $service->company->street_address ?? '-',
             'serviceDetailUrl' => route('services.detail', [$service->company->slug, $service->slug]),
-            'bookNowUrl' => route('book-now'),
+            'bookNowUrl' => route('book-now.create', [$service->company->slug, $service->slug]),
             'showOnlineBadge' => false,
         ])
     </div>

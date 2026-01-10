@@ -47,4 +47,3 @@
 <script src="{{ asset('assets/libs/js/datatable/datatables/datatable.custom.js') }}"></script>
 <script src="{{ asset('assets/js/custom.js') }}"></script>
 @stack('scripts')
- v
