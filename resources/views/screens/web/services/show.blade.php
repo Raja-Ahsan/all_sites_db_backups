@@ -3,8 +3,7 @@
 @section('content')
 
     <section class="inner-banner about-banner"
-    style="background: linear-gradient(180deg, #000000b3 0%, #000000b3 100%),  url('{{ asset('storage/'.$serviceDetail->image) }}')"
-    >
+        style="background: linear-gradient(180deg, #000000b3 0%, #000000b3 100%),  url('{{ asset('storage/' . $serviceDetail->image) }}')">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -67,10 +66,11 @@
                             </div>
                         </div>
                         <div class="service-details-actions d-flex flex-column gap-15">
-                            <a href="{{ route('book-now') }}" class="bootstrap btn btn-primary w-100 text-center">
+                            <a href="{{ route('book-now.create', [$serviceDetail->company->slug, $serviceDetail->slug]) }}"
+                                class="bootstrap btn btn-primary w-100 text-center">
                                 Book Appointment
                             </a>
-                            <a href="tel:5551234567" class="bootstrap btn btn-outline w-100 text-center">
+                            <a href="tel:{{$serviceDetail->company->phone}}" class="bootstrap btn btn-outline w-100 text-center">
                                 <i class="fa-solid fa-phone" style="margin-right: 8px;"></i> Call Now
                                 {{ $serviceDetail->company->phone }}
                             </a>
@@ -159,11 +159,12 @@
                                         <div
                                             class="seller-avatar circle-lg bg-primary-theme d-flex align-items-center justify-content-center">
                                             {{-- <span class="text-white fs-24 fw-600">DF</span> --}}
-                                            <img src="{{ asset('storage/'.$serviceDetail->user->profile_img) }}" alt="">
-                                            
+                                            <img src="{{ asset('storage/' . $serviceDetail->user->profile_img) }}"
+                                                alt="">
+
                                         </div>
                                         <div>
-                                            <a href="{{ route('store.index', $serviceDetail->company_id) }}"
+                                            <a href="{{ route('store.index', [$serviceDetail->compa]) }}"
                                                 class="text-white secondry-font fs-24 mb-5">{{ $serviceDetail->company->store_name }}</a>
                                             <p class="text-white fs-16 mb-5">Seller: <span
                                                     class="fw-600">{{ $serviceDetail->user->name }}</span></p>

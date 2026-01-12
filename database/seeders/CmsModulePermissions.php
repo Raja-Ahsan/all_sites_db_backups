@@ -91,7 +91,7 @@ class CmsModulePermissions extends Seeder
             ['role_id' => $userRole->id, 'module_id' => $modules['memberships']->id ?? null, 'is_add' => 0, 'is_view' => 0, 'is_update' => 1, 'is_delete' => 0], // Memberships
             ['role_id' => $userRole->id, 'module_id' => $modules['payments']->id ?? null, 'is_add' => 0, 'is_view' => 0, 'is_update' => 0, 'is_delete' => 0], // payments
             ['role_id' => $userRole->id, 'module_id' => $modules['referrals']->id ?? null, 'is_add' => 0, 'is_view' => 0, 'is_update' => 1, 'is_delete' => 0], // referrals
-            ['role_id' => $userRole->id, 'module_id' => $modules['contractors']->id ?? null, 'is_add' => 0, 'is_view' => 0, 'is_update' => 1, 'is_delete' => 0], // contractors
+            // ['role_id' => $userRole->id, 'module_id' => $modules['contractors']->id ?? null, 'is_add' => 0, 'is_view' => 0, 'is_update' => 1, 'is_delete' => 0], // contractors
             ['role_id' => $userRole->id, 'module_id' => $modules['services']->id ?? null, 'is_add' => 1, 'is_view' => 0, 'is_update' => 1, 'is_delete' => 0], // services
             ['role_id' => $userRole->id, 'module_id' => $modules['products']->id ?? null, 'is_add' => 0, 'is_view' => 0, 'is_update' => 1, 'is_delete' => 0], // products
             ['role_id' => $userRole->id, 'module_id' => $modules['orders']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // orders
@@ -102,8 +102,8 @@ class CmsModulePermissions extends Seeder
             ['role_id' => $userRole->id, 'module_id' => $submenus['memberships.index']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // All Memberships (memberships.index)
             ['role_id' => $userRole->id, 'module_id' => $submenus['referrals.index']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // All Referrals (referrals.index)
             ['role_id' => $userRole->id, 'module_id' => $submenus['referrals.create']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // Add Referral (referrals.create)
-            ['role_id' => $userRole->id, 'module_id' => $submenus['contractors.index']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // All Contractors (contractors.index)
-            ['role_id' => $userRole->id, 'module_id' => $submenus['contractors.create']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // Add Contractor (contractors.create)
+            // ['role_id' => $userRole->id, 'module_id' => $submenus['contractors.index']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // All Contractors (contractors.index)
+            // ['role_id' => $userRole->id, 'module_id' => $submenus['contractors.create']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // Add Contractor (contractors.create)
             ['role_id' => $userRole->id, 'module_id' => $submenus['services.index']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // All Services (services.index)
             ['role_id' => $userRole->id, 'module_id' => $submenus['services.create']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // Add Service (services.create)
             ['role_id' => $userRole->id, 'module_id' => $modules['services-categories.create']->id ?? null, 'is_add' => 1, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // services categories
@@ -120,7 +120,7 @@ class CmsModulePermissions extends Seeder
              ['role_id' => $leagueContractorRole->id, 'module_id' => $modules['memberships']->id ?? null, 'is_add' => 0, 'is_view' => 0, 'is_update' => 1, 'is_delete' => 0], // Memberships
              ['role_id' => $leagueContractorRole->id, 'module_id' => $modules['payments']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 0, 'is_delete' => 0], // payments
              ['role_id' => $leagueContractorRole->id, 'module_id' => $modules['referrals']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // referrals
-             ['role_id' => $leagueContractorRole->id, 'module_id' => $modules['contractors']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // contractors
+            //  ['role_id' => $leagueContractorRole->id, 'module_id' => $modules['contractors']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // contractors
              ['role_id' => $leagueContractorRole->id, 'module_id' => $modules['services']->id ?? null, 'is_add' => 1, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // services
              ['role_id' => $leagueContractorRole->id, 'module_id' => $modules['products']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // products
              ['role_id' => $leagueContractorRole->id, 'module_id' => $modules['orders']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // orders
@@ -131,8 +131,8 @@ class CmsModulePermissions extends Seeder
              ['role_id' => $leagueContractorRole->id, 'module_id' => $submenus['memberships.index']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // All Memberships (memberships.index)
              ['role_id' => $leagueContractorRole->id, 'module_id' => $submenus['referrals.index']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // All Referrals (referrals.index)
              ['role_id' => $leagueContractorRole->id, 'module_id' => $submenus['referrals.create']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // Add Referral (referrals.create)
-             ['role_id' => $leagueContractorRole->id, 'module_id' => $submenus['contractors.index']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // All Contractors (contractors.index)
-             ['role_id' => $leagueContractorRole->id, 'module_id' => $submenus['contractors.create']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // Add Contractor (contractors.create)
+            //  ['role_id' => $leagueContractorRole->id, 'module_id' => $submenus['contractors.index']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // All Contractors (contractors.index)
+            //  ['role_id' => $leagueContractorRole->id, 'module_id' => $submenus['contractors.create']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // Add Contractor (contractors.create)
              ['role_id' => $leagueContractorRole->id, 'module_id' => $submenus['services.index']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // All Services (services.index)
              ['role_id' => $leagueContractorRole->id, 'module_id' => $submenus['services.create']->id ?? null, 'is_add' => 0, 'is_view' => 1, 'is_update' => 1, 'is_delete' => 0], // Add Service (services.create)
              ['role_id' => $leagueContractorRole->id, 'module_id' => $modules['services-categories.create']->id ?? null, 'is_add' => 1, 'is_view' => 0, 'is_update' => 1, 'is_delete' => 0], // services categories

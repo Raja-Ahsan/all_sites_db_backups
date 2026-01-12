@@ -118,7 +118,7 @@
                                             </h4>
                                             <div class="d-flex align-items-center gap-10">
                                                 <a href="" class="bootstrap btn btn-outline btn-sm">View Detail</a>
-                                                <a href="{{ route('book-now') }}"
+                                                <a href=""
                                                     class="bootstrap btn btn-outline btn-sm">Book Now</a>
                                             </div>
                                         </div>
@@ -152,7 +152,7 @@
                                             </h4>
                                             <div class="d-flex align-items-center gap-10">
                                                 <a href="" class="bootstrap btn btn-outline btn-sm">View Detail</a>
-                                                <a href="{{ route('book-now') }}"
+                                                <a href=""
                                                     class="bootstrap btn btn-outline btn-sm">Book Now</a>
                                             </div>
                                         </div>
@@ -186,7 +186,7 @@
                                             </h4>
                                             <div class="d-flex align-items-center gap-10">
                                                 <a href="" class="bootstrap btn btn-outline btn-sm">View Detail</a>
-                                                <a href="{{ route('book-now') }}"
+                                                <a href=""
                                                     class="bootstrap btn btn-outline btn-sm">Book Now</a>
                                             </div>
                                         </div>
@@ -220,7 +220,7 @@
                                             </h4>
                                             <div class="d-flex align-items-center gap-10">
                                                 <a href="" class="bootstrap btn btn-outline btn-sm">View Detail</a>
-                                                <a href="{{ route('book-now') }}"
+                                                <a href=""
                                                     class="bootstrap btn btn-outline btn-sm">Book Now</a>
                                             </div>
                                         </div>

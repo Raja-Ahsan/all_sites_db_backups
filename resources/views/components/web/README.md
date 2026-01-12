@@ -13,7 +13,7 @@ Reusable components for web pages.
     'serviceName' => 'MASONRY',
     'location' => 'Midland, Texas - 79701',
     'serviceDetailUrl' => route('services.detail'),
-    'bookNowUrl' => route('book-now'),
+    'bookNowUrl' => route('book-now.create', [$service->company->slug, $service->slug]),
     'showOnlineBadge' => true,
 ])
 ```
