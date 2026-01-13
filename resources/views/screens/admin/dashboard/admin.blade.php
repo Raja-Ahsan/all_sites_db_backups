@@ -323,11 +323,13 @@
             }
 
             // Check if element exists
+
             var chartElement = document.querySelector("#chart-currently");
             if (!chartElement) {
-                console.error('Chart element #chart-currently not found');
+                console.log('Chart element #chart-currently not found');
                 return;
             }
+            
 
             // Get primary color from config or use default
             var primaryColor = (typeof CubaAdminConfig !== 'undefined' && CubaAdminConfig.primary) ? CubaAdminConfig

@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Company;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CompanyApprovedMail;
+use App\Notifications\CompanyApprovedNotification;
+
 
 class ContractorApprovalController extends Controller
 {
@@ -23,6 +27,20 @@ class ContractorApprovalController extends Controller
         $company = Company::findOrFail($request->id);
 
         $company->is_profile_approved = $request->status;
+
+        if ($request->status == 1 && !$company->approval_notified) {
+
+            $company->is_profile_approved = true;
+
+            Mail::to($company->user->email)
+                ->send(new CompanyApprovedMail($company));
+
+            $company->user->notify(new CompanyApprovedNotification());
+
+
+            $company->approval_notified = true;
+        }
+
         $company->save();
 
         return response()->json([

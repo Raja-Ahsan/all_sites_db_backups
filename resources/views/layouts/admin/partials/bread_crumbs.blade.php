@@ -16,7 +16,8 @@
                         @elseif($company->is_profile_completed && !$company->is_profile_approved)
                             <div class="alert alert-info" style="background:#1d1d1d; border-color:#0dcaf0; color:#fff;">
                                 <i class="fa-solid fa-hourglass-half"></i> Your profile has been submitted for approval.
-                                Once approved, you can add Services and Contractors. </div>
+                                Once approved, you can add Services and Contractors.
+                            </div>
                         @elseif(!$company->is_active)
                             <div class="alert alert-danger"
                                 style="background:#1d1d1d; border-color:#0dcaf0; color:#fff;"> <i
@@ -39,3 +40,24 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script>
+    @if ($approvalNotification)
+        Swal.fire({
+        icon: 'success',
+        title: 'Profile Approved',
+        text: '{{ $approvalNotification->data['message'] }}',
+        confirmButtonText: 'Ok'
+        }).then(() => {
+        // mark notification as read
+        fetch("{{ route('notifications.read', $approvalNotification->id) }}", {
+        method: 'POST',
+        headers: {
+        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        }
+        });
+        });
+    @endif
+</script>
+@endpush

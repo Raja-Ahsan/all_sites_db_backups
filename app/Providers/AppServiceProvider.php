@@ -19,6 +19,7 @@ use App\Http\Responses\RegisterResponse as CustomRegisterResponse;
 use Laravel\Fortify\Contracts\RequestPasswordResetLinkViewResponse;
 use App\Http\Responses\ForgotPasswordViewResponse;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\View;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -44,5 +45,16 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::useBootstrap();
+
+        View::composer('*', function ($view) {
+            if (auth()->check()) {
+                $approvalNotification = auth()->user()
+                    ->unreadNotifications()
+                    ->where('type', 'App\\Notifications\\CompanyApprovedNotification')
+                    ->first();
+
+                $view->with('approvalNotification', $approvalNotification);
+            }
+        });
     }
 }

@@ -127,7 +127,21 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 });
 
 
-// auth routes
+
+Route::post('/notifications/{id}/read', function ($id) {
+    auth()->user()
+        ->notifications()
+        ->where('id', $id)
+        ->update(['read_at' => now()]);
+
+    return response()->json(['success' => true]);
+})->name('notifications.read');
+
+
+// Route::get('/mail-preview/company-approved', function () {
+//     $company = \App\Models\Company::with('user')->first();
+//     return new \App\Mail\CompanyApprovedMail($company);
+// });
 
 
 

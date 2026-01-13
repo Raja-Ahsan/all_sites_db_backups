@@ -52,7 +52,7 @@
                                 <span class="f-light">Total Contractors</span>
                                 <h4>
                                     <span class="">
-                                        <span class="">{{$totalContractors}}</span>
+                                        <span class="">{{ $totalContractors }}</span>
                                     </span>
                                 </h4>
                             </div>
@@ -81,7 +81,7 @@
                                 <span class="f-light">Total Services</span>
                                 <h4>
                                     <span class="">
-                                        <span class="">{{$totalServices}}</span>
+                                        <span class="">{{ $totalServices }}</span>
                                     </span>
                                 </h4>
                             </div>
@@ -154,8 +154,9 @@
     </div>
 @endsection
 @push('scripts')
-<script src="{{ asset('assets/libs/js/chart/apex-chart/stock-prices.js') }}"></script>
-<script src="{{ asset('assets/libs/js/chart/apex-chart/apex-chart.js') }}"></script>
+    <script src="{{ asset('assets/libs/js/chart/apex-chart/stock-prices.js') }}"></script>
+    <script src="{{ asset('assets/libs/js/chart/apex-chart/apex-chart.js') }}"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Wait for ApexCharts to be available
@@ -170,9 +171,12 @@
                 console.error('Chart element #chart-currently not found');
                 return;
             }
+            
 
             // Get primary color from config or use default
-            var primaryColor = (typeof CubaAdminConfig !== 'undefined' && CubaAdminConfig.primary) ? CubaAdminConfig.primary : "#7366FF";
+            var primaryColor = (typeof CubaAdminConfig !== 'undefined' && CubaAdminConfig.primary) ? CubaAdminConfig
+                .primary :
+                "#7366FF";
 
             // currently sale
             var chartCurrent = {
@@ -256,7 +260,9 @@
                     },
                 },
                 xaxis: {
-                    categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                    categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov",
+                        "Dec"
+                    ],
                     labels: {
                         style: {
                             fontFamily: "Rubik, sans-serif",
