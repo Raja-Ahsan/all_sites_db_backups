@@ -164,7 +164,7 @@
 
                                         </div>
                                         <div>
-                                            <a href="{{ route('store.index', [$serviceDetail->compa]) }}"
+                                            <a href="{{ route('store.index', [$serviceDetail->company->slug, $serviceDetail->slug]) }}"
                                                 class="text-white secondry-font fs-24 mb-5">{{ $serviceDetail->company->store_name }}</a>
                                             <p class="text-white fs-16 mb-5">Seller: <span
                                                     class="fw-600">{{ $serviceDetail->user->name }}</span></p>
