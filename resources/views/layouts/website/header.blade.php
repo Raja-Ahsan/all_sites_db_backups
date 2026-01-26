@@ -1,0 +1,50 @@
+<!-- ***** Header Area Start ***** -->
+<header class="header-area header-sticky">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <!-- ***** Logo Start ***** -->
+            <a href="{{ route('index') }}" class="logo">
+              <img src="{{ asset('assets/website') }}/img/logo.png" alt="logo" class="logo-img">
+            </a>
+            <!-- ***** Logo End ***** -->
+            <!-- ***** Menu Start ***** -->
+            <ul class="nav">
+              <li class="scroll-to-section"><a href="{{ route('index') }}" class="active">Home</a></li>
+              <li><a href="{{ route('about-us') }}">About</a></li>
+              <li class="scroll-to-section"><a href="{{ route('instructions.upload') }}">Instructions for Easy Upload</a></li>
+              <!-- <li class="has-sub">
+                              <a href="javascript:void(0)">intake</a>
+                              <ul class="sub-menu">
+                                  <li><a href="meetings.html">Upcoming Meetings</a></li>
+                                  <li><a href="meeting-details.html">Meeting Details</a></li>
+                              </ul>
+                          </li> -->
+              <!--<li class="scroll-to-section"><a href="#courses">intake</a></li>-->
+              <li class="scroll-to-section"><a href="{{ route('contact-us') }}">Contact</a></li>
+              <li class="scroll-to-section"><a href="{{ route('creators.index') }}">Creators</a></li>
+              <!--<li class="scroll-to-section"><a href="{{ route('quiz.index') }}">Quiz</a></li>-->
+              <li class="scroll-to-section"><a href="https://www.careerfitter.com/free_test/careerbuilder/test?afid=2802" target="_blank">Quiz</a></li>
+              
+              @if(Auth::check())
+                @if(Auth::user()->hasRole('Creator'))
+                  <li class="scroll-to-section"><a href="{{ route('creator.dashboard') }}">Dashboard</a></li>
+                @elseif(Auth::user()->hasRole('Viewer'))
+                  <li class="scroll-to-section"><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                @endif
+              @else
+              <li class="scroll-to-section"><a href="{{ route('login') }}">Login</a></li>
+              <li class="scroll-to-section signup"><a href="{{ route('sign-up') }}">Signup</a></li>
+              @endif
+            </ul>
+            <a class='menu-trigger'>
+              <span>Menu</span>
+            </a>
+            <!-- ***** Menu End ***** -->
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
